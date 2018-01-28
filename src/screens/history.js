@@ -54,7 +54,7 @@ export const HistoryScreen = ({ navigation }) => {
       <TopNavigation title='Order History' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 60 }}>
+      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height }}>
         <View style={{}}>
           <Card style={styles.orderHeadCard}>
             <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
