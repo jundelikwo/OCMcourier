@@ -56,12 +56,12 @@ export const AccountScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={{ backgroundColor: '#f2f3f4', }}>
+    <View style={{ flex: 1 }}>
 
       <TopNavigation title='Account Settings' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 60 }}>
+      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ flex: 1 }}>
         <View style={{ marginTop: 5 }}>
           <Card style={styles.headCard}>
             <TouchableOpacity style={styles.cardHead} onPressIn={navigatePassword}>
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     paddingVertical: 5,
     width: Dimensions.get('window').width + 8.8,
-    flex: 1,
+
     flexDirection: 'row',
   },
   title: {

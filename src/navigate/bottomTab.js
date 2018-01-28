@@ -70,7 +70,7 @@ const Tab = createMaterialBottomTabNavigator(
     inactiveColor: "#8B95A6",
     barStyle: { backgroundColor: '#fff', paddingVertical: 3 },
     labelStyle: { fontSize: 12, },
-    shifting: true,
+    // shifting: true,
     labeled: true,
     useLayoutAnimation: true,
     backBehavior: 'history',

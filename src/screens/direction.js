@@ -9,6 +9,7 @@ import {
 } from '@ui-kitten/components';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import GetLocation from 'react-native-get-location';
+import ToggleSwitch from 'toggle-switch-react-native';
 
 GetLocation.getCurrentPosition({
   enableHighAccuracy: true,
@@ -56,14 +57,14 @@ export const DirectionScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={{ backgroundColor: '#f2f3f4', }}>
+    <View style={{ flex: 1 }}>
       <TopNavigation title='Get Direction' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
-      <View style={{}}>
+      <View style={{ flex: 1 }}>
         <MapView
           provider={PROVIDER_GOOGLE}
-          style={{ height: Dimensions.get('window').height - 90, }}
+          style={{ height: Dimensions.get('window').height - 100, }}
           region={{
             latitude: LATITUDE,
             longitude: LONGITUDE,
@@ -89,8 +90,16 @@ const styles = StyleSheet.create({
     elevation: 3,
     paddingVertical: 5,
     width: Dimensions.get('window').width + 8.8,
-    flex: 1,
     flexDirection: 'row',
+  },
+  title: {
+    fontSize: 18,
+    fontFamily: 'Muli',
+    alignSelf: 'center',
+    color: '#FD901C',
+    fontWeight: 'bold',
+    marginLeft: 18
+
   },
   toggleText: {
     fontSize: 14,

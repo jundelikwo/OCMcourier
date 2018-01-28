@@ -7,10 +7,9 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
-
 import {
   Avatar, Text, Input, TopNavigationAction,
-  TopNavigation, Divider, Toggle, Modal, Layout
+  TopNavigation, Divider, Modal, Layout
 } from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ToggleSwitch from 'toggle-switch-react-native';
@@ -18,7 +17,6 @@ import ToggleSwitch from 'toggle-switch-react-native';
 const BackIcon = (style) => (
   <Icon style={[{ color: '#515C6F' }]} name='ios-arrow-back' size={25} />
 );
-
 
 export const ProfileScreen = ({ navigation }) => {
   //driver status
@@ -45,8 +43,6 @@ export const ProfileScreen = ({ navigation }) => {
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
-
-
   const availableToggle = () => (
     <View style={{ marginRight: 18 }}>
       <ToggleSwitch
@@ -101,11 +97,11 @@ export const ProfileScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={{}}>
+    <View style={{ flex: 1 }}>
       <TopNavigation title='Personal Settings' style={styles.topNavigation}
         titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
       <Divider />
-      <View style={{ height: Dimensions.get('window').height - 90, flexDirection: 'column' }}>
+      <View style={{ flex: 1, flexDirection: 'column' }}>
         <View style={{ backgroundColor: '#FD901C', flex: 0.5, }}>
           <View style={{
             backgroundColor: '#FD901C', paddingTop: 100, shadowColor: "#000",
@@ -122,7 +118,7 @@ export const ProfileScreen = ({ navigation }) => {
                 scaleX: moderateScale(2, 0.1)
               }, {
                 scaleY: moderateScale(2, 0.2)
-              }],    
+              }],
               alignSelf: 'center',
               borderColor: '#fff',
               borderWidth: 0.5
@@ -140,7 +136,6 @@ export const ProfileScreen = ({ navigation }) => {
             onChangeText={setValueName}
             textStyle={styles.placeholder}
             placeholderTextColor={'#515C6F'}
-
           />
           <Input
             value={Emailvalue}
@@ -152,8 +147,6 @@ export const ProfileScreen = ({ navigation }) => {
             onChangeText={setValueEmail}
             textStyle={styles.placeholder}
             placeholderTextColor={'#515C6F'}
-
-
           />
           <Input
             value={Mobilevalue}
@@ -165,10 +158,8 @@ export const ProfileScreen = ({ navigation }) => {
             onChangeText={setValueMobile}
             textStyle={styles.placeholder}
             placeholderTextColor={'#515C6F'}
-
           />
           <Layout style={styles.container}>
-
             <Modal visible={visible}
               animationType="slide"
               transparent={true}>
@@ -197,24 +188,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.58,
     shadowRadius: 1,
     elevation: 3,
-    // paddingTop: StatusBar.currentHeight / 1.5,
-    // right: 9,
-    // marginBottom: 10,
     paddingVertical: 5,
-    // marginTop: 22,
     width: Dimensions.get('window').width + 8.8,
-    flex: 1,
     flexDirection: 'row',
-
   },
   modalContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     width: Dimensions.get('window').width - 90,
     padding: 16,
-    height: 300,
-    // backgroundColor: 'red'
-    opacity: 0.9,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -233,9 +215,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: '#FD901C',
     fontWeight: 'bold',
-
   },
-
   toggleText: {
     fontSize: 14,
     fontFamily: 'Muli',
@@ -243,7 +223,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     right: 50,
     position: 'absolute',
-    // top: 3
   },
   toggle: {
     margin: 5,
@@ -257,14 +236,11 @@ const styles = StyleSheet.create({
   },
   inputEmail: {
     borderRadius: 7,
-    // borderColor: 'blue',
     margin: 10,
     borderColor: '#BDBDBD',
     backgroundColor: '#fff',
     width: Dimensions.get('window').width - 30,
     alignSelf: "center",
-    // height: 50
-    // borderWidth: 2
   },
   inputPass: {
     borderRadius: 7,
@@ -284,12 +260,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FD901C',
     width: Dimensions.get('window').width - 30,
     alignSelf: 'center',
-    // bottom: 15,
     borderRadius: 7,
     padding: 12,
     marginVertical: 90
-    // top: Dimensions.get('window').height - 420
-
   },
   buttonText: {
     fontSize: 18,

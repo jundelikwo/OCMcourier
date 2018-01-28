@@ -52,11 +52,11 @@ export const HistoryScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={{ backgroundColor: '#f2f3f4', }}>
+    <View style={{ flex: 1 }}>
       <TopNavigation title='Order History' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 155 }}>
+      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ flex: 1 }}>
         <View style={{}}>
           <Card style={styles.orderHeadCard}>
             <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
@@ -172,7 +172,6 @@ const styles = StyleSheet.create({
     elevation: 3,
     paddingVertical: 5,
     width: Dimensions.get('window').width + 8.8,
-    flex: 1,
     flexDirection: 'row',
   },
   title: {

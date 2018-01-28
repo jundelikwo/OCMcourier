@@ -94,11 +94,11 @@ export const PasswordScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={{}}>
+    <View style={{flex: 1}}>
       <TopNavigation title='Change Password' style={styles.topNavigation}
         titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
       <Divider />
-      <View style={{ height: Dimensions.get('window').height - 100 }}>
+      <View style={{flex: 1}}>
         <View style={{ marginTop: 30 }}>
           <Input
             value={Oldvalue}
@@ -162,7 +162,6 @@ const styles = StyleSheet.create({
     elevation: 3,
     paddingVertical: 5,
     width: Dimensions.get('window').width + 8.8,
-    flex: 1,
     flexDirection: 'row',
   },
   title: {

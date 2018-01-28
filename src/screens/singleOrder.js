@@ -13,7 +13,7 @@ import IconI from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import ToggleSwitch from 'toggle-switch-react-native';
 //  icons
-const BackIcon = (style) => (
+const BackIcon = () => (
   <IconI style={[{ color: '#515C6F' }]} name='ios-arrow-back' size={25} />
 );
 
@@ -58,7 +58,7 @@ export const SingleOrderScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={{ backgroundColor: '#f2f3f4' }}>
+    <View style={{ flex: 1 }}>
 
       <TopNavigation title='Order History' style={styles.topNavigation}
         titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
@@ -81,7 +81,7 @@ export const SingleOrderScreen = ({ navigation }) => {
           </View>
         </View>
       </Card>
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 155 }}>
+      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ flex: 1 }}>
         <Card style={styles.card} >
           <Text style={styles.stopsCountText}>
             Stop 1
@@ -200,7 +200,6 @@ const styles = StyleSheet.create({
     elevation: 3,
     paddingVertical: 5,
     width: Dimensions.get('window').width + 8.8,
-    flex: 1,
     flexDirection: 'row',
   },
   title: {

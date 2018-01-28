@@ -59,12 +59,12 @@ export const PendingScreen = ({ navigation }) => {
 
 
   return (
-    <View >
+    <View style={{ flex: 1 }}>
 
       <TopNavigation title='Pending Orders' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
-      <View style={{ height: Dimensions.get('window').height - 135, zIndex: 0, }}>
+      <View style={{ flex: 1 }}>
         <Card style={styles.orderHeadCard}>
           <View style={styles.orderHead}>
             <View style={styles.avatar} >
@@ -95,7 +95,7 @@ export const PendingScreen = ({ navigation }) => {
             </View>
           </View>
         </Card>
-        <ScrollView>
+        <ScrollView >
           <Card style={styles.card} >
             <Text style={styles.stopsCountText}>
               Stop 1
@@ -223,7 +223,6 @@ const styles = StyleSheet.create({
     elevation: 3,
     paddingVertical: 5,
     width: Dimensions.get('window').width,
-    flex: 1,
     flexDirection: 'row',
   },
   title: {

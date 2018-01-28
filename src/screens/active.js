@@ -81,11 +81,11 @@ export const ActiveScreen = ({ navigation }) => {
 
 
   return (
-    <View style={{}}>
+    <View style={{ flex: 1 }}>
       <TopNavigation title='Active Order' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
-      <ScrollView>
+      <ScrollView style={{ flex: 1 }}>
         <ImageBackground source={require('../assets/grid.png')} style={{ width: Dimensions.get('window').widths, height: Dimensions.get('window').height }}>
           <View style={{ height: Dimensions.get('window').height - 90, width: Dimensions.get('window').width + 114, alignItems: 'center' }}>
             <StepIndicator
@@ -116,7 +116,6 @@ const styles = StyleSheet.create({
     elevation: 3,
     paddingVertical: 5,
     width: Dimensions.get('window').width + 8.8,
-    flex: 1,
     flexDirection: 'row',
 
   },
