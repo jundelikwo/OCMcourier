@@ -3,15 +3,12 @@ import { createMaterialBottomTabNavigator } from 'react-navigation-material-bott
 import React from 'react'
 import { View } from 'react-native';
 import IconF from 'react-native-vector-icons/FontAwesome5';
-
 //screens
 import { AccountScreen } from '../screens/account';
 import { PendingScreen } from '../screens/pending';
 import { HistoryScreen } from '../screens/history';
 import { DirectionScreen } from '../screens/direction';
 import { ActiveScreen } from '../screens/active';
-
-
 
 const Tab = createMaterialBottomTabNavigator(
   {
@@ -29,7 +26,6 @@ const Tab = createMaterialBottomTabNavigator(
       screen: HistoryScreen,
       navigationOptions: {
         tabBarAccessibilityLabel: 'History',
-
         tabBarIcon: ({ tintColor }) => (
           <View>
             <IconF style={[{ color: tintColor }]} size={20} name={'history'} />
@@ -40,7 +36,6 @@ const Tab = createMaterialBottomTabNavigator(
       screen: ActiveScreen,
       navigationOptions: {
         tabBarAccessibilityLabel: 'Active',
-        // shipping- fast
         tabBarIcon: ({ tintColor }) => (
           <View>
             <IconF style={[{ color: tintColor }]} size={20} name={'shipping-fast'} />
@@ -51,27 +46,22 @@ const Tab = createMaterialBottomTabNavigator(
       screen: DirectionScreen,
       navigationOptions: {
         tabBarAccessibilityLabel: 'Direction',
-
         tabBarIcon: ({ tintColor }) => (
           <View>
             <IconF style={[{ color: tintColor }]} size={20} name={'route'} />
           </View>),
       },
     },
-
     Account: {
       screen: AccountScreen,
       navigationOptions: {
         tabBarAccessibilityLabel: 'Account',
-
         tabBarIcon: ({ tintColor }) => (
           <View>
             <IconF style={[{ color: tintColor }]} size={20} name={'user-alt'} />
           </View>),
 
       },
-
-
     },
   },
   {
@@ -88,7 +78,6 @@ const Tab = createMaterialBottomTabNavigator(
     navigationOptions: {
       tabBarVisibile: true
     },
-
   }
 );
 export const AppNavigator = createAppContainer(Tab);
