@@ -50,7 +50,6 @@ export const HistoryScreen = ({ navigation }) => {
 
   return (
     <View style={{ backgroundColor: '#f2f3f4', }}>
-
       <TopNavigation title='Order History' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
@@ -91,7 +90,6 @@ export const HistoryScreen = ({ navigation }) => {
                 <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
                   <Text style={styles.date}>1 week ago</Text>
                   <IconI style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
-
                 </View>
               </View>
             </TouchableOpacity>
@@ -111,7 +109,6 @@ export const HistoryScreen = ({ navigation }) => {
                 <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
                   <Text style={styles.date}>1 week ago</Text>
                   <IconI style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
-
                 </View>
               </View>
             </TouchableOpacity>
@@ -131,7 +128,6 @@ export const HistoryScreen = ({ navigation }) => {
                 <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
                   <Text style={styles.date}>1 week ago</Text>
                   <IconI style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
-
                 </View>
               </View>
             </TouchableOpacity>
@@ -151,19 +147,14 @@ export const HistoryScreen = ({ navigation }) => {
                 <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
                   <Text style={styles.date}>1 week ago</Text>
                   <IconI style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
-
                 </View>
               </View>
             </TouchableOpacity>
           </Card>
         </View>
       </ScrollView>
-
-
     </View >
-
   )
-
 };
 
 const styles = StyleSheet.create({

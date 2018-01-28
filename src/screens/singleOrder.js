@@ -4,18 +4,18 @@ import {
   View,
   Dimensions,
   ScrollView,
-  StatusBar
 } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
-
 import {
   Text, Avatar, TopNavigationAction,
-  TopNavigation, Divider, Toggle, Card,
+  TopNavigation, Divider, Card,
 } from '@ui-kitten/components';
-import Icon from 'react-native-vector-icons/Ionicons';
+import IconI from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import ToggleSwitch from 'toggle-switch-react-native';
 //  icons
 const BackIcon = (style) => (
-  <Icon style={[{ color: '#515C6F' }]} name='ios-arrow-back' size={25} />
+  <IconI style={[{ color: '#515C6F' }]} name='ios-arrow-back' size={25} />
 );
 
 
@@ -28,7 +28,6 @@ export const SingleOrderScreen = ({ navigation }) => {
   const { checked, text } = available;
 
   const onCheckedChangeCourier = (isChecked) => {
-    // console.warn("isChecked", isChecked)
     setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
   };
 
@@ -43,15 +42,17 @@ export const SingleOrderScreen = ({ navigation }) => {
 
 
   const availableToggle = () => (
-    <Toggle
-      style={styles.toggle}
-      text={available.text}
-      text={'Availablity'}
-      textStyle={styles.toggleText}
-      onChange={onCheckedChangeCourier}
-      checked={checked}
-    // onPress={this.ToggleAvailability}
-    />
+    <View style={{ marginRight: 18 }}>
+      <ToggleSwitch
+        isOn={checked}
+        onColor='#FD901C'
+        offColor="#747D8C"
+        label={available.text}
+        labelStyle={styles.toggleText}
+        size='meduim'
+        onToggle={onCheckedChangeCourier}
+      />
+    </View>
   );
 
   return (
@@ -60,7 +61,6 @@ export const SingleOrderScreen = ({ navigation }) => {
       <TopNavigation title='Order History' style={styles.topNavigation}
         titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
       <Divider />
-
       <Card style={styles.orderHeadCard}>
         <View style={styles.orderHead}>
           <View style={styles.avatar} >
@@ -71,17 +71,10 @@ export const SingleOrderScreen = ({ navigation }) => {
               <Text style={styles.clientName}>Brown Samson Dappa</Text>
               <Text style={styles.orderNumKilo}>Order No. 38392 <Text style={styles.dot}>.</Text> 2.6km</Text>
               <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Delivered</Text>
-              <Icon
-                name='droplet'
-                width={12}
-                height={12}
-                fill='#5AC966'
-                style={styles.statusIcon}
-              />
+              <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#5AC966'} />
             </View>
             <View style={{ flex: 1, }}>
               <Text style={styles.time}>02/2019 </Text>
-
             </View>
           </View>
         </View>
@@ -97,13 +90,7 @@ export const SingleOrderScreen = ({ navigation }) => {
           <Text style={styles.orderNumKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
             <Text style={styles.dot}>.</Text> Picked Up</Text>
           </Text>
-          <Icon
-            name='droplet'
-            width={12}
-            height={12}
-            fill='#5AC966'
-            style={styles.statusPickupIcon}
-          />
+          <Icon style={[styles.statusPickupIcon]} name='ello' size={10} color={'#5AC966'} />
           <Divider style={styles.divider} />
           <View style={styles.addrPhone}>
             <Text style={styles.address}>Address:</Text>
@@ -119,7 +106,6 @@ export const SingleOrderScreen = ({ navigation }) => {
             </Text>
           </View>
         </Card>
-
         <Card style={styles.card} >
           <Text style={styles.stopsCountText}>
             Stop 2
@@ -130,13 +116,7 @@ export const SingleOrderScreen = ({ navigation }) => {
           <Text style={styles.orderNumKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
             <Text style={styles.dot}>.</Text> Picked Up </Text>
           </Text>
-          <Icon
-            name='droplet'
-            width={12}
-            height={12}
-            fill='#5AC966'
-            style={styles.statusPickupIcon}
-          />
+          <Icon style={[styles.statusPickupIcon]} name='ello' size={10} color={'#5AC966'} />
           <Divider style={styles.divider} />
           <View style={styles.addrPhone}>
             <Text style={styles.address}>Address:</Text>
@@ -152,8 +132,6 @@ export const SingleOrderScreen = ({ navigation }) => {
             </Text>
           </View>
         </Card>
-
-
         <Card style={styles.card} >
           <Text style={styles.stopsCountText}>
             Stop 3
@@ -164,13 +142,7 @@ export const SingleOrderScreen = ({ navigation }) => {
           <Text style={styles.orderNumKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
             <Text style={styles.dot}>.</Text> Picked Up </Text>
           </Text>
-          <Icon
-            name='droplet'
-            width={12}
-            height={12}
-            fill='#5AC966'
-            style={styles.statusPickupIcon}
-          />
+          <Icon style={[styles.statusPickupIcon]} name='ello' size={10} color={'#5AC966'} />
           <Divider style={styles.divider} />
           <View style={styles.addrPhone}>
             <Text style={styles.address}>Address:</Text>
@@ -209,13 +181,9 @@ export const SingleOrderScreen = ({ navigation }) => {
             </Text>
           </View>
         </Card>
-
       </ScrollView>
-
     </View>
-
   )
-
 };
 
 const styles = StyleSheet.create({
@@ -228,11 +196,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.58,
     shadowRadius: 1,
     elevation: 3,
-    // paddingTop: StatusBar.currentHeight / 1.5,
-    // right: 9,
-    // marginBottom: 10,
     paddingVertical: 5,
-    // marginTop: 22,
     width: Dimensions.get('window').width + 8.8,
     flex: 1,
     flexDirection: 'row',
@@ -313,22 +277,6 @@ const styles = StyleSheet.create({
     marginLeft: 33,
 
   },
-  toggleStatus: {
-    marginLeft: 13,
-    marginTop: -33,
-    transform: [{
-      scaleX: moderateScale(0.7, 0.1)
-    }, {
-      scaleY: moderateScale(0.7, 0.2)
-    }]
-  },
-  toggleStatusText: {
-    fontSize: 14,
-    fontFamily: 'Muli',
-    color: '#828282',
-    fontWeight: 'bold',
-    marginLeft: -99
-  },
   toggleText: {
     fontSize: 14,
     fontFamily: 'Muli',
@@ -336,17 +284,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     right: 50,
     position: 'absolute',
-    // top: 3
-  },
-  toggle: {
-    margin: 5,
-    flex: 1,
-    justifyContent: 'flex-end',
-    transform: [{
-      scaleX: moderateScale(0.8, 0.1)
-    }, {
-      scaleY: moderateScale(0.8, 0.2)
-    }]
   },
   card: {
     marginVertical: 4,
@@ -375,13 +312,12 @@ const styles = StyleSheet.create({
   },
   statusIcon: {
     bottom: 17.6,
-    left: 108
+    left: 115
   },
   orderItemStatus: {
     fontSize: 12,
     fontFamily: 'Muli',
     color: '#747D8C',
-
   },
   divider: {
     padding: 0.5,
@@ -409,12 +345,10 @@ const styles = StyleSheet.create({
     flex: 1.4,
     textAlign: 'left',
     lineHeight: 16
-
   },
   statusPickupIcon: {
     bottom: 17.5,
-    marginLeft: 161,
+    marginLeft: 167,
     marginBottom: -7
   }
-
 });
