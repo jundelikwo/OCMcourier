@@ -3,17 +3,13 @@ import {
   StyleSheet,
   View,
   Dimensions,
-  StatusBar,
   Image,
 } from 'react-native';
-import { moderateScale } from 'react-native-size-matters';
-
 import {
-  TopNavigation, Divider, Toggle,
+  TopNavigation, Divider,
 } from '@ui-kitten/components';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import GetLocation from 'react-native-get-location';
-
 
 GetLocation.getCurrentPosition({
   enableHighAccuracy: true,
@@ -41,32 +37,30 @@ export const DirectionScreen = ({ navigation }) => {
   //driver status
   const [available, setAvailable] = useState({
     checked: true,
-    text: "Not Available"
+    text: "Available"
   });
   const { checked, text } = available;
-
   const onCheckedChangeCourier = (isChecked) => {
-    // console.warn("isChecked", isChecked)
     setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
   };
 
 
-
   const availableToggle = () => (
-    <Toggle
-      style={styles.toggle}
-      text={available.text}
-      text={'Availablity'}
-      textStyle={styles.toggleText}
-      onChange={onCheckedChangeCourier}
-      checked={checked}
-
-    />
+    <View style={{ marginRight: 18 }}>
+      <ToggleSwitch
+        isOn={checked}
+        onColor='#FD901C'
+        offColor="#747D8C"
+        label={available.text}
+        labelStyle={styles.toggleText}
+        size='meduim'
+        onToggle={onCheckedChangeCourier}
+      />
+    </View>
   );
 
   return (
     <View style={{ backgroundColor: '#f2f3f4', }}>
-
       <TopNavigation title='Get Direction' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
@@ -80,32 +74,14 @@ export const DirectionScreen = ({ navigation }) => {
             latitudeDelta: LATITUDE_DELTA,
             longitudeDelta: LONGITUDE_DELTA
           }}
-          // mapType="satellite"
           showsUserLocation={true}
-
-
         />
-
-
-
       </View>
-
-
     </View >
-
   )
-
 };
 
 const styles = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-  },
   topNavigation: {
     shadowColor: "#000",
     shadowOffset: {
@@ -115,110 +91,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.58,
     shadowRadius: 1,
     elevation: 3,
-    // paddingTop: StatusBar.currentHeight / 1.5,
-    // right: 9,
-    // marginBottom: 10,
     paddingVertical: 5,
-    // marginTop: 22,
     width: Dimensions.get('window').width + 8.8,
     flex: 1,
     flexDirection: 'row',
-
-  },
-  title: {
-    fontSize: 18,
-    fontFamily: 'Muli',
-    alignSelf: 'center',
-    color: '#FD901C',
-    fontWeight: 'bold',
-    marginLeft: 18
-
-  },
-  orderHeadCard: {
-    margin: 0, padding: 0,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 2.49,
-    elevation: 2,
-    marginTop: 9
-
-  },
-  orderHead: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: "center",
-    // paddingVertical: 32,
-    // backgroundColor: 'green'
-  },
-  avatar: {
-    flex: 1,
-    alignItems: 'flex-start'
-  },
-  orderHeadContent: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: 'center',
-
-  },
-  clientName: {
-    fontSize: 14,
-    fontFamily: 'Muli',
-    color: '#515C6F',
-    // fontWeight: 'bold',
-    marginVertical: 2,
-    alignSelf: 'flex-start'
-
-    // justifyContent: 'space-between'
-  },
-  dot: {
-    fontSize: 30,
-    color: '#747D8C',
-  },
-  stops: {
-    fontSize: 12,
-    fontFamily: 'Muli',
-    color: '#747D8C',
-    // marginTop: -2,
-    marginVertical: 2
-  },
-  stopsCountNum: {
-    fontSize: 12,
-    fontFamily: 'Muli',
-    color: '#747D8C',
-    marginTop: -2,
-    fontWeight: 'bold'
-  },
-  date: {
-    fontSize: 10,
-    fontFamily: 'Muli',
-    alignSelf: 'center',
-    color: '#747D8C',
-    fontSize: 10,
-    // marginLeft: 9,
-    // justifyContent: 'flex-start'
-    // alignContent: 'center'
-    // top: 12
-    // marginBottom: 40
-  },
-  toggleStatus: {
-    marginLeft: 13,
-    marginTop: -33,
-    transform: [{
-      scaleX: moderateScale(0.7, 0.1)
-    }, {
-      scaleY: moderateScale(0.7, 0.2)
-    }]
-  },
-  toggleStatusText: {
-    fontSize: 14,
-    fontFamily: 'Muli',
-    color: '#828282',
-    fontWeight: 'bold',
-    marginLeft: -99
   },
   toggleText: {
     fontSize: 14,
@@ -227,83 +103,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     right: 50,
     position: 'absolute',
-    // top: 3
   },
-  toggle: {
-    margin: 5,
-    flex: 1,
-    justifyContent: 'flex-end',
-    transform: [{
-      scaleX: moderateScale(0.8, 0.1)
-    }, {
-      scaleY: moderateScale(0.8, 0.2)
-    }]
-  },
-  card: {
-    marginVertical: 4,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 1,
-    shadowRadius: 0.5,
-
-    elevation: 0.5,
-  },
-  stopsCountText: {
-    fontSize: 12.5,
-    fontFamily: 'Muli',
-    color: '#828282',
-    fontWeight: 'normal',
-  },
-  restaurantName: {
-    fontSize: 14,
-    fontFamily: 'Muli',
-    color: '#515C6F',
-    fontWeight: 'bold',
-    fontStyle: 'normal'
-  },
-  statusIcon: {
-    bottom: 19.5,
-    left: 117
-  },
-  orderItemStatus: {
-    fontSize: 12,
-    fontFamily: 'Muli',
-    color: '#747D8C',
-
-  },
-  divider: {
-    padding: 0.5,
-    backgroundColor: '#b8bcc4'
-  },
-  addrPhone: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 6
-  },
-  address: {
-    fontSize: 12,
-    fontFamily: 'Muli',
-    color: '#747D8C',
-    fontWeight: 'bold',
-    fontStyle: 'normal',
-    flex: 1,
-  },
-  addressContent: {
-    fontSize: 12,
-    fontFamily: 'Muli',
-    color: '#747D8C',
-    fontStyle: 'normal',
-    flex: 1.4,
-    textAlign: 'left',
-    lineHeight: 16
-
-  },
-  statusStopIcon: {
-    bottom: 17.5, marginLeft: 170, marginBottom: -7
-  }
 
 });

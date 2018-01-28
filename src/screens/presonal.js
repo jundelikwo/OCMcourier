@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   Dimensions,
-  StatusBar,
   Image,
   TouchableOpacity
 } from 'react-native';
@@ -11,10 +10,10 @@ import { moderateScale } from 'react-native-size-matters';
 
 import {
   Avatar, Text, Input, TopNavigationAction,
-  TopNavigation, Divider, Toggle, Modal, Layout,
-
+  TopNavigation, Divider, Toggle, Modal, Layout
 } from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/Ionicons';
+import ToggleSwitch from 'toggle-switch-react-native';
 //  icons
 const BackIcon = (style) => (
   <Icon style={[{ color: '#515C6F' }]} name='ios-arrow-back' size={25} />
@@ -25,15 +24,12 @@ export const ProfileScreen = ({ navigation }) => {
   //driver status
   const [available, setAvailable] = useState({
     checked: true,
-    text: "Not Available"
+    text: "Available"
   });
   const { checked, text } = available;
-
   const onCheckedChangeCourier = (isChecked) => {
-    // console.warn("isChecked", isChecked)
     setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
   };
-
   const [Namevalue, setValueName] = React.useState('');
   const [Emailvalue, setValueEmail] = React.useState('');
   const [Mobilevalue, setValueMobile] = React.useState('');
@@ -41,7 +37,9 @@ export const ProfileScreen = ({ navigation }) => {
 
   //nav
   const navigateBack = () => {
-    navigation.goBack();
+    requestAnimationFrame(() => {
+      navigation.goBack();
+    })
   };
 
   const BackAction = () => (
@@ -50,20 +48,24 @@ export const ProfileScreen = ({ navigation }) => {
 
 
   const availableToggle = () => (
-    <Toggle
-      style={styles.toggle}
-      text={available.text}
-      text={'Availablity'}
-      textStyle={styles.toggleText}
-      onChange={onCheckedChangeCourier}
-      checked={checked}
-    // onPress={this.ToggleAvailability}
-    />
+    <View style={{ marginRight: 18 }}>
+      <ToggleSwitch
+        isOn={checked}
+        onColor='#FD901C'
+        offColor="#747D8C"
+        label={available.text}
+        labelStyle={styles.toggleText}
+        size='meduim'
+        onToggle={onCheckedChangeCourier}
+      />
+    </View>
   );
   const [visible, setVisible] = React.useState(false);
 
   const toggleModal = () => {
-    setVisible(!visible);
+    requestAnimationFrame(() => {
+      setVisible(!visible)
+    })
   };
   const renderModalElement = () => (
     <Layout
@@ -71,7 +73,6 @@ export const ProfileScreen = ({ navigation }) => {
       <Image style={{
         width: 50,
         height: 50,
-        // marginTop: 50
       }} source={require('../assets/success.png')} />
       <Text style={{
         fontSize: 18,
@@ -84,7 +85,6 @@ export const ProfileScreen = ({ navigation }) => {
         margin: 20
       }}>Account Settings Updated</Text>
       <TouchableOpacity style={{ width: Dimensions.get('window').width - 130, borderRadius: 7, backgroundColor: '#FD901C', padding: 14, alignSelf: 'center', marginTop: 40 }} onPress={toggleModal}>
-
         <Text style={{
           fontSize: 18,
           fontFamily: 'Muli',
@@ -93,7 +93,6 @@ export const ProfileScreen = ({ navigation }) => {
           fontWeight: 'bold',
           lineHeight: 23,
           textAlign: 'center',
-
         }}>
           Cancel
           </Text>
@@ -103,7 +102,6 @@ export const ProfileScreen = ({ navigation }) => {
 
   return (
     <View style={{}}>
-
       <TopNavigation title='Personal Settings' style={styles.topNavigation}
         titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
       <Divider />
@@ -117,7 +115,6 @@ export const ProfileScreen = ({ navigation }) => {
             },
             shadowOpacity: 0.23,
             shadowRadius: 2.62,
-
             elevation: 4,
           }} >
             <Avatar style={{
@@ -125,20 +122,13 @@ export const ProfileScreen = ({ navigation }) => {
                 scaleX: moderateScale(2, 0.1)
               }, {
                 scaleY: moderateScale(2, 0.2)
-              }],
-              // justifyContent: 'flex-start',
+              }],    
               alignSelf: 'center',
               borderColor: '#fff',
               borderWidth: 0.5
-
-
-              // height: 90
-
             }} size='giant' source={require('../assets/pic.png')} />
           </View>
         </View>
-
-
         <View style={{ flex: 1.5, paddingTop: 100 }}>
           <Input
             value={Namevalue}
