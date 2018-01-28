@@ -5,7 +5,6 @@ import {
   Dimensions,
   ScrollView,
 } from 'react-native';
-import { moderateScale } from 'react-native-size-matters';
 import {
   Text, Avatar, TopNavigationAction,
   TopNavigation, Divider, Card,
@@ -23,12 +22,15 @@ export const SingleOrderScreen = ({ navigation }) => {
   //driver status
   const [available, setAvailable] = useState({
     checked: true,
-    text: "Not Available"
+    text: "Available"
   });
   const { checked, text } = available;
 
   const onCheckedChangeCourier = (isChecked) => {
+    // requestAnimationFrame(() => {
+    // console.warn("isChecked", isChecked)
     setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
+    // })
   };
 
   //nav
@@ -226,7 +228,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: "center",
     paddingVertical: 32,
-    // backgroundColor: 'green'
   },
   avatar: {
     flex: 1,

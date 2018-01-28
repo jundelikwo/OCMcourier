@@ -4,15 +4,15 @@ import {
   View,
   Dimensions,
   ScrollView,
-  StatusBar,
   ImageBackground
 } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import {
-  TopNavigation, Divider, Toggle,
+  TopNavigation, Divider,
 } from '@ui-kitten/components';
 import StepIndicator from 'react-native-step-indicator';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import ToggleSwitch from 'toggle-switch-react-native';
 //  icons
 const BackIcon = (style) => (
   <Icon {...style} name='arrow-ios-back-outline' />
@@ -23,27 +23,31 @@ export const ActiveScreen = ({ navigation }) => {
   //driver status
   const [available, setAvailable] = useState({
     checked: true,
-    text: "Not Available"
+    text: "Available"
   });
   const { checked, text } = available;
 
   const onCheckedChangeCourier = (isChecked) => {
+    // requestAnimationFrame(() => {
     // console.warn("isChecked", isChecked)
     setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
+    // })
   };
 
 
 
   const availableToggle = () => (
-    <Toggle
-      style={styles.toggle}
-      text={available.text}
-      text={'Availablity'}
-      textStyle={styles.toggleText}
-      onChange={onCheckedChangeCourier}
-      checked={checked}
-    // onPress={this.ToggleAvailability}
-    />
+    <View style={{ marginRight: 18 }}>
+      <ToggleSwitch
+        isOn={checked}
+        onColor='#FD901C'
+        offColor="#747D8C"
+        label={available.text}
+        labelStyle={styles.toggleText}
+        size='meduim'
+        onToggle={onCheckedChangeCourier}
+      />
+    </View>
   );
   const labels = ["Crunchies Restaurant", "The Spot", "Pepper Roni", "Buyer",];
   const customStyles = {

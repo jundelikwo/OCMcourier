@@ -19,12 +19,15 @@ export const HistoryScreen = ({ navigation }) => {
   //driver status
   const [available, setAvailable] = useState({
     checked: true,
-    text: "Not Available"
+    text: "Available"
   });
   const { checked, text } = available;
 
   const onCheckedChangeCourier = (isChecked) => {
+    // requestAnimationFrame(() => {
+    // console.warn("isChecked", isChecked)
     setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
+    // })
   };
 
 
@@ -53,7 +56,7 @@ export const HistoryScreen = ({ navigation }) => {
       <TopNavigation title='Order History' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height }}>
+      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 155 }}>
         <View style={{}}>
           <Card style={styles.orderHeadCard}>
             <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
