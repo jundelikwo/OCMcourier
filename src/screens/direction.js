@@ -3,7 +3,6 @@ import {
   StyleSheet,
   View,
   Dimensions,
-  Image,
 } from 'react-native';
 import {
   TopNavigation, Divider,
@@ -18,7 +17,6 @@ GetLocation.getCurrentPosition({
   .then(location => {
     // console.log(location);
 
-
   })
   .catch(error => {
     const { code, message } = error;
@@ -30,8 +28,6 @@ const LATITUDE = 4.926956;
 const LONGITUDE = 8.330295;
 const LATITUDE_DELTA = 0.0201 / 2;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-
-
 
 export const DirectionScreen = ({ navigation }) => {
   //driver status
