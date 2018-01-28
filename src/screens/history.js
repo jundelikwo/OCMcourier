@@ -7,13 +7,13 @@ import {
   ScrollView,
 } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
-
 import {
   Text, Avatar,
-  TopNavigation, Divider, Toggle, Card,
+  TopNavigation, Divider, Card,
 } from '@ui-kitten/components';
-import Icon from 'react-native-vector-icons/Ionicons';
-
+import IconI from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import ToggleSwitch from 'toggle-switch-react-native';
 
 export const HistoryScreen = ({ navigation }) => {
   //driver status
@@ -29,26 +29,24 @@ export const HistoryScreen = ({ navigation }) => {
   };
 
 
-
   const navigateSingleOrder = () => {
     requestAnimationFrame(() => {
       navigation.navigate('SingleOrder');
     })
   };
 
-
-
-
   const availableToggle = () => (
-    <Toggle
-      style={styles.toggle}
-      text={available.text}
-      text={'Availablity'}
-      textStyle={styles.toggleText}
-      onChange={onCheckedChangeCourier}
-      checked={checked}
-
-    />
+    <View style={{ marginRight: 18 }}>
+      <ToggleSwitch
+        isOn={checked}
+        onColor='#FD901C'
+        offColor="#747D8C"
+        label={available.text}
+        labelStyle={styles.toggleText}
+        size='meduim'
+        onToggle={onCheckedChangeCourier}
+      />
+    </View>
   );
 
   return (
@@ -68,18 +66,12 @@ export const HistoryScreen = ({ navigation }) => {
                 <View style={{ flex: 2, alignSelf: 'flex-start', }}>
                   <Text style={styles.clientName}>Brown Samson Dappa</Text>
 
-                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
-                  <Icon
-                    name='droplet'
-                    width={12}
-                    height={12}
-                    fill='#5AC966'
-                    style={styles.statusIcon}
-                  />
+                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processing</Text>
+                  <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#DB463B'} />
                 </View>
                 <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
                   <Text style={styles.date}>1 week ago</Text>
-                  <Icon style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
+                  <IconI style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
 
                 </View>
               </View>
@@ -95,17 +87,11 @@ export const HistoryScreen = ({ navigation }) => {
                   <Text style={styles.clientName}>Brown Samson Dappa</Text>
 
                   <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
-                  <Icon
-                    name='droplet'
-                    width={12}
-                    height={12}
-                    fill='#5AC966'
-                    style={styles.statusIcon}
-                  />
+                  <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#5AC966'} />
                 </View>
                 <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
                   <Text style={styles.date}>1 week ago</Text>
-                  <Icon style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
+                  <IconI style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
 
                 </View>
               </View>
@@ -121,17 +107,11 @@ export const HistoryScreen = ({ navigation }) => {
                   <Text style={styles.clientName}>Brown Samson Dappa</Text>
 
                   <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
-                  <Icon
-                    name='droplet'
-                    width={12}
-                    height={12}
-                    fill='#5AC966'
-                    style={styles.statusIcon}
-                  />
+                  <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#5AC966'} />
                 </View>
                 <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
                   <Text style={styles.date}>1 week ago</Text>
-                  <Icon style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
+                  <IconI style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
 
                 </View>
               </View>
@@ -147,17 +127,11 @@ export const HistoryScreen = ({ navigation }) => {
                   <Text style={styles.clientName}>Brown Samson Dappa</Text>
 
                   <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
-                  <Icon
-                    name='droplet'
-                    width={12}
-                    height={12}
-                    fill='#5AC966'
-                    style={styles.statusIcon}
-                  />
+                  <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#5AC966'} />
                 </View>
                 <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
                   <Text style={styles.date}>1 week ago</Text>
-                  <Icon style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
+                  <IconI style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
 
                 </View>
               </View>
@@ -173,17 +147,11 @@ export const HistoryScreen = ({ navigation }) => {
                   <Text style={styles.clientName}>Brown Samson Dappa</Text>
 
                   <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
-                  <Icon
-                    name='droplet'
-                    width={12}
-                    height={12}
-                    fill='#5AC966'
-                    style={styles.statusIcon}
-                  />
+                  <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#5AC966'} />
                 </View>
                 <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
                   <Text style={styles.date}>1 week ago</Text>
-                  <Icon style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
+                  <IconI style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
 
                 </View>
               </View>
@@ -359,7 +327,7 @@ const styles = StyleSheet.create({
   },
   statusIcon: {
     bottom: 19.5,
-    left: 117
+    left: 123
   },
   orderItemStatus: {
     fontSize: 12,

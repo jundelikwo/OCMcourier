@@ -4,18 +4,15 @@ import {
   View,
   Dimensions,
   ScrollView,
-  StatusBar,
 } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
-
 import {
   Text, Avatar,
-  TopNavigation, Divider, Toggle, Card, Layout,
+  TopNavigation, Divider, Card,
 } from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import ToggleSwitch from 'toggle-switch-react-native';
 //  icons
-
 let red = "DB463B";
 let green = "5AC966"
 
@@ -78,16 +75,10 @@ export const PendingScreen = ({ navigation }) => {
                 <Text style={styles.clientName}>Brown Samson Dappa</Text>
                 <Text style={styles.timeToKilo}>20mins<Text style={styles.dot}> .</Text> 2.6km</Text>
                 <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processing</Text>
-                {/* <Icon
-                name='droplet'
-                width={12}
-                height={12}
-                fill='#DB463B'
-                style={styles.statusIcon}
-              /> */}
-                {/* <Icon style={[{ color: '#DB463B', }]} size={18} name={'circle-o'} /> */}
+
+                <Icon style={[styles.statusIcon]} name='ello' size={10} />
               </View>
-              <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'space-evenly', bottom: 3 }}>
+              <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'space-evenly', bottom: 11 }}>
                 <Text style={styles.time}>2 mins ago</Text>
 
                 <ToggleSwitch
@@ -96,10 +87,10 @@ export const PendingScreen = ({ navigation }) => {
                   offColor="#747D8C"
                   label={'Status'}
                   labelStyle={styles.toggleStatusText}
-                  size='meduim'
+                  size='small'
                   onToggle={onCheckedChangeOrder}
                 />
-                {/* </View> */}
+
               </View>
             </View>
           </View>
@@ -115,13 +106,8 @@ export const PendingScreen = ({ navigation }) => {
             <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
               <Text style={styles.dot}>.</Text> Processed</Text>
             </Text>
-            <Icon
-              name='droplet'
-              width={12}
-              height={12}
-              fill='#5AC966'
-              style={styles.statusStopIcon}
-            />
+
+            <Icon style={[styles.statusStopIcon]} name='ello' size={10} color={'#5AC966'} />
             <Divider style={styles.divider} />
             <View style={styles.addrPhone}>
               <Text style={styles.address}>Address:</Text>
@@ -148,13 +134,7 @@ export const PendingScreen = ({ navigation }) => {
             <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
               <Text style={styles.dot}>.</Text> Processing </Text>
             </Text>
-            {/* <Icon
-            name='droplet'
-            width={12}
-            height={12}
-            fill='#DB463B'
-            style={styles.statusStopIcon}
-          /> */}
+            <Icon style={[styles.statusStopIcon]} name='ello' size={10} color={'#DB463B'} />
             <Divider style={styles.divider} />
             <View style={styles.addrPhone}>
               <Text style={styles.address}>Address:</Text>
@@ -182,13 +162,7 @@ export const PendingScreen = ({ navigation }) => {
             <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
               <Text style={styles.dot}>.</Text> Processed </Text>
             </Text>
-            <Icon
-              name='droplet'
-              width={12}
-              height={12}
-              fill='#5AC966'
-              style={styles.statusStopIcon}
-            />
+            <Icon style={[styles.statusStopIcon]} name='ello' size={10} color={'#5AC966'} />
             <Divider style={styles.divider} />
             <View style={styles.addrPhone}>
               <Text style={styles.address}>Address:</Text>
@@ -247,15 +221,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.58,
     shadowRadius: 1,
     elevation: 3,
-    // paddingTop: StatusBar.currentHeight / 2.5,
-    // right: 9,
-    // marginBottom: 10,
     paddingVertical: 5,
-    // marginTop: 22,
     width: Dimensions.get('window').width,
     flex: 1,
     flexDirection: 'row',
-    // backgroundColor: 'green'
   },
   title: {
     fontSize: 18,
@@ -264,8 +233,6 @@ const styles = StyleSheet.create({
     color: '#FD901C',
     fontWeight: 'bold',
     marginLeft: 18
-    // justifyContent: 'flex-end'
-    // backgroundColor: 'red'
 
   },
   orderHeadCard: {
@@ -278,8 +245,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.37,
     shadowRadius: 2.49,
     elevation: 1,
-    // marginTop: 6
-    // zIndex: 1
     overflow: 'visible'
 
   },
@@ -288,7 +253,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: "center",
     paddingVertical: 32,
-    // backgroundColor: 'green'
   },
   avatar: {
     flex: 1,
@@ -361,10 +325,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Muli',
     color: '#828282',
     fontWeight: 'bold',
-
-    // right: 50,
-    // position: 'absolute',
-    // top: 3
   },
   toggle: {
     margin: 5,
@@ -403,8 +363,8 @@ const styles = StyleSheet.create({
   },
   statusIcon: {
     bottom: 16.6,
-    left: 119,
-    color: '#828282'
+    left: 125,
+    color: '#DB463B'
   },
   orderItemStatus: {
     fontSize: 12,
@@ -441,7 +401,7 @@ const styles = StyleSheet.create({
 
   },
   statusStopIcon: {
-    bottom: 17.5, marginLeft: 170, marginBottom: -7
+    bottom: 17.5, marginLeft: 175, marginBottom: -7
   }
 
 });
