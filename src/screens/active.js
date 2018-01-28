@@ -6,7 +6,6 @@ import {
   ScrollView,
   ImageBackground
 } from 'react-native';
-import { moderateScale } from 'react-native-size-matters';
 import {
   TopNavigation, Divider,
 } from '@ui-kitten/components';
@@ -17,7 +16,6 @@ import ToggleSwitch from 'toggle-switch-react-native';
 const BackIcon = (style) => (
   <Icon {...style} name='arrow-ios-back-outline' />
 );
-
 
 export const ActiveScreen = ({ navigation }) => {
   //driver status
@@ -33,9 +31,6 @@ export const ActiveScreen = ({ navigation }) => {
     setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
     // })
   };
-
-
-
   const availableToggle = () => (
     <View style={{ marginRight: 18 }}>
       <ToggleSwitch
@@ -87,14 +82,12 @@ export const ActiveScreen = ({ navigation }) => {
 
   return (
     <View style={{}}>
-
       <TopNavigation title='Active Order' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
       <ScrollView>
         <ImageBackground source={require('../assets/grid.png')} style={{ width: Dimensions.get('window').widths, height: Dimensions.get('window').height }}>
           <View style={{ height: Dimensions.get('window').height - 90, width: Dimensions.get('window').width + 114, alignItems: 'center' }}>
-
             <StepIndicator
               customStyles={customStyles}
               direction='vertical'
@@ -102,20 +95,12 @@ export const ActiveScreen = ({ navigation }) => {
               labels={labels}
               stepCount={4}
               onPress={onChangeCurrentPosition}
-
             />
-
           </View>
         </ImageBackground>
       </ScrollView>
-
-
-
     </View >
-
   )
-
-
 };
 
 
@@ -129,11 +114,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.58,
     shadowRadius: 1,
     elevation: 3,
-    // paddingTop: StatusBar.currentHeight / 1.5,
-    // right: 9,
-    // marginBottom: 10,
     paddingVertical: 5,
-    // marginTop: 22,
     width: Dimensions.get('window').width + 8.8,
     flex: 1,
     flexDirection: 'row',
@@ -146,9 +127,7 @@ const styles = StyleSheet.create({
     color: '#FD901C',
     fontWeight: 'bold',
     marginLeft: 18
-
   },
-
   toggleText: {
     fontSize: 14,
     fontFamily: 'Muli',
@@ -156,58 +135,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     right: 50,
     position: 'absolute',
-    // top: 3
-  },
-  toggle: {
-    margin: 5,
-    flex: 1,
-    justifyContent: 'flex-end',
-    transform: [{
-      scaleX: moderateScale(0.8, 0.1)
-    }, {
-      scaleY: moderateScale(0.8, 0.2)
-    }]
-  },
-  inputEmail: {
-    borderRadius: 7,
-    // borderColor: 'blue',
-    margin: 10,
-    borderColor: '#BDBDBD',
-    backgroundColor: '#fff',
-    width: Dimensions.get('window').width - 20,
-    alignSelf: "center",
-    // height: 50
-    // borderWidth: 2
-  },
-  inputPass: {
-    borderRadius: 7,
-    borderColor: 'black',
-    margin: 10,
-    borderColor: '#BDBDBD',
-    backgroundColor: '#fff',
-    width: Dimensions.get('window').width - 20,
-    alignSelf: "center"
-  },
-  placeholder: {
-    fontSize: 18,
-    fontFamily: 'Muli',
-    margin: 4
-  },
-  button: {
-    backgroundColor: '#FD901C',
-    width: Dimensions.get('window').width - 30,
-    alignSelf: 'center',
-    // bottom: 15,
-    borderRadius: 7,
-    padding: 12,
-    top: Dimensions.get('window').height - 420
-
-  },
-  buttonText: {
-    fontSize: 18,
-    fontFamily: 'Muli',
-    alignSelf: 'center',
-    color: '#fff',
-    fontWeight: 'bold'
   },
 });
