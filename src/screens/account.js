@@ -29,12 +29,6 @@ export const AccountScreen = ({ navigation }) => {
   };
 
   //nav
-  const navigateBack = () => {
-    requestAnimationFrame(() => {
-      navigation.goBack();
-    })
-  };
-
   const navigatePassword = () => {
     requestAnimationFrame(() => {
       navigation.navigate('Password');

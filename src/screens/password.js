@@ -3,45 +3,38 @@ import {
   StyleSheet,
   View,
   Dimensions,
-  StatusBar,
   Image,
   TouchableOpacity
 } from 'react-native';
-import { moderateScale } from 'react-native-size-matters';
-
 import {
   Layout, Text, Input, TopNavigationAction,
-  TopNavigation, Divider, Toggle, Modal,
+  TopNavigation, Divider, Modal,
 } from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/Ionicons';
+import ToggleSwitch from 'toggle-switch-react-native';
 //  icons
 const BackIcon = (style) => (
   <Icon style={[{ color: '#515C6F' }]} name='ios-arrow-back' size={25} />
 );
 
-
 export const PasswordScreen = ({ navigation }) => {
   //driver status
   const [available, setAvailable] = useState({
     checked: true,
-    text: "Not Available"
+    text: "Available"
   });
   const { checked, text } = available;
-
   const onCheckedChangeCourier = (isChecked) => {
-    // console.warn("isChecked", isChecked)
     setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
   };
-
-
   const [Oldvalue, setValueOld] = React.useState('');
   const [Newvalue, setValueNew] = React.useState('');
   const [Confrimvalue, setValueConfrim] = React.useState('');
-
   const [visible, setVisible] = React.useState(false);
-
   const toggleModal = () => {
-    setVisible(!visible);
+    requestAnimationFrame(() => {
+      setVisible(!visible)
+    })
   };
   const renderModalElement = () => (
     <Layout
@@ -49,7 +42,6 @@ export const PasswordScreen = ({ navigation }) => {
       <Image style={{
         width: 50,
         height: 50,
-        // marginTop: 50
       }} source={require('../assets/success.png')} />
       <Text style={{
         fontSize: 18,
@@ -62,7 +54,6 @@ export const PasswordScreen = ({ navigation }) => {
         margin: 20
       }}>Password Changed Successfully</Text>
       <TouchableOpacity style={{ width: Dimensions.get('window').width - 130, borderRadius: 7, backgroundColor: '#FD901C', padding: 14, alignSelf: 'center', marginTop: 40 }} onPress={toggleModal}>
-
         <Text style={{
           fontSize: 18,
           fontFamily: 'Muli',
@@ -71,38 +62,39 @@ export const PasswordScreen = ({ navigation }) => {
           fontWeight: 'bold',
           lineHeight: 23,
           textAlign: 'center',
-
         }}>
           Cancel
-          </Text>
+        </Text>
       </TouchableOpacity>
     </Layout>
   );
   //nav
   const navigateBack = () => {
-    navigation.goBack();
+    requestAnimationFrame(() => {
+      navigation.goBack();
+    })
   };
 
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
 
-
   const availableToggle = () => (
-    <Toggle
-      style={styles.toggle}
-      text={available.text}
-      text={'Availablity'}
-      textStyle={styles.toggleText}
-      onChange={onCheckedChangeCourier}
-      checked={checked}
-
-    />
+    <View style={{ marginRight: 18 }}>
+      <ToggleSwitch
+        isOn={checked}
+        onColor='#FD901C'
+        offColor="#747D8C"
+        label={available.text}
+        labelStyle={styles.toggleText}
+        size='meduim'
+        onToggle={onCheckedChangeCourier}
+      />
+    </View>
   );
 
   return (
     <View style={{}}>
-
       <TopNavigation title='Change Password' style={styles.topNavigation}
         titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
       <Divider />
@@ -119,7 +111,6 @@ export const PasswordScreen = ({ navigation }) => {
             secureTextEntry={true}
             textStyle={styles.placeholder}
             placeholderTextColor={'#BDBDBD'}
-
           />
           <Input
             value={Newvalue}
@@ -129,12 +120,9 @@ export const PasswordScreen = ({ navigation }) => {
             labelStyle={styles.inputLabel}
             captionTextStyle={styles.inputCaption}
             onChangeText={setValueNew}
-
             secureTextEntry={true}
             textStyle={styles.placeholder}
             placeholderTextColor={'#BDBDBD'}
-
-
           />
           <Input
             value={Confrimvalue}
@@ -144,16 +132,12 @@ export const PasswordScreen = ({ navigation }) => {
             labelStyle={styles.inputLabel}
             captionTextStyle={styles.inputCaption}
             onChangeText={setValueConfrim}
-
             secureTextEntry={true}
             textStyle={styles.placeholder}
             placeholderTextColor={'#BDBDBD'}
-
-
           />
         </View>
         <Layout style={styles.container}>
-
           <Modal visible={visible}
             animationType="slide"
             transparent={true}>
@@ -162,13 +146,8 @@ export const PasswordScreen = ({ navigation }) => {
         </Layout>
         <TouchableOpacity onPress={toggleModal} style={styles.button} ><Text style={styles.buttonText}>Change Password</Text></TouchableOpacity>
       </View>
-
-
-
     </View >
-
   )
-
 };
 
 const styles = StyleSheet.create({
@@ -181,15 +160,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.58,
     shadowRadius: 1,
     elevation: 3,
-    // paddingTop: StatusBar.currentHeight / 1.5,
-    // right: 9,
-    // marginBottom: 10,
     paddingVertical: 5,
-    // marginTop: 22,
     width: Dimensions.get('window').width + 8.8,
     flex: 1,
     flexDirection: 'row',
-
   },
   title: {
     fontSize: 18,
@@ -197,7 +171,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: '#FD901C',
     fontWeight: 'bold',
-
   },
   modalContainer: {
     justifyContent: 'center',
@@ -205,8 +178,6 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 90,
     padding: 16,
     height: 300,
-    // backgroundColor: 'red'
-    opacity: 0.9,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -219,7 +190,6 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 16
   },
-
   toggleText: {
     fontSize: 14,
     fontFamily: 'Muli',
@@ -227,28 +197,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     right: 50,
     position: 'absolute',
-    // top: 3
-  },
-  toggle: {
-    margin: 5,
-    flex: 1,
-    justifyContent: 'flex-end',
-    transform: [{
-      scaleX: moderateScale(0.8, 0.1)
-    }, {
-      scaleY: moderateScale(0.8, 0.2)
-    }]
   },
   inputEmail: {
-    borderRadius: 7,
-    // borderColor: 'blue',
     margin: 10,
     borderColor: '#BDBDBD',
     backgroundColor: '#fff',
     width: Dimensions.get('window').width - 20,
     alignSelf: "center",
-    // height: 50
-    // borderWidth: 2
   },
   inputPass: {
     borderRadius: 7,
@@ -268,13 +223,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FD901C',
     width: Dimensions.get('window').width - 30,
     alignSelf: 'center',
-    // bottom: 15,
     borderRadius: 7,
     padding: 12,
-    // marginVertical: 90
     top: Dimensions.get('window').height - 420
-
-
   },
   buttonText: {
     fontSize: 18,
