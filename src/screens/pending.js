@@ -66,8 +66,8 @@ export const PendingScreen = ({ navigation }) => {
     <SafeAreaView style={styles.body}>
       <TopNavigation title='Pending Orders' style={styles.topNavigation} titleStyle={styles.title} rightControls={availableToggle()} leftControl={BackAction()} />
       <Divider />
-      {/* style={styles.head} */}
-      <Card >
+
+      <Card style={styles.head}>
         <Avatar style={styles.avatar} size='large' source={require('../assets/person.png')} />
         <Text style={styles.clientName}> Brown Samson Dappa</Text>
         <Text style={styles.timeStamp}>2 mins ago</Text>
@@ -76,7 +76,7 @@ export const PendingScreen = ({ navigation }) => {
         <Toggle
           style={styles.toggleOrder}
           text={order.status}
-          textStyle={styles.toggleText}
+          textStyle={styles.toggleTextOrder}
           onChange={onCheckedChangeOrder}
           checked={active}
           size="tiny"
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   },
   toggle: {
     margin: 8,
-    // left: 70
+    left: 90
   },
   toggleText: {
     fontSize: 12,
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     // alignSelf: 'center',
     color: '#828282',
     fontWeight: 'bold',
-    // right: 120
+    right: 140
   },
   clientName: {
     fontSize: 16,
@@ -130,7 +130,8 @@ const styles = StyleSheet.create({
     color: '#FD901C',
     fontWeight: 'bold',
     right: 30,
-    bottom: 52
+    bottom: 52,
+    margin: 3
   },
   avatar: {
     right: 10
@@ -140,8 +141,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Muli',
     alignSelf: 'center',
     color: '#747D8C',
-    bottom: 70,
-    left: 140
+    bottom: 72,
+    left: 140,
+
   },
   kiloTime: {
     fontSize: 12,
@@ -150,7 +152,9 @@ const styles = StyleSheet.create({
     color: '#747D8C',
     fontWeight: 'bold',
     right: 62,
-    bottom: 70
+    bottom: 70,
+    margin: 3
+
   },
   dot: {
     fontSize: 40,
@@ -165,7 +169,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: '#747D8C',
     right: 47,
-    bottom: 74
+    bottom: 74,
+    margin: 3
     // fontWeight: 'bold',
   },
   stopsCount: {
@@ -176,21 +181,30 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   head: {
-    height: 90,
+    height: 93,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 6,
     },
     shadowOpacity: 0.37,
-    shadowRadius: 7.49,
+    shadowRadius: 2.49,
 
-    elevation: 12,
+    elevation: 6,
 
   },
   toggleOrder: {
     // backgroundColor: '#eeeff1'
-    bottom: 110,
-    left: 100
+
+    bottom: 113,
+    left: 170
+  },
+  toggleTextOrder: {
+    fontSize: 12,
+    fontFamily: 'Muli',
+    // alignSelf: 'center',
+    color: '#828282',
+    fontWeight: 'bold',
+    right: 125
   }
 });
