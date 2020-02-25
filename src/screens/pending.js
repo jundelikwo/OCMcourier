@@ -8,7 +8,7 @@ import {
   Dimensions
 } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
-import { Icon, Layout, Text, Input, TopNavigationAction, TopNavigation, Divider, Toggle, } from '@ui-kitten/components';
+import { Icon, Layout, Text, Input, TopNavigationAction, TopNavigation, Divider, Toggle, Card } from '@ui-kitten/components';
 
 const BackIcon = (style) => (
   <Icon {...style} name='arrow-ios-back-outline' />
@@ -22,7 +22,7 @@ export const PendingScreen = ({ navigation }) => {
   });
 
 
-  const { checked } = available;
+  const { checked, text } = available;
 
   const navigateBack = () => {
     navigation.goBack();
@@ -34,7 +34,7 @@ export const PendingScreen = ({ navigation }) => {
 
   const onCheckedChange = (isChecked) => {
     // console.warn("isChecked", isChecked)
-    setAvailable({ ...available, text: 'Available', checked: isChecked })
+    setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
   };
 
   const availableToggle = () => (
@@ -44,7 +44,7 @@ export const PendingScreen = ({ navigation }) => {
       textStyle={styles.toggleText}
       onChange={onCheckedChange}
       checked={checked}
-      size="small"
+      size="tiny"
     // onPress={this.ToggleAvailability}
     />
   );
@@ -53,6 +53,13 @@ export const PendingScreen = ({ navigation }) => {
     <SafeAreaView>
       <TopNavigation title='Pending Orders' style={styles.topNavigation} titleStyle={styles.title} rightControls={availableToggle()} leftControl={BackAction()} />
       <Divider />
+      <Card>
+        <Text>
+          The Maldives, officially the Republic of Maldives, is a small country in South Asia,
+          located in the Arabian Sea of the Indian Ocean.
+          It lies southwest of Sri Lanka and India, about 1,000 kilometres (620 mi) from the Asian continent
+    </Text>
+      </Card>
     </SafeAreaView>
   )
 
@@ -69,7 +76,8 @@ const styles = StyleSheet.create({
     shadowRadius: 16.00,
     top: 16,
     right: 9,
-    marginBottom: 9
+    marginBottom: 9,
+    marginTop: 15
   },
   title: {
     fontSize: 18,
@@ -81,7 +89,7 @@ const styles = StyleSheet.create({
   },
   toggle: {
     margin: 8,
-
+    // left: 70
   },
   toggleText: {
     fontSize: 12,
@@ -89,6 +97,6 @@ const styles = StyleSheet.create({
     // alignSelf: 'center',
     color: '#828282',
     fontWeight: 'bold',
-    // right: 20
+    // right: 120
   }
 });

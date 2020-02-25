@@ -124,8 +124,8 @@ const styles = StyleSheet.create({
 
 
   },
-  inputEmail: { borderRadius: 12, margin: 2, borderColor: 'transparent' },
-  inputPass: { borderRadius: 12, margin: 2, borderColor: 'transparent' },
+  inputEmail: { borderRadius: 12, margin: 2, borderColor: 'transparent', backgroundColor: '#fff', },
+  inputPass: { borderRadius: 12, margin: 2, borderColor: 'transparent', backgroundColor: '#fff', },
   inputText: { color: '#3366FF' },
   inputLabel: { color: '#3366FF' },
   inputCaption: { color: '#3366FF' },
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 15,
     width: Dimensions.get('window').width - 40,
-    height: 100,
+    height: 105,
     alignSelf: 'center',
     top: 130,
     shadowColor: "#000",
