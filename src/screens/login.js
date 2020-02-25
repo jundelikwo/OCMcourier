@@ -8,8 +8,7 @@ import {
   Dimensions
 } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
-import { Button, Icon, Layout, TopNavigation, Text, Input } from '@ui-kitten/components';
-import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { Icon, Layout, Text, Input } from '@ui-kitten/components';
 import LinearGradient from 'react-native-linear-gradient';
 
 
@@ -18,11 +17,14 @@ export const LoginScreen = ({ navigation }) => {
   const [Pvalue, setValueP] = React.useState('');
   //icons
   const LockIcon = (style) => (
-    <Icon {...style} name='lock-outline' />
+    <Icon {...style} fill='#828282' name='lock-outline' />
   );
   const MailIcon = (style) => (
-    <Icon {...style} name='email-outline' />
+    <Icon {...style} fill='#828282' name='email-outline' />
   );
+  const navigatePending = () => {
+    navigation.navigate('Pending');
+  };
 
   // const emailIcon = (style) => (
   //   <Image
@@ -78,7 +80,7 @@ export const LoginScreen = ({ navigation }) => {
         </Layout>
 
         <TouchableOpacity style={styles.forgotBut}><Text style={styles.forgot}>Forget password?</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.button} ><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={navigatePending}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
       </LinearGradient>
     </SafeAreaView>
   )
@@ -122,8 +124,8 @@ const styles = StyleSheet.create({
 
 
   },
-  inputEmail: { borderRadius: 12, margin: 2 },
-  inputPass: { borderRadius: 12, margin: 2 },
+  inputEmail: { borderRadius: 12, margin: 2, borderColor: 'transparent' },
+  inputPass: { borderRadius: 12, margin: 2, borderColor: 'transparent' },
   inputText: { color: '#3366FF' },
   inputLabel: { color: '#3366FF' },
   inputCaption: { color: '#3366FF' },
@@ -132,6 +134,8 @@ const styles = StyleSheet.create({
     // height: 20
     // alignSelf: 'center',
     // left: 30
+    color: 'red',
+    borderColor: 'transparent'
 
   },
   forgotBut: {
@@ -155,7 +159,7 @@ const styles = StyleSheet.create({
     // bottom: 15,
     borderRadius: 15,
     padding: 12,
-    top: 210
+    top: 250
 
   },
   buttonText: {
@@ -180,7 +184,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.58,
     shadowRadius: 16.00,
 
-    elevation: 24,
+    elevation: 10,
   },
   lineStyle: {
     borderWidth: 0.5,
