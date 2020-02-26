@@ -138,10 +138,10 @@ export const PendingScreen = ({ navigation }) => {
             }} >
 
 
-              <Text style={{ fontSize: 10, marginLeft: 20, marginBottom: 40 }} >2 mins ago</Text>
+              <Text style={{ fontSize: 10, marginLeft: 33, marginBottom: 40 }} >2 mins ago</Text>
               {/* <Text style={{ fontSize: 10 }} >2 mins ago</Text> */}
               <Toggle
-                style={{ marginLeft: -3, marginTop: -33, transform: [{ scaleX: moderateScale(0.7, 0.1) }, { scaleY: moderateScale(0.7, 0.2) }] }}
+                style={{ marginLeft: 10, marginTop: -33, transform: [{ scaleX: moderateScale(0.7, 0.1) }, { scaleY: moderateScale(0.7, 0.2) }] }}
                 onChange={onCheckedChangeOrder}
                 textStyle={styles.toggleTextOrder}
                 checked={active}
@@ -185,22 +185,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     // top:
   },
-  toggle: {
-    transform: [{ scaleX: moderateScale(0.8, 0.2) }, { scaleY: moderateScale(0.8, 0.2) }],
-  },
   toggleTextOrder: {
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: 'Muli',
     color: '#828282',
     fontWeight: 'bold',
-    marginLeft: -95
+    marginLeft: -99
   },
   toggleText: {
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: 'Muli',
     color: '#828282',
     fontWeight: 'bold',
-    right: 128
+    right: 136
   },
   toggle: {
     margin: 5,
