@@ -5,15 +5,22 @@ import {
   StatusBar,
   View,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  ScrollView
 } from 'react-native';
+import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { SafeAreaView } from 'react-navigation';
-import { Icon, Layout, Text, Avatar, TopNavigationAction, TopNavigation, Divider, Toggle, Card } from '@ui-kitten/components';
-
+import { Icon, Layout, Text, Avatar, TopNavigationAction, TopNavigation, Divider, Toggle, Card, Button, CardHeader } from '@ui-kitten/components';
+//  icons
 const BackIcon = (style) => (
   <Icon {...style} name='arrow-ios-back-outline' />
 );
-
+const Droplet = (style) => (
+  <Icon {...style} name='droplet' fill="#FF6B51" />
+);
+const DropletGreen = (style) => (
+  <Icon {...style} name='droplet' fill="#7CEA7E" />
+);
 
 export const PendingScreen = ({ navigation }) => {
   //driver status
@@ -54,36 +61,103 @@ export const PendingScreen = ({ navigation }) => {
     <Toggle
       style={styles.toggle}
       text={available.text}
+      text={'Availablity'}
       textStyle={styles.toggleText}
       onChange={onCheckedChangeCourier}
       checked={checked}
-      size="tiny"
     // onPress={this.ToggleAvailability}
     />
   );
 
-  return (
-    <SafeAreaView style={styles.body}>
-      <TopNavigation title='Pending Orders' style={styles.topNavigation} titleStyle={styles.title} rightControls={availableToggle()} leftControl={BackAction()} />
-      <Divider />
 
-      <Card style={styles.head}>
-        <Avatar style={styles.avatar} size='large' source={require('../assets/person.png')} />
-        <Text style={styles.clientName}> Brown Samson Dappa</Text>
-        <Text style={styles.timeStamp}>2 mins ago</Text>
-        <Text style={styles.kiloTime}>20mins <Text style={styles.dot}>.</Text>2.6km</Text>
-        <Text style={styles.stops}>Stops:<Text style={styles.stopsCount}>3 <Text style={styles.dot}>.</Text></Text>Processed  </Text>
-        <Toggle
-          style={styles.toggleOrder}
-          text={order.status}
-          textStyle={styles.toggleTextOrder}
-          onChange={onCheckedChangeOrder}
-          checked={active}
-          size="tiny"
-        // onPress={this.ToggleAvailability}
-        />
+  const Header = () => (
+    <CardHeader
+      title='Maldives'
+      description='By Wikipedia'
+      description='By Wikipedi'
+    />
+  );
+
+
+  return (
+    <View >
+
+      <TopNavigation title='Pending Orders' style={styles.topNavigation}
+        titleStyle={styles.title} rightControls={availableToggle()} leftControl={BackAction()} />
+      <Divider />
+      <Card style={{
+        margin: 0, padding: 0,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 6,
+        },
+        shadowOpacity: 0.37,
+        shadowRadius: 2.49,
+
+        elevation: 6,
+      }}>
+        <View style={{
+          flex: 1, flexDirection: 'row', alignItems: "center", paddingVertical: 32,
+
+        }}>
+          <View style={{ flex: 1, alignItems: 'flex-start' }} >
+            <Avatar style={{}} size='large' source={require('../assets/person.png')} />
+          </View>
+          <View style={{ flex: 4, flexDirection: "row", alignItems: 'center' }}>
+            <View style={{ flex: 2, }}>
+              <Text style={{
+                fontSize: 16,
+                fontFamily: 'Muli',
+                color: '#FD901C',
+                fontWeight: 'bold',
+              }}>Brown Samson Dappa</Text>
+
+              <Text style={{
+                fontSize: 12,
+                fontFamily: 'Muli',
+                color: '#747D8C',
+                fontWeight: 'bold',
+                marginTop: 2
+              }}>20mins <Text style={{ fontSize: 30, }}>.</Text>2.6km</Text>
+              <Text style={{
+                fontSize: 12,
+                fontFamily: 'Muli',
+                color: '#747D8C',
+                marginTop: -2
+              }}>Stops: <Text style={{
+                fontSize: 12,
+                fontFamily: 'Muli',
+                color: '#747D8C',
+                fontWeight: 'bold',
+              }}>3 <Text style={{ fontSize: 30, }}>.</Text></Text>Processing  </Text>
+            </View>
+
+            <View style={{
+              flex: 1
+            }} >
+
+
+              <Text style={{ fontSize: 10, marginLeft: 20, marginBottom: 40 }} >2 mins ago</Text>
+              {/* <Text style={{ fontSize: 10 }} >2 mins ago</Text> */}
+              <Toggle
+                style={{ marginLeft: -3, marginTop: -33, transform: [{ scaleX: moderateScale(0.7, 0.1) }, { scaleY: moderateScale(0.7, 0.2) }] }}
+                onChange={onCheckedChangeOrder}
+                textStyle={styles.toggleTextOrder}
+                checked={active}
+                text={'Status'}
+
+              // onPress={this.ToggleAvailability}
+              />
+
+            </View>
+          </View>
+
+        </View>
       </Card>
-    </SafeAreaView>
+
+    </View>
+
   )
 
 };
@@ -112,99 +186,26 @@ const styles = StyleSheet.create({
     // top:
   },
   toggle: {
-    margin: 8,
-    left: 90
-  },
-  toggleText: {
-    fontSize: 12,
-    fontFamily: 'Muli',
-    // alignSelf: 'center',
-    color: '#828282',
-    fontWeight: 'bold',
-    right: 140
-  },
-  clientName: {
-    fontSize: 16,
-    fontFamily: 'Muli',
-    alignSelf: 'center',
-    color: '#FD901C',
-    fontWeight: 'bold',
-    right: 30,
-    bottom: 52,
-    margin: 3
-  },
-  avatar: {
-    right: 10
-  },
-  timeStamp: {
-    fontSize: 10,
-    fontFamily: 'Muli',
-    alignSelf: 'center',
-    color: '#747D8C',
-    bottom: 72,
-    left: 140,
-
-  },
-  kiloTime: {
-    fontSize: 12,
-    fontFamily: 'Muli',
-    alignSelf: 'center',
-    color: '#747D8C',
-    fontWeight: 'bold',
-    right: 62,
-    bottom: 70,
-    margin: 3
-
-  },
-  dot: {
-    fontSize: 40,
-    // bottom: 2
-    // position: "absolute",
-    // top: 10
-    // margin: 2
-  },
-  stops: {
-    fontSize: 12,
-    fontFamily: 'Muli',
-    alignSelf: 'center',
-    color: '#747D8C',
-    right: 47,
-    bottom: 74,
-    margin: 3
-    // fontWeight: 'bold',
-  },
-  stopsCount: {
-    fontSize: 12,
-    fontFamily: 'Muli',
-    alignSelf: 'center',
-    color: '#747D8C',
-    fontWeight: 'bold',
-  },
-  head: {
-    height: 93,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
-    shadowOpacity: 0.37,
-    shadowRadius: 2.49,
-
-    elevation: 6,
-
-  },
-  toggleOrder: {
-    // backgroundColor: '#eeeff1'
-
-    bottom: 113,
-    left: 170
+    transform: [{ scaleX: moderateScale(0.8, 0.2) }, { scaleY: moderateScale(0.8, 0.2) }],
   },
   toggleTextOrder: {
     fontSize: 12,
     fontFamily: 'Muli',
-    // alignSelf: 'center',
     color: '#828282',
     fontWeight: 'bold',
-    right: 125
-  }
+    marginLeft: -95
+  },
+  toggleText: {
+    fontSize: 12,
+    fontFamily: 'Muli',
+    color: '#828282',
+    fontWeight: 'bold',
+    right: 128
+  },
+  toggle: {
+    margin: 5,
+    left: 90,
+    transform: [{ scaleX: moderateScale(0.8, 0.1) }, { scaleY: moderateScale(0.8, 0.2) }]
+  },
+
 });
