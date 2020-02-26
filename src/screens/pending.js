@@ -25,7 +25,7 @@ const DropletGreen = (style) => (
 export const PendingScreen = ({ navigation }) => {
   //driver status
   const [available, setAvailable] = useState({
-    checked: false,
+    checked: true,
     text: "Not Available"
   });
   const { checked, text } = available;
@@ -80,81 +80,75 @@ export const PendingScreen = ({ navigation }) => {
 
 
   return (
-    <View >
+    <View style={{ backgroundColor: '#f2f3f4' }}>
 
       <TopNavigation title='Pending Orders' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} leftControl={BackAction()} />
       <Divider />
-      <Card style={{
-        margin: 0, padding: 0,
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 6,
-        },
-        shadowOpacity: 0.37,
-        shadowRadius: 2.49,
 
-        elevation: 6,
-      }}>
-        <View style={{
-          flex: 1, flexDirection: 'row', alignItems: "center", paddingVertical: 32,
-
-        }}>
-          <View style={{ flex: 1, alignItems: 'flex-start' }} >
+      <Card style={styles.orderHeadCard}>
+        <View style={styles.orderHead}>
+          <View style={styles.avatar} >
             <Avatar style={{}} size='large' source={require('../assets/person.png')} />
           </View>
-          <View style={{ flex: 4, flexDirection: "row", alignItems: 'center' }}>
-            <View style={{ flex: 2, }}>
-              <Text style={{
-                fontSize: 16,
-                fontFamily: 'Muli',
-                color: '#FD901C',
-                fontWeight: 'bold',
-              }}>Brown Samson Dappa</Text>
-
-              <Text style={{
-                fontSize: 12,
-                fontFamily: 'Muli',
-                color: '#747D8C',
-                fontWeight: 'bold',
-                marginTop: 2
-              }}>20mins <Text style={{ fontSize: 30, }}>.</Text>2.6km</Text>
-              <Text style={{
-                fontSize: 12,
-                fontFamily: 'Muli',
-                color: '#747D8C',
-                marginTop: -2
-              }}>Stops: <Text style={{
-                fontSize: 12,
-                fontFamily: 'Muli',
-                color: '#747D8C',
-                fontWeight: 'bold',
-              }}>3 <Text style={{ fontSize: 30, }}>.</Text></Text>Processing  </Text>
+          <View style={styles.orderHeadContent}>
+            <View style={{ flex: 2 }}>
+              <Text style={styles.clientName}>Brown Samson Dappa</Text>
+              <Text style={styles.timeToKilo}>20mins <Text style={styles.dot}>.</Text>2.6km</Text>
+              <Text style={styles.stops}>Stops: <Text style={styles.stopsCount}>3 <Text style={styles.dot}>.</Text></Text>Processing  </Text>
             </View>
-
-            <View style={{
-              flex: 1
-            }} >
-
-
-              <Text style={{ fontSize: 10, marginLeft: 33, marginBottom: 40 }} >2 mins ago</Text>
-              {/* <Text style={{ fontSize: 10 }} >2 mins ago</Text> */}
+            <View style={{ flex: 1 }}>
+              <Text style={styles.time}>2 mins ago</Text>
               <Toggle
-                style={{ marginLeft: 10, marginTop: -33, transform: [{ scaleX: moderateScale(0.7, 0.1) }, { scaleY: moderateScale(0.7, 0.2) }] }}
+                style={styles.toggleStatus}
                 onChange={onCheckedChangeOrder}
-                textStyle={styles.toggleTextOrder}
+                textStyle={styles.toggleStatusText}
                 checked={active}
                 text={'Status'}
-
-              // onPress={this.ToggleAvailability}
               />
-
             </View>
           </View>
-
         </View>
       </Card>
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <Card style={styles.card} header={Header} >
+          <Text>
+            The Maldives, officially the Republic of Maldives, is a small country in South Asia,
+            located in the Arabian Sea of the Indian Ocean.
+            It lies southwest of Sri Lanka and India, about 1,000 kilometres (620 mi) from the Asian continent
+            </Text>
+        </Card>
+
+        <Card style={styles.card} header={Header} >
+          <Text>
+            The Maldives, officially the Republic of Maldives, is a small country in South Asia,
+            located in the Arabian Sea of the Indian Ocean.
+            It lies southwest of Sri Lanka and India, about 1,000 kilometres (620 mi) from the Asian continent
+            </Text>
+        </Card>
+        <Card style={styles.card} header={Header} >
+          <Text>
+            The Maldives, officially the Republic of Maldives, is a small country in South Asia,
+            located in the Arabian Sea of the Indian Ocean.
+            It lies southwest of Sri Lanka and India, about 1,000 kilometres (620 mi) from the Asian continent
+            </Text>
+        </Card>
+        <Card style={styles.card} header={Header} >
+          <Text>
+            The Maldives, officially the Republic of Maldives, is a small country in South Asia,
+            located in the Arabian Sea of the Indian Ocean.
+            It lies southwest of Sri Lanka and India, about 1,000 kilometres (620 mi) from the Asian continent
+            </Text>
+        </Card>
+        <Card style={styles.card} header={Header} >
+          <Text>
+            The Maldives, officially the Republic of Maldives, is a small country in South Asia,
+            located in the Arabian Sea of the Indian Ocean.
+            It lies southwest of Sri Lanka and India, about 1,000 kilometres (620 mi) from the Asian continent
+            </Text>
+        </Card>
+      </ScrollView>
+
 
     </View>
 
@@ -175,7 +169,8 @@ const styles = StyleSheet.create({
     right: 9,
     marginBottom: 9,
     marginTop: 15,
-
+    width: Dimensions.get('window').width + 8.8
+    // flex: 1
   },
   title: {
     fontSize: 18,
@@ -183,9 +178,78 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: '#FD901C',
     fontWeight: 'bold',
-    // top:
+
   },
-  toggleTextOrder: {
+  orderHeadCard: {
+    margin: 0, padding: 0,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 2.49,
+    elevation: 6,
+  },
+  orderHead: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: "center",
+    paddingVertical: 32,
+  },
+  avatar: {
+    flex: 1,
+    alignItems: 'flex-start'
+  },
+  orderHeadContent: {
+    flex: 4,
+    flexDirection: "row",
+    alignItems: 'center'
+  },
+  clientName: {
+    fontSize: 16,
+    fontFamily: 'Muli',
+    color: '#FD901C',
+    fontWeight: 'bold',
+  },
+  timeToKilo: {
+    fontSize: 12,
+    fontFamily: 'Muli',
+    color: '#747D8C',
+    fontWeight: 'bold',
+    marginTop: 2
+  },
+  dot: {
+    fontSize: 30,
+  },
+  stops: {
+    fontSize: 12,
+    fontFamily: 'Muli',
+    color: '#747D8C',
+    marginTop: -2,
+  },
+  stopsCount: {
+    fontSize: 12,
+    fontFamily: 'Muli',
+    color: '#747D8C',
+    marginTop: -2,
+    fontWeight: 'bold'
+  },
+  time: {
+    fontSize: 10,
+    marginLeft: 33,
+    marginBottom: 40
+  },
+  toggleStatus: {
+    marginLeft: 13,
+    marginTop: -33,
+    transform: [{
+      scaleX: moderateScale(0.7, 0.1)
+    }, {
+      scaleY: moderateScale(0.7, 0.2)
+    }]
+  },
+  toggleStatusText: {
     fontSize: 14,
     fontFamily: 'Muli',
     color: '#828282',
@@ -202,7 +266,23 @@ const styles = StyleSheet.create({
   toggle: {
     margin: 5,
     left: 90,
-    transform: [{ scaleX: moderateScale(0.8, 0.1) }, { scaleY: moderateScale(0.8, 0.2) }]
+    transform: [{
+      scaleX: moderateScale(0.8, 0.1)
+    }, {
+      scaleY: moderateScale(0.8, 0.2)
+    }]
+  },
+  card: {
+    marginVertical: 4,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 10,
+
+    elevation: 0,
   },
 
 });
