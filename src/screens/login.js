@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     // backgroundColor: 'transparent',
     fontWeight: 'bold',
-    padding: 2
+    padding: 4
   },
   loginTextBut: {
     fontSize: 18,

@@ -24,7 +24,7 @@ const DropletGreen = (style) => (
 let red = "DB463B";
 let green = "5AC966"
 
-export const PendingScreen = ({ navigation }) => {
+export const HistoryScreen = ({ navigation }) => {
   //driver status
   const [available, setAvailable] = useState({
     checked: true,
