@@ -96,17 +96,14 @@ export const PendingScreen = ({ navigation }) => {
           <View style={styles.orderHeadContent}>
             <View style={{ flex: 2 }}>
               <Text style={styles.clientName}>Brown Samson Dappa</Text>
-              <Text style={styles.timeToKilo}>20mins <Text style={styles.dot}>.</Text>2.6km</Text>
-              <Text style={styles.stops}>Stops: <Text style={styles.stopsCount}>3 <Text style={styles.dot}>.</Text></Text>Processing</Text>
+              <Text style={styles.timeToKilo}>20mins<Text style={styles.dot}> .</Text> 2.6km</Text>
+              <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processing</Text>
               <Icon
                 name='droplet'
                 width={12}
                 height={12}
                 fill='#DB463B'
-                style={{
-                  bottom: 16.6,
-                  left: 116
-                }}
+                style={styles.statusIcon}
               />
             </View>
             <View style={{ flex: 1 }}>
@@ -124,17 +121,39 @@ export const PendingScreen = ({ navigation }) => {
       </Card>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Card style={styles.card} >
-          <Text>
+          <Text style={styles.stopsCountText}>
             Stop 1
           </Text>
-          <Text>
+          <Text style={styles.restaurantName}>
             Crunchies Restaurant
           </Text>
-          <Text>
-            The Maldives, officially the Republic of Maldives, is a small country in South Asia,
-            located in the Arabian Sea of the Indian Ocean.
-            It lies southwest of Sri Lanka and India, about 1,000 kilometres (620 mi) from the Asian continent
+          <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}> <Text style={styles.dot}>.</Text> Processed</Text></Text>
+          <Icon
+            name='droplet'
+            width={12}
+            height={12}
+            fill='#5AC966'
+            style={{
+              bottom: 18,
+              marginLeft: 170
+            }}
+            animation='zoom'
+          />
+          <Divider style={styles.divider} />
+          <View style={styles.addrPhone}>
+            <Text style={styles.address}>Address:</Text>
+            <Text style={styles.addressContent}>
+              6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
             </Text>
+          </View>
+          <Divider style={styles.divider} />
+          <View style={styles.addrPhone}>
+            <Text style={styles.address}>Phone:</Text>
+            <Text style={styles.addressContent}>
+              +234 817 496 9237
+            </Text>
+          </View>
+
         </Card>
 
         <Card style={styles.card} header={Header} >
@@ -239,6 +258,7 @@ const styles = StyleSheet.create({
   },
   dot: {
     fontSize: 30,
+    color: '#747D8C',
   },
   stops: {
     fontSize: 12,
@@ -246,7 +266,7 @@ const styles = StyleSheet.create({
     color: '#747D8C',
     marginTop: -2,
   },
-  stopsCount: {
+  stopsCountNum: {
     fontSize: 12,
     fontFamily: 'Muli',
     color: '#747D8C',
@@ -302,9 +322,60 @@ const styles = StyleSheet.create({
       height: 0,
     },
     shadowOpacity: 1,
-    shadowRadius: 10,
+    shadowRadius: 0.5,
 
-    elevation: 0,
+    elevation: 0.5,
+  },
+  stopsCountText: {
+    fontSize: 12.5,
+    fontFamily: 'Muli',
+    color: '#828282',
+    fontWeight: 'normal',
+  },
+  restaurantName: {
+    fontSize: 14,
+    fontFamily: 'Muli',
+    color: '#515C6F',
+    fontWeight: 'bold',
+    fontStyle: 'normal'
+  },
+  statusIcon: {
+    bottom: 16.6,
+    left: 119
+  },
+  orderItemStatus: {
+    fontSize: 12,
+    fontFamily: 'Muli',
+    color: '#747D8C',
+
+  },
+  divider: {
+    padding: 0.5,
+    backgroundColor: '#b8bcc4'
+  },
+  addrPhone: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 6
+  },
+  address: {
+    fontSize: 12,
+    fontFamily: 'Muli',
+    color: '#747D8C',
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+    flex: 1,
+  },
+  addressContent: {
+    fontSize: 12,
+    fontFamily: 'Muli',
+    color: '#747D8C',
+    fontStyle: 'normal',
+    flex: 1.4,
+    textAlign: 'left',
+    lineHeight: 16
+
   },
 
 });
