@@ -21,6 +21,8 @@ const Droplet = (style) => (
 const DropletGreen = (style) => (
   <Icon {...style} name='droplet' fill="#7CEA7E" />
 );
+let red = "DB463B";
+let green = "5AC966"
 
 export const PendingScreen = ({ navigation }) => {
   //driver status
@@ -72,7 +74,7 @@ export const PendingScreen = ({ navigation }) => {
 
   const Header = () => (
     <CardHeader
-      title='Maldives'
+      title='Stop 1'
       description='By Wikipedia'
       description='By Wikipedi'
     />
@@ -95,7 +97,17 @@ export const PendingScreen = ({ navigation }) => {
             <View style={{ flex: 2 }}>
               <Text style={styles.clientName}>Brown Samson Dappa</Text>
               <Text style={styles.timeToKilo}>20mins <Text style={styles.dot}>.</Text>2.6km</Text>
-              <Text style={styles.stops}>Stops: <Text style={styles.stopsCount}>3 <Text style={styles.dot}>.</Text></Text>Processing  </Text>
+              <Text style={styles.stops}>Stops: <Text style={styles.stopsCount}>3 <Text style={styles.dot}>.</Text></Text>Processing</Text>
+              <Icon
+                name='droplet'
+                width={12}
+                height={12}
+                fill='#DB463B'
+                style={{
+                  bottom: 16.6,
+                  left: 116
+                }}
+              />
             </View>
             <View style={{ flex: 1 }}>
               <Text style={styles.time}>2 mins ago</Text>
@@ -111,7 +123,13 @@ export const PendingScreen = ({ navigation }) => {
         </View>
       </Card>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <Card style={styles.card} header={Header} >
+        <Card style={styles.card} >
+          <Text>
+            Stop 1
+          </Text>
+          <Text>
+            Crunchies Restaurant
+          </Text>
           <Text>
             The Maldives, officially the Republic of Maldives, is a small country in South Asia,
             located in the Arabian Sea of the Indian Ocean.
@@ -170,7 +188,7 @@ const styles = StyleSheet.create({
     marginBottom: 9,
     marginTop: 15,
     width: Dimensions.get('window').width + 8.8
-    // flex: 1
+
   },
   title: {
     fontSize: 18,
@@ -236,6 +254,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   time: {
+    fontSize: 10,
+    fontFamily: 'Muli',
+    alignSelf: 'center',
+    color: '#747D8C',
     fontSize: 10,
     marginLeft: 33,
     marginBottom: 40
