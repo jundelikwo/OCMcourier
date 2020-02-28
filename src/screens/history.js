@@ -71,6 +71,9 @@ export const HistoryScreen = ({ navigation }) => {
   const navigatePending = () => {
     navigation.navigate('Pending');
   };
+  const navigateSingleOrder = () => {
+    navigation.navigate('SingleOrder');
+  };
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
@@ -112,7 +115,7 @@ export const HistoryScreen = ({ navigation }) => {
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 105 }}>
         <View style={{}}>
           <Card style={styles.orderHeadCard}>
-            <View style={styles.orderHead}>
+            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
               <View style={styles.avatar} >
                 <Avatar style={{}} size='large' source={require('../assets/person.png')} />
               </View>
@@ -130,20 +133,20 @@ export const HistoryScreen = ({ navigation }) => {
                   />
                 </View>
                 <View style={{ flex: 1, }}>
-                  <Text style={styles.date}>1 week ago</Text>
+                  <Text style={styles.date}>2 week ago</Text>
                   <Icon
                     name='chevron-right'
                     width={40}
                     height={40}
                     fill='#747D8C'
-                    style={{ bottom: 28.5, left: 67 }}
+                    style={{ bottom: 18, left: 67 }}
                   />
                 </View>
               </View>
-            </View>
+            </TouchableOpacity>
           </Card>
           <Card style={styles.orderHeadCard}>
-            <View style={styles.orderHead}>
+            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
               <View style={styles.avatar} >
                 <Avatar style={{}} size='large' source={require('../assets/person.png')} />
               </View>
@@ -161,50 +164,20 @@ export const HistoryScreen = ({ navigation }) => {
                   />
                 </View>
                 <View style={{ flex: 1, }}>
-                  <Text style={styles.date}>1 week ago</Text>
+                  <Text style={styles.date}>2 week ago</Text>
                   <Icon
                     name='chevron-right'
                     width={40}
                     height={40}
                     fill='#747D8C'
-                    style={{ bottom: 28.5, left: 67 }}
+                    style={{ bottom: 18, left: 67 }}
                   />
                 </View>
               </View>
-            </View>
-          </Card><Card style={styles.orderHeadCard}>
-            <View style={styles.orderHead}>
-              <View style={styles.avatar} >
-                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
-              </View>
-              <View style={styles.orderHeadContent}>
-                <View style={{ flex: 2, }}>
-                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
-
-                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
-                  <Icon
-                    name='droplet'
-                    width={12}
-                    height={12}
-                    fill='#5AC966'
-                    style={styles.statusIcon}
-                  />
-                </View>
-                <View style={{ flex: 1, }}>
-                  <Text style={styles.date}>1 week ago</Text>
-                  <Icon
-                    name='chevron-right'
-                    width={40}
-                    height={40}
-                    fill='#747D8C'
-                    style={{ bottom: 28.5, left: 67 }}
-                  />
-                </View>
-              </View>
-            </View>
+            </TouchableOpacity>
           </Card>
           <Card style={styles.orderHeadCard}>
-            <View style={styles.orderHead}>
+            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
               <View style={styles.avatar} >
                 <Avatar style={{}} size='large' source={require('../assets/person.png')} />
               </View>
@@ -222,20 +195,20 @@ export const HistoryScreen = ({ navigation }) => {
                   />
                 </View>
                 <View style={{ flex: 1, }}>
-                  <Text style={styles.date}>1 week ago</Text>
+                  <Text style={styles.date}>2 week ago</Text>
                   <Icon
                     name='chevron-right'
                     width={40}
                     height={40}
                     fill='#747D8C'
-                    style={{ bottom: 28.5, left: 67 }}
+                    style={{ bottom: 18, left: 67 }}
                   />
                 </View>
               </View>
-            </View>
+            </TouchableOpacity>
           </Card>
           <Card style={styles.orderHeadCard}>
-            <View style={styles.orderHead}>
+            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
               <View style={styles.avatar} >
                 <Avatar style={{}} size='large' source={require('../assets/person.png')} />
               </View>
@@ -253,20 +226,20 @@ export const HistoryScreen = ({ navigation }) => {
                   />
                 </View>
                 <View style={{ flex: 1, }}>
-                  <Text style={styles.date}>1 week ago</Text>
+                  <Text style={styles.date}>2 week ago</Text>
                   <Icon
                     name='chevron-right'
                     width={40}
                     height={40}
                     fill='#747D8C'
-                    style={{ bottom: 28.5, left: 67 }}
+                    style={{ bottom: 18, left: 67 }}
                   />
                 </View>
               </View>
-            </View>
+            </TouchableOpacity>
           </Card>
           <Card style={styles.orderHeadCard}>
-            <View style={styles.orderHead}>
+            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
               <View style={styles.avatar} >
                 <Avatar style={{}} size='large' source={require('../assets/person.png')} />
               </View>
@@ -284,20 +257,20 @@ export const HistoryScreen = ({ navigation }) => {
                   />
                 </View>
                 <View style={{ flex: 1, }}>
-                  <Text style={styles.date}>1 week ago</Text>
+                  <Text style={styles.date}>2 week ago</Text>
                   <Icon
                     name='chevron-right'
                     width={40}
                     height={40}
                     fill='#747D8C'
-                    style={{ bottom: 28.5, left: 67 }}
+                    style={{ bottom: 18, left: 67 }}
                   />
                 </View>
               </View>
-            </View>
+            </TouchableOpacity>
           </Card>
           <Card style={styles.orderHeadCard}>
-            <View style={styles.orderHead}>
+            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
               <View style={styles.avatar} >
                 <Avatar style={{}} size='large' source={require('../assets/person.png')} />
               </View>
@@ -315,20 +288,20 @@ export const HistoryScreen = ({ navigation }) => {
                   />
                 </View>
                 <View style={{ flex: 1, }}>
-                  <Text style={styles.date}>1 week ago</Text>
+                  <Text style={styles.date}>2 week ago</Text>
                   <Icon
                     name='chevron-right'
                     width={40}
                     height={40}
                     fill='#747D8C'
-                    style={{ bottom: 28.5, left: 67 }}
+                    style={{ bottom: 18, left: 67 }}
                   />
                 </View>
               </View>
-            </View>
+            </TouchableOpacity>
           </Card>
           <Card style={styles.orderHeadCard}>
-            <View style={styles.orderHead}>
+            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
               <View style={styles.avatar} >
                 <Avatar style={{}} size='large' source={require('../assets/person.png')} />
               </View>
@@ -346,17 +319,17 @@ export const HistoryScreen = ({ navigation }) => {
                   />
                 </View>
                 <View style={{ flex: 1, }}>
-                  <Text style={styles.date}>1 week ago</Text>
+                  <Text style={styles.date}>2 week ago</Text>
                   <Icon
                     name='chevron-right'
                     width={40}
                     height={40}
                     fill='#747D8C'
-                    style={{ bottom: 28.5, left: 67 }}
+                    style={{ bottom: 18, left: 67 }}
                   />
                 </View>
               </View>
-            </View>
+            </TouchableOpacity>
           </Card>
         </View>
       </ScrollView>
@@ -469,6 +442,9 @@ const styles = StyleSheet.create({
     color: '#747D8C',
     fontSize: 10,
     marginLeft: 9,
+    // justifyContent: 'flex-start'
+    // alignContent: 'center'
+    top: 12
     // marginBottom: 40
   },
   toggleStatus: {
