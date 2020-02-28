@@ -6,20 +6,35 @@ import {
   View,
   TouchableOpacity,
   Dimensions,
-  ScrollView
+  ScrollView,
 } from 'react-native';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { SafeAreaView } from 'react-navigation';
-import { Icon, Layout, Text, Avatar, TopNavigationAction, TopNavigation, Divider, Toggle, Card, Button, CardHeader } from '@ui-kitten/components';
+import {
+  Icon, Layout, Text, Avatar, TopNavigationAction,
+  TopNavigation, Divider, Toggle, Card, Button, CardHeader,
+  BottomNavigation,
+  BottomNavigationTab,
+} from '@ui-kitten/components';
 //  icons
 const BackIcon = (style) => (
   <Icon {...style} name='arrow-ios-back-outline' />
 );
+const RightIcon = (style) => (
+  <Icon {...style} name='chevron-right' />
+);
+
 const Droplet = (style) => (
   <Icon {...style} name='droplet' fill="#FF6B51" />
 );
 const DropletGreen = (style) => (
   <Icon {...style} name='droplet' fill="#7CEA7E" />
+);
+const Clock = (style) => (
+  <Icon {...style} name='clock' fill="#FD901C" />
+);
+const History = (style) => (
+  <Icon {...style} name='sync' />
 );
 let red = "DB463B";
 let green = "5AC966"
@@ -53,9 +68,16 @@ export const HistoryScreen = ({ navigation }) => {
   const navigateBack = () => {
     navigation.goBack();
   };
+  const navigatePending = () => {
+    navigation.navigate('Pending');
+  };
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
+
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [hey, setSelectedScreen] = React.useState(true);
+  // const hey = true;
 
 
 
@@ -82,170 +104,280 @@ export const HistoryScreen = ({ navigation }) => {
 
 
   return (
-    <View style={{ backgroundColor: '#f2f3f4' }}>
+    <View style={{ backgroundColor: '#f2f3f4', }}>
 
-      <TopNavigation title='Pending Orders' style={styles.topNavigation}
+      <TopNavigation title='Order History' style={styles.topNavigation}
         titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
       <Divider />
+      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 105 }}>
+        <View style={{}}>
+          <Card style={styles.orderHeadCard}>
+            <View style={styles.orderHead}>
+              <View style={styles.avatar} >
+                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
+              </View>
+              <View style={styles.orderHeadContent}>
+                <View style={{ flex: 2, }}>
+                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
 
-      <Card style={styles.orderHeadCard}>
-        <View style={styles.orderHead}>
-          <View style={styles.avatar} >
-            <Avatar style={{}} size='large' source={require('../assets/person.png')} />
-          </View>
-          <View style={styles.orderHeadContent}>
-            <View style={{ flex: 2 }}>
-              <Text style={styles.clientName}>Brown Samson Dappa</Text>
-              <Text style={styles.timeToKilo}>20mins<Text style={styles.dot}> .</Text> 2.6km</Text>
-              <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processing</Text>
-              <Icon
-                name='droplet'
-                width={12}
-                height={12}
-                fill='#DB463B'
-                style={styles.statusIcon}
-              />
+                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
+                  <Icon
+                    name='droplet'
+                    width={12}
+                    height={12}
+                    fill='#5AC966'
+                    style={styles.statusIcon}
+                  />
+                </View>
+                <View style={{ flex: 1, }}>
+                  <Text style={styles.date}>1 week ago</Text>
+                  <Icon
+                    name='chevron-right'
+                    width={40}
+                    height={40}
+                    fill='#747D8C'
+                    style={{ bottom: 28.5, left: 67 }}
+                  />
+                </View>
+              </View>
             </View>
-            <View style={{ flex: 1, }}>
-              <Text style={styles.time}>2 mins ago</Text>
-              <Toggle
-                style={styles.toggleStatus}
-                onChange={onCheckedChangeOrder}
-                textStyle={styles.toggleStatusText}
-                checked={active}
-                text={'Status'}
-              />
+          </Card>
+          <Card style={styles.orderHeadCard}>
+            <View style={styles.orderHead}>
+              <View style={styles.avatar} >
+                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
+              </View>
+              <View style={styles.orderHeadContent}>
+                <View style={{ flex: 2, }}>
+                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
+
+                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
+                  <Icon
+                    name='droplet'
+                    width={12}
+                    height={12}
+                    fill='#5AC966'
+                    style={styles.statusIcon}
+                  />
+                </View>
+                <View style={{ flex: 1, }}>
+                  <Text style={styles.date}>1 week ago</Text>
+                  <Icon
+                    name='chevron-right'
+                    width={40}
+                    height={40}
+                    fill='#747D8C'
+                    style={{ bottom: 28.5, left: 67 }}
+                  />
+                </View>
+              </View>
             </View>
-          </View>
+          </Card><Card style={styles.orderHeadCard}>
+            <View style={styles.orderHead}>
+              <View style={styles.avatar} >
+                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
+              </View>
+              <View style={styles.orderHeadContent}>
+                <View style={{ flex: 2, }}>
+                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
+
+                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
+                  <Icon
+                    name='droplet'
+                    width={12}
+                    height={12}
+                    fill='#5AC966'
+                    style={styles.statusIcon}
+                  />
+                </View>
+                <View style={{ flex: 1, }}>
+                  <Text style={styles.date}>1 week ago</Text>
+                  <Icon
+                    name='chevron-right'
+                    width={40}
+                    height={40}
+                    fill='#747D8C'
+                    style={{ bottom: 28.5, left: 67 }}
+                  />
+                </View>
+              </View>
+            </View>
+          </Card>
+          <Card style={styles.orderHeadCard}>
+            <View style={styles.orderHead}>
+              <View style={styles.avatar} >
+                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
+              </View>
+              <View style={styles.orderHeadContent}>
+                <View style={{ flex: 2, }}>
+                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
+
+                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
+                  <Icon
+                    name='droplet'
+                    width={12}
+                    height={12}
+                    fill='#5AC966'
+                    style={styles.statusIcon}
+                  />
+                </View>
+                <View style={{ flex: 1, }}>
+                  <Text style={styles.date}>1 week ago</Text>
+                  <Icon
+                    name='chevron-right'
+                    width={40}
+                    height={40}
+                    fill='#747D8C'
+                    style={{ bottom: 28.5, left: 67 }}
+                  />
+                </View>
+              </View>
+            </View>
+          </Card>
+          <Card style={styles.orderHeadCard}>
+            <View style={styles.orderHead}>
+              <View style={styles.avatar} >
+                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
+              </View>
+              <View style={styles.orderHeadContent}>
+                <View style={{ flex: 2, }}>
+                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
+
+                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
+                  <Icon
+                    name='droplet'
+                    width={12}
+                    height={12}
+                    fill='#5AC966'
+                    style={styles.statusIcon}
+                  />
+                </View>
+                <View style={{ flex: 1, }}>
+                  <Text style={styles.date}>1 week ago</Text>
+                  <Icon
+                    name='chevron-right'
+                    width={40}
+                    height={40}
+                    fill='#747D8C'
+                    style={{ bottom: 28.5, left: 67 }}
+                  />
+                </View>
+              </View>
+            </View>
+          </Card>
+          <Card style={styles.orderHeadCard}>
+            <View style={styles.orderHead}>
+              <View style={styles.avatar} >
+                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
+              </View>
+              <View style={styles.orderHeadContent}>
+                <View style={{ flex: 2, }}>
+                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
+
+                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
+                  <Icon
+                    name='droplet'
+                    width={12}
+                    height={12}
+                    fill='#5AC966'
+                    style={styles.statusIcon}
+                  />
+                </View>
+                <View style={{ flex: 1, }}>
+                  <Text style={styles.date}>1 week ago</Text>
+                  <Icon
+                    name='chevron-right'
+                    width={40}
+                    height={40}
+                    fill='#747D8C'
+                    style={{ bottom: 28.5, left: 67 }}
+                  />
+                </View>
+              </View>
+            </View>
+          </Card>
+          <Card style={styles.orderHeadCard}>
+            <View style={styles.orderHead}>
+              <View style={styles.avatar} >
+                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
+              </View>
+              <View style={styles.orderHeadContent}>
+                <View style={{ flex: 2, }}>
+                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
+
+                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
+                  <Icon
+                    name='droplet'
+                    width={12}
+                    height={12}
+                    fill='#5AC966'
+                    style={styles.statusIcon}
+                  />
+                </View>
+                <View style={{ flex: 1, }}>
+                  <Text style={styles.date}>1 week ago</Text>
+                  <Icon
+                    name='chevron-right'
+                    width={40}
+                    height={40}
+                    fill='#747D8C'
+                    style={{ bottom: 28.5, left: 67 }}
+                  />
+                </View>
+              </View>
+            </View>
+          </Card>
+          <Card style={styles.orderHeadCard}>
+            <View style={styles.orderHead}>
+              <View style={styles.avatar} >
+                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
+              </View>
+              <View style={styles.orderHeadContent}>
+                <View style={{ flex: 2, }}>
+                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
+
+                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
+                  <Icon
+                    name='droplet'
+                    width={12}
+                    height={12}
+                    fill='#5AC966'
+                    style={styles.statusIcon}
+                  />
+                </View>
+                <View style={{ flex: 1, }}>
+                  <Text style={styles.date}>1 week ago</Text>
+                  <Icon
+                    name='chevron-right'
+                    width={40}
+                    height={40}
+                    fill='#747D8C'
+                    style={{ bottom: 28.5, left: 67 }}
+                  />
+                </View>
+              </View>
+            </View>
+          </Card>
         </View>
-      </Card>
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 200 }}>
-        <Card style={styles.card} >
-          <Text style={styles.stopsCountText}>
-            Stop 1
-          </Text>
-          <Text style={styles.restaurantName}>
-            Crunchies Restaurant
-          </Text>
-          <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
-            <Text style={styles.dot}>.</Text> Processed</Text>
-          </Text>
-          <Icon
-            name='droplet'
-            width={12}
-            height={12}
-            fill='#5AC966'
-            style={styles.statusStopIcon}
-          />
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Address:</Text>
-            <Text style={styles.addressContent}>
-              6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
-            </Text>
-          </View>
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Phone:</Text>
-            <Text style={styles.addressContent}>
-              +234 817 496 9237
-            </Text>
-          </View>
-        </Card>
-
-        <Card style={styles.card} >
-          <Text style={styles.stopsCountText}>
-            Stop 2
-          </Text>
-          <Text style={styles.restaurantName}>
-            The Spot
-          </Text>
-          <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
-            <Text style={styles.dot}>.</Text> Processing </Text>
-          </Text>
-          <Icon
-            name='droplet'
-            width={12}
-            height={12}
-            fill='#DB463B'
-            style={styles.statusStopIcon}
-          />
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Address:</Text>
-            <Text style={styles.addressContent}>
-              6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
-            </Text>
-          </View>
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Phone:</Text>
-            <Text style={styles.addressContent}>
-              +234 817 496 9237
-            </Text>
-          </View>
-        </Card>
-
-
-        <Card style={styles.card} >
-          <Text style={styles.stopsCountText}>
-            Stop 3
-          </Text>
-          <Text style={styles.restaurantName}>
-            Pepper Roni
-          </Text>
-          <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
-            <Text style={styles.dot}>.</Text> Processed </Text>
-          </Text>
-          <Icon
-            name='droplet'
-            width={12}
-            height={12}
-            fill='#5AC966'
-            style={styles.statusStopIcon}
-          />
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Address:</Text>
-            <Text style={styles.addressContent}>
-              6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
-            </Text>
-          </View>
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Phone:</Text>
-            <Text style={styles.addressContent}>
-              +234 817 496 9237
-            </Text>
-          </View>
-        </Card>
-        <Card style={styles.card} >
-          <Text style={styles.stopsCountText}>
-            Deliver to
-          </Text>
-          <Text style={styles.restaurantName}>
-            Brown Samson Dappa
-          </Text>
-          <Text style={styles.timeToKilo}>1.3km</Text>
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Address:</Text>
-            <Text style={styles.addressContent}>
-              6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
-            </Text>
-          </View>
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Phone:</Text>
-            <Text style={styles.addressContent}>
-              +234 817 496 9237
-            </Text>
-          </View>
-        </Card>
-
       </ScrollView>
+      <BottomNavigation
+        selectedIndex={selectedIndex}
+        appearance='noIndicator'
+        style={{
+          // marginBottom: '-14%',
+          // position: 'absolute',
+          // marginTop: 50,
 
-    </View>
+        }}
+        onSelect={setSelectedIndex}>
+        <BottomNavigationTab title='Pending' onPressIn={navigatePending} titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='History' onSelect={setSelectedScreen} selected={hey} titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='Active' titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='Direction' titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='Account' titleStyle={{ color: '#FD901C' }} />
+      </BottomNavigation>
+
+    </View >
 
   )
 
@@ -258,8 +390,9 @@ const styles = StyleSheet.create({
       width: 0,
       height: 12,
     },
-    shadowOpacity: 0.58,
+    shadowOpacity: 1.58,
     shadowRadius: 16.00,
+    elevation: 6,
     top: 16,
     right: 9,
     marginBottom: 9,
@@ -284,14 +417,14 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.37,
     shadowRadius: 2.49,
-    elevation: 6,
+    elevation: 3,
 
   },
   orderHead: {
     flex: 1,
     flexDirection: 'row',
     alignItems: "center",
-    paddingVertical: 32,
+    // paddingVertical: 32,
     // backgroundColor: 'green'
   },
   avatar: {
@@ -306,15 +439,10 @@ const styles = StyleSheet.create({
   clientName: {
     fontSize: 16,
     fontFamily: 'Muli',
-    color: '#FD901C',
+    color: '#515C6F',
     fontWeight: 'bold',
-  },
-  timeToKilo: {
-    fontSize: 12,
-    fontFamily: 'Muli',
-    color: '#747D8C',
-    fontWeight: 'bold',
-    marginTop: 2
+    marginVertical: 2
+    // justifyContent: 'space-between'
   },
   dot: {
     fontSize: 30,
@@ -324,7 +452,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'Muli',
     color: '#747D8C',
-    marginTop: -2,
+    // marginTop: -2,
+    marginVertical: 2
   },
   stopsCountNum: {
     fontSize: 12,
@@ -333,14 +462,14 @@ const styles = StyleSheet.create({
     marginTop: -2,
     fontWeight: 'bold'
   },
-  time: {
+  date: {
     fontSize: 10,
     fontFamily: 'Muli',
     alignSelf: 'center',
     color: '#747D8C',
     fontSize: 10,
-    marginLeft: 33,
-    marginBottom: 40
+    marginLeft: 9,
+    // marginBottom: 40
   },
   toggleStatus: {
     marginLeft: 13,
@@ -400,8 +529,8 @@ const styles = StyleSheet.create({
     fontStyle: 'normal'
   },
   statusIcon: {
-    bottom: 16.6,
-    left: 119
+    bottom: 19.5,
+    left: 117
   },
   orderItemStatus: {
     fontSize: 12,

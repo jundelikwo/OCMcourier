@@ -1,16 +1,19 @@
 import React, { Component, useState } from 'react'
 import {
-  Image,
   StyleSheet,
-  StatusBar,
   View,
-  TouchableOpacity,
   Dimensions,
-  ScrollView
+  ScrollView,
+  Image
 } from 'react-native';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { SafeAreaView } from 'react-navigation';
-import { Icon, Layout, Text, Avatar, TopNavigationAction, TopNavigation, Divider, Toggle, Card, Button, CardHeader } from '@ui-kitten/components';
+import {
+  Icon, Layout, Text, Avatar, TopNavigationAction,
+  TopNavigation, Divider, Toggle, Card, Button, CardHeader,
+  BottomNavigation,
+  BottomNavigationTab,
+} from '@ui-kitten/components';
 //  icons
 const BackIcon = (style) => (
   <Icon {...style} name='arrow-ios-back-outline' />
@@ -20,6 +23,18 @@ const Droplet = (style) => (
 );
 const DropletGreen = (style) => (
   <Icon {...style} name='droplet' fill="#7CEA7E" />
+);
+const Clock = (style) => (
+  <Icon {...style} name='clock' fill="#FD901C" />
+);
+const History = (style) => (
+  <Icon {...style} name='sync' />
+);
+const Imager = (style) => (
+  <Image style={{
+    width: 20,
+    height: 20
+  }} source={require('../assets/loginVector.png')} />
 );
 let red = "DB463B";
 let green = "5AC966"
@@ -53,9 +68,13 @@ export const PendingScreen = ({ navigation }) => {
   const navigateBack = () => {
     navigation.goBack();
   };
+  const navigateHistory = () => {
+    navigation.navigate('History');
+  };
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
 
 
@@ -70,16 +89,6 @@ export const PendingScreen = ({ navigation }) => {
     // onPress={this.ToggleAvailability}
     />
   );
-
-
-  const Header = () => (
-    <CardHeader
-      title='Stop 1'
-      description='By Wikipedia'
-      description='By Wikipedi'
-    />
-  );
-
 
   return (
     <View style={{ backgroundColor: '#f2f3f4' }}>
@@ -244,7 +253,16 @@ export const PendingScreen = ({ navigation }) => {
         </Card>
 
       </ScrollView>
-
+      <BottomNavigation
+        selectedIndex={selectedIndex}
+        appearance='noIndicator'
+        onSelect={setSelectedIndex}>
+        <BottomNavigationTab title='Pending' titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='History' onPressIn={navigateHistory} titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='Active' titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='Direction' titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='Account' titleStyle={{ color: '#FD901C' }} />
+      </BottomNavigation>
     </View>
 
   )
@@ -258,8 +276,9 @@ const styles = StyleSheet.create({
       width: 0,
       height: 12,
     },
-    shadowOpacity: 0.58,
+    shadowOpacity: 1.58,
     shadowRadius: 16.00,
+    elevation: 6,
     top: 16,
     right: 9,
     marginBottom: 9,
@@ -285,6 +304,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.37,
     shadowRadius: 2.49,
     elevation: 6,
+    // marginTop: 6
 
   },
   orderHead: {
