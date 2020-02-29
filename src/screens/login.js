@@ -79,7 +79,7 @@ export const LoginScreen = ({ navigation }) => {
           />
         </Layout>
 
-        <TouchableOpacity style={styles.forgotBut}><Text style={styles.forgot}>Forget password?</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.forgotBut}><Text style={styles.forgot}>Forgot password?</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={navigatePending}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
       </LinearGradient>
     </SafeAreaView>
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     // bottom: 15,
     borderRadius: 15,
     padding: 12,
-    top: 250
+    top: Dimensions.get('window').height - 420
 
   },
   buttonText: {

@@ -1,12 +1,11 @@
 import React, { Component, useState } from 'react'
 import {
-  Image,
   StyleSheet,
-  StatusBar,
   View,
-  TouchableOpacity,
   Dimensions,
   ScrollView,
+  Image,
+  TouchableOpacity
 } from 'react-native';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { SafeAreaView } from 'react-navigation';
@@ -20,10 +19,6 @@ import {
 const BackIcon = (style) => (
   <Icon {...style} name='arrow-ios-back-outline' />
 );
-const RightIcon = (style) => (
-  <Icon {...style} name='chevron-right' />
-);
-
 const Droplet = (style) => (
   <Icon {...style} name='droplet' fill="#FF6B51" />
 );
@@ -36,10 +31,16 @@ const Clock = (style) => (
 const History = (style) => (
   <Icon {...style} name='sync' />
 );
+const Imager = (style) => (
+  <Image style={{
+    width: 20,
+    height: 20
+  }} source={require('../assets/loginVector.png')} />
+);
 let red = "DB463B";
 let green = "5AC966"
 
-export const HistoryScreen = ({ navigation }) => {
+export const AccountScreen = ({ navigation }) => {
   //driver status
   const [available, setAvailable] = useState({
     checked: true,
@@ -68,22 +69,16 @@ export const HistoryScreen = ({ navigation }) => {
   const navigateBack = () => {
     navigation.goBack();
   };
+  const navigateHistory = () => {
+    navigation.navigate('History');
+  };
   const navigatePending = () => {
     navigation.navigate('Pending');
-  };
-  const navigateAccount = () => {
-    navigation.navigate('Account');
-  };
-  const navigateSingleOrder = () => {
-    navigation.navigate('SingleOrder');
   };
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
-
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const [hey, setSelectedScreen] = React.useState(true);
-  // const hey = true;
 
 
 
@@ -99,52 +94,29 @@ export const HistoryScreen = ({ navigation }) => {
     />
   );
 
-
-  const Header = () => (
-    <CardHeader
-      title='Stop 1'
-      description='By Wikipedia'
-      description='By Wikipedi'
-    />
-  );
-
-
   return (
     <View style={{ backgroundColor: '#f2f3f4', }}>
 
-      <TopNavigation title='Order History' style={styles.topNavigation}
+      <TopNavigation title='Account Settings' style={styles.topNavigation}
         titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
       <Divider />
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 60 }}>
         <View style={{}}>
           <Card style={styles.orderHeadCard}>
-            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
-              <View style={styles.avatar} >
-                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
-              </View>
-              <View style={styles.orderHeadContent}>
-                <View style={{ flex: 2, alignSelf: 'flex-start', }}>
-                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
+            <TouchableOpacity style={styles.orderHead}>
 
-                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
-                  <Icon
-                    name='droplet'
-                    width={12}
-                    height={12}
-                    fill='#5AC966'
-                    style={styles.statusIcon}
-                  />
+              <View style={styles.orderHeadContent}>
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+                  <Text style={styles.clientName}>Change Password </Text>
+
                 </View>
-                <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
-                  <Text style={styles.date}>1 week ago</Text>
+                <View style={{ flex: 1, }}>
                   <Icon
                     name='chevron-right'
                     width={40}
                     height={40}
                     fill='#747D8C'
-                    style={{
-                      left: 9
-                    }}
+                    style={{ alignSelf: 'flex-end' }}
                   />
 
                 </View>
@@ -152,141 +124,27 @@ export const HistoryScreen = ({ navigation }) => {
             </TouchableOpacity>
           </Card>
           <Card style={styles.orderHeadCard}>
-            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
-              <View style={styles.avatar} >
-                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
-              </View>
-              <View style={styles.orderHeadContent}>
-                <View style={{ flex: 2, alignSelf: 'flex-start', }}>
-                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
+            <TouchableOpacity style={styles.orderHead}>
 
-                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
-                  <Icon
-                    name='droplet'
-                    width={12}
-                    height={12}
-                    fill='#5AC966'
-                    style={styles.statusIcon}
-                  />
+              <View style={styles.orderHeadContent}>
+                <View style={{ flex: 1, }}>
+                  <Text style={styles.clientName}>Personal Settings </Text>
+
                 </View>
-                <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
-                  <Text style={styles.date}>1 week ago</Text>
+                <View style={{ flex: 1, }}>
                   <Icon
                     name='chevron-right'
                     width={40}
                     height={40}
                     fill='#747D8C'
-                    style={{
-                      left: 9
-                    }}
+                    style={{ alignSelf: 'flex-end' }}
                   />
 
                 </View>
               </View>
             </TouchableOpacity>
           </Card>
-          <Card style={styles.orderHeadCard}>
-            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
-              <View style={styles.avatar} >
-                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
-              </View>
-              <View style={styles.orderHeadContent}>
-                <View style={{ flex: 2, alignSelf: 'flex-start', }}>
-                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
 
-                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
-                  <Icon
-                    name='droplet'
-                    width={12}
-                    height={12}
-                    fill='#5AC966'
-                    style={styles.statusIcon}
-                  />
-                </View>
-                <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
-                  <Text style={styles.date}>1 week ago</Text>
-                  <Icon
-                    name='chevron-right'
-                    width={40}
-                    height={40}
-                    fill='#747D8C'
-                    style={{
-                      left: 9
-                    }}
-                  />
-
-                </View>
-              </View>
-            </TouchableOpacity>
-          </Card>
-          <Card style={styles.orderHeadCard}>
-            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
-              <View style={styles.avatar} >
-                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
-              </View>
-              <View style={styles.orderHeadContent}>
-                <View style={{ flex: 2, alignSelf: 'flex-start', }}>
-                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
-
-                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
-                  <Icon
-                    name='droplet'
-                    width={12}
-                    height={12}
-                    fill='#5AC966'
-                    style={styles.statusIcon}
-                  />
-                </View>
-                <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
-                  <Text style={styles.date}>1 week ago</Text>
-                  <Icon
-                    name='chevron-right'
-                    width={40}
-                    height={40}
-                    fill='#747D8C'
-                    style={{
-                      left: 9
-                    }}
-                  />
-
-                </View>
-              </View>
-            </TouchableOpacity>
-          </Card>
-          <Card style={styles.orderHeadCard}>
-            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
-              <View style={styles.avatar} >
-                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
-              </View>
-              <View style={styles.orderHeadContent}>
-                <View style={{ flex: 2, alignSelf: 'flex-start', }}>
-                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
-
-                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
-                  <Icon
-                    name='droplet'
-                    width={12}
-                    height={12}
-                    fill='#5AC966'
-                    style={styles.statusIcon}
-                  />
-                </View>
-                <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
-                  <Text style={styles.date}>1 week ago</Text>
-                  <Icon
-                    name='chevron-right'
-                    width={40}
-                    height={40}
-                    fill='#747D8C'
-                    style={{
-                      left: 9
-                    }}
-                  />
-
-                </View>
-              </View>
-            </TouchableOpacity>
-          </Card>
         </View>
       </ScrollView>
       <BottomNavigation
@@ -300,10 +158,10 @@ export const HistoryScreen = ({ navigation }) => {
         }}
         onSelect={setSelectedIndex}>
         <BottomNavigationTab title='Pending' onPressIn={navigatePending} titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='History' />
+        <BottomNavigationTab title='History' onPressIn={navigateHistory} titleStyle={{ color: '#FD901C' }} />
         <BottomNavigationTab title='Active' titleStyle={{ color: '#FD901C' }} />
         <BottomNavigationTab title='Direction' titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='Account' onPressIn={navigateAccount} titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='Account' />
       </BottomNavigation>
 
     </View >
@@ -329,6 +187,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width + 8.8,
     flex: 1,
     flexDirection: 'row'
+
   },
   title: {
     fontSize: 18,
@@ -339,7 +198,7 @@ const styles = StyleSheet.create({
 
   },
   orderHeadCard: {
-    margin: 0, padding: 0,
+    margin: 1, padding: 0,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -347,7 +206,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.37,
     shadowRadius: 2.49,
-    elevation: 3,
+    elevation: 2,
+    marginTop: 15
 
   },
   orderHead: {
@@ -362,16 +222,19 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start'
   },
   orderHeadContent: {
-    flex: 4,
+    flex: 1,
     flexDirection: "row",
-    alignItems: 'center'
+    alignItems: 'center',
+
   },
   clientName: {
     fontSize: 16,
     fontFamily: 'Muli',
     color: '#515C6F',
     fontWeight: 'bold',
-    marginVertical: 2
+    marginVertical: 2,
+    alignSelf: 'flex-start'
+
     // justifyContent: 'space-between'
   },
   dot: {
@@ -393,19 +256,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   date: {
-    fontSize: 9,
+    fontSize: 10,
     fontFamily: 'Muli',
-    // alignSelf: 'center',
+    alignSelf: 'center',
     color: '#747D8C',
+    fontSize: 10,
     // marginLeft: 9,
-    justifyContent: 'flex-end',
-
-    flex: 1,
-    alignSelf: 'flex-start',
-    // alignContent: 'center',
-    // top: 8
-    marginTop: 9,
-    left: 16
+    // justifyContent: 'flex-start'
+    // alignContent: 'center'
+    // top: 12
     // marginBottom: 40
   },
   toggleStatus: {

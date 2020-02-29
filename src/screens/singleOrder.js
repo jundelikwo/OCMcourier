@@ -71,6 +71,12 @@ export const SingleOrderScreen = ({ navigation }) => {
   const navigateHistory = () => {
     navigation.navigate('History');
   };
+  const navigatePending = () => {
+    navigation.navigate('Pending');
+  };
+  const navigateAccount = () => {
+    navigation.navigate('Account');
+  };
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
@@ -122,7 +128,7 @@ export const SingleOrderScreen = ({ navigation }) => {
           </View>
         </View>
       </Card>
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 200 }}>
+      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 155 }}>
         <Card style={styles.card} >
           <Text style={styles.stopsCountText}>
             Stop 1
@@ -251,11 +257,11 @@ export const SingleOrderScreen = ({ navigation }) => {
         selectedIndex={selectedIndex}
         appearance='noIndicator'
         onSelect={setSelectedIndex}>
-        <BottomNavigationTab title='Pending' titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='History' onPressIn={navigateHistory} titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='Pending' onPressIn={navigatePending} titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='History' onPressIn={navigateHistory} />
         <BottomNavigationTab title='Active' titleStyle={{ color: '#FD901C' }} />
         <BottomNavigationTab title='Direction' titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='Account' titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='Account' onPressIn={navigateAccount} titleStyle={{ color: '#FD901C' }} />
       </BottomNavigation>
     </View>
 
@@ -274,11 +280,12 @@ const styles = StyleSheet.create({
     shadowRadius: 16.00,
     elevation: 6,
     top: 16,
-    right: 9,
+    // right: 9,
     marginBottom: 9,
     marginTop: 15,
-    width: Dimensions.get('window').width + 8.8
-
+    width: Dimensions.get('window').width + 8.8,
+    flex: 1,
+    flexDirection: 'row'
   },
   title: {
     fontSize: 18,
@@ -378,11 +385,14 @@ const styles = StyleSheet.create({
     fontFamily: 'Muli',
     color: '#828282',
     fontWeight: 'bold',
-    right: 136
+    right: 50,
+    position: 'absolute',
+    top: 3
   },
   toggle: {
     margin: 5,
-    left: 79,
+    flex: 1,
+    justifyContent: 'flex-end',
     transform: [{
       scaleX: moderateScale(0.8, 0.1)
     }, {
