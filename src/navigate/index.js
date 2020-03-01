@@ -6,6 +6,7 @@ import { AccountScreen } from '../screens/account';
 import { PendingScreen } from '../screens/pending';
 import { HistoryScreen } from '../screens/history';
 import { SingleOrderScreen } from '../screens/singleOrder';
+import { PasswordScreen } from '../screens/password';
 import { LoginScreen } from '../screens/login';
 
 
@@ -17,7 +18,8 @@ const HomeNavigator = createStackNavigator({
   Pending: PendingScreen,
   History: HistoryScreen,
   Account: AccountScreen,
-  SingleOrder: SingleOrderScreen
+  SingleOrder: SingleOrderScreen,
+  Password: PasswordScreen
 
 }, {
   headerMode: 'none',

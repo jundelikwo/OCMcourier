@@ -75,6 +75,9 @@ export const AccountScreen = ({ navigation }) => {
   const navigatePending = () => {
     navigation.navigate('Pending');
   };
+  const navigatePassword = () => {
+    navigation.navigate('Password');
+  };
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
@@ -103,7 +106,7 @@ export const AccountScreen = ({ navigation }) => {
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 60 }}>
         <View style={{ marginTop: 5 }}>
           <Card style={styles.orderHeadCard}>
-            <TouchableOpacity style={styles.orderHead}>
+            <TouchableOpacity style={styles.orderHead} onPressIn={navigatePassword}>
 
               <View style={styles.orderHeadContent}>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
