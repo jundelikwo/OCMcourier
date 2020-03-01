@@ -101,7 +101,7 @@ export const AccountScreen = ({ navigation }) => {
         titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
       <Divider />
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 60 }}>
-        <View style={{}}>
+        <View style={{ marginTop: 5 }}>
           <Card style={styles.orderHeadCard}>
             <TouchableOpacity style={styles.orderHead}>
 
@@ -198,16 +198,16 @@ const styles = StyleSheet.create({
 
   },
   orderHeadCard: {
-    margin: 1, padding: 0,
+    margin: 0, padding: 0,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 6,
+      height: 10,
     },
-    shadowOpacity: 0.37,
+    shadowOpacity: 0.3,
     shadowRadius: 2.49,
     elevation: 2,
-    marginTop: 15
+    marginTop: 9
 
   },
   orderHead: {
@@ -228,10 +228,10 @@ const styles = StyleSheet.create({
 
   },
   clientName: {
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: 'Muli',
     color: '#515C6F',
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     marginVertical: 2,
     alignSelf: 'flex-start'
 
