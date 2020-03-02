@@ -74,6 +74,9 @@ export const PendingScreen = ({ navigation }) => {
   const navigateAccount = () => {
     navigation.navigate('Account');
   };
+  const navigateActive = () => {
+    navigation.navigate('Active');
+  };
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
@@ -262,7 +265,7 @@ export const PendingScreen = ({ navigation }) => {
         onSelect={setSelectedIndex}>
         <BottomNavigationTab title='Pending' />
         <BottomNavigationTab title='History' onPressIn={navigateHistory} titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='Active' titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='Active' onPressIn={navigateActive}  titleStyle={{ color: '#FD901C' }} />
         <BottomNavigationTab title='Direction' titleStyle={{ color: '#FD901C' }} />
         <BottomNavigationTab title='Account' onPressIn={navigateAccount} titleStyle={{ color: '#FD901C' }} />
       </BottomNavigation>

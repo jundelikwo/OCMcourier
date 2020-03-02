@@ -104,7 +104,7 @@ export const PasswordScreen = ({ navigation }) => {
       <TopNavigation title='Change Password' style={styles.topNavigation}
         titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
       <Divider />
-      <View style={{ height: Dimensions.get('window').height - 60 }}>
+      <View style={{ height: Dimensions.get('window').height - 100 }}>
         <View style={{ marginTop: 30 }}>
           <Input
             value={Oldvalue}

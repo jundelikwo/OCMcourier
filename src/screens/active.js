@@ -10,11 +10,12 @@ import {
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { SafeAreaView } from 'react-navigation';
 import {
-  Icon, Avatar, Text, Input, TopNavigationAction,
+  Icon, Layout, Text, Input, TopNavigationAction,
   TopNavigation, Divider, Toggle, Card, Button, CardHeader,
   BottomNavigation,
   BottomNavigationTab,
 } from '@ui-kitten/components';
+import StepIndicator from 'react-native-step-indicator';
 //  icons
 const BackIcon = (style) => (
   <Icon {...style} name='arrow-ios-back-outline' />
@@ -40,7 +41,8 @@ const Imager = (style) => (
 let red = "DB463B";
 let green = "5AC966"
 
-export const ProfileScreen = ({ navigation }) => {
+
+export const ActiveScreen = ({ navigation }) => {
   //driver status
   const [available, setAvailable] = useState({
     checked: true,
@@ -64,9 +66,9 @@ export const ProfileScreen = ({ navigation }) => {
     setOrder({ ...order, status: status == 'Active' ? "Not Active" : "Active", active: isChecked })
   };
 
-  const [Namevalue, setValueName] = React.useState('');
-  const [Emailvalue, setValueEmail] = React.useState('');
-  const [Mobilevalue, setValueMobile] = React.useState('');
+  const [Oldvalue, setValueOld] = React.useState('');
+  const [Newvalue, setValueNew] = React.useState('');
+  const [Confrimvalue, setValueConfrim] = React.useState('');
 
 
   //nav
@@ -97,84 +99,67 @@ export const ProfileScreen = ({ navigation }) => {
     // onPress={this.ToggleAvailability}
     />
   );
+  const labels = ["Crunchies Restaurant", "The Spot", "Order Summary", "Pepper Roni", "Buyer"];
+  const customStyles = {
+    stepIndicatorSize: 30,
+    currentStepIndicatorSize: 40,
+    separatorStrokeWidth: 2,
+    currentStepStrokeWidth: 0,
+    stepStrokeCurrentColor: '#FD901C',
+    stepStrokeWidth: 0,
+    stepStrokeFinishedColor: '#FD901C',
+    stepStrokeUnFinishedColor: '#aaaaaa',
+    separatorFinishedColor: '#FD901C',
+    separatorUnFinishedColor: '#aaaaaa',
+    stepIndicatorFinishedColor: '#FD901C',
+    stepIndicatorUnFinishedColor: '#C1C1C1',
+    stepIndicatorCurrentColor: '#FD901C',
+    stepIndicatorLabelFontSize: 13,
+    currentStepIndicatorLabelFontSize: 13,
+    stepIndicatorLabelCurrentColor: '#fff',
+    stepIndicatorLabelFinishedColor: '#C1C1C1',
+    stepIndicatorLabelUnFinishedColor: '#aaaaaa',
+    labelColor: '#515C6F',
+    labelSize: 5,
+    currentStepLabelColor: '#FD901C',
+  }
+
+  // constructor() {
+  //   this.state = {
+  //     currentPosition: 0
+  //   }
+  // }
+  // onPageChange(position){
+  //   this.setState({ currentPosition: position });
+
+  // }
+
+  const [currentPosition, currentPositionValue] = React.useState(0);
+
+
+  const onChangeCurrentPosition = (newPosition) => {
+    // console.warn("newPosition", newPosition)
+    currentPositionValue(newPosition)
+  };
+
+
 
   return (
     <View style={{}}>
 
-      <TopNavigation title='Personal Settings' style={styles.topNavigation}
+      <TopNavigation title='Get Directions' style={styles.topNavigation}
         titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
       <Divider />
-      <View style={{ height: Dimensions.get('window').height - 90, flexDirection: 'column' }}>
-        <View style={{ backgroundColor: '#FD901C', flex: 0.5, }}>
-          <View style={{
-            backgroundColor: '#FD901C', paddingTop: 100, shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
-
-            elevation: 4,
-          }} >
-            <Avatar style={{
-              transform: [{
-                scaleX: moderateScale(2.5, 0.1)
-              }, {
-                scaleY: moderateScale(2.5, 0.2)
-              }],
-              // justifyContent: 'flex-start',
-              alignSelf: 'center',
-
-
-              // height: 90
-
-            }} size='giant' source={require('../assets/colorProfile.png')} />
-          </View>
-        </View>
-
-
-        <View style={{ flex: 1.5, paddingTop: 100 }}>
-          <Input
-            value={Namevalue}
-            placeholder='Brown Samson Dappa'
-            style={styles.inputEmail}
-            textStyle={styles.inputText}
-            labelStyle={styles.inputLabel}
-            captionTextStyle={styles.inputCaption}
-            onChangeText={setValueName}
-            textStyle={styles.placeholder}
-            placeholderTextColor={'#515C6F'}
-
-          />
-          <Input
-            value={Emailvalue}
-            placeholder='samsondappa@gmail.com'
-            style={styles.inputPass}
-            textStyle={styles.inputText}
-            labelStyle={styles.inputLabel}
-            captionTextStyle={styles.inputCaption}
-            onChangeText={setValueEmail}
-            textStyle={styles.placeholder}
-            placeholderTextColor={'#515C6F'}
-
-
-          />
-          <Input
-            value={Mobilevalue}
-            placeholder='+234 817 496 9237'
-            style={styles.inputPass}
-            textStyle={styles.inputText}
-            labelStyle={styles.inputLabel}
-            captionTextStyle={styles.inputCaption}
-            onChangeText={setValueMobile}
-            textStyle={styles.placeholder}
-            placeholderTextColor={'#515C6F'}
-
-          />
-          <TouchableOpacity style={styles.button} ><Text style={styles.buttonText}>Update</Text></TouchableOpacity>
-        </View>
-
+      <View style={{ height: Dimensions.get('window').height - 100, width: Dimensions.get('window').width + 50, alignItems: 'center' }}>
+        <StepIndicator
+          customStyles={customStyles}
+          direction='vertical'
+          currentPosition={currentPosition}
+          labels={labels}
+          stepCount={4}
+          onPress={onChangeCurrentPosition}
+        // style={{ alignItems: 'center' }}
+        />
       </View>
 
       <BottomNavigation
@@ -198,7 +183,9 @@ export const ProfileScreen = ({ navigation }) => {
 
   )
 
+
 };
+
 
 const styles = StyleSheet.create({
   topNavigation: {
@@ -279,8 +266,7 @@ const styles = StyleSheet.create({
     // bottom: 15,
     borderRadius: 7,
     padding: 12,
-    marginTop: 90
-    // top: Dimensions.get('window').height - 420
+    top: Dimensions.get('window').height - 420
 
   },
   buttonText: {

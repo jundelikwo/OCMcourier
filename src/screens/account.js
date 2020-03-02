@@ -78,6 +78,9 @@ export const AccountScreen = ({ navigation }) => {
   const navigatePassword = () => {
     navigation.navigate('Password');
   };
+  const navigateProfile = () => {
+    navigation.navigate('Profile');
+  };
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
@@ -127,7 +130,7 @@ export const AccountScreen = ({ navigation }) => {
             </TouchableOpacity>
           </Card>
           <Card style={styles.orderHeadCard}>
-            <TouchableOpacity style={styles.orderHead}>
+            <TouchableOpacity style={styles.orderHead} onPressIn={navigateProfile}>
 
               <View style={styles.orderHeadContent}>
                 <View style={{ flex: 1, }}>
