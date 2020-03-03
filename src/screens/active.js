@@ -147,7 +147,7 @@ export const ActiveScreen = ({ navigation }) => {
   return (
     <View style={{}}>
 
-      <TopNavigation title='Get Directions' style={styles.topNavigation}
+      <TopNavigation title='Active Order' style={styles.topNavigation}
         titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
       <Divider />
       <View style={{ height: Dimensions.get('window').height - 100, width: Dimensions.get('window').width + 50, alignItems: 'center' }}>
