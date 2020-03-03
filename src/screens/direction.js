@@ -10,12 +10,11 @@ import {
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { SafeAreaView } from 'react-navigation';
 import {
-  Icon, Layout, Text, Input, TopNavigationAction,
+  Icon, Layout, Text, Avatar, TopNavigationAction,
   TopNavigation, Divider, Toggle, Card, Button, CardHeader,
   BottomNavigation,
   BottomNavigationTab,
 } from '@ui-kitten/components';
-import StepIndicator from 'react-native-step-indicator';
 //  icons
 const BackIcon = (style) => (
   <Icon {...style} name='arrow-ios-back-outline' />
@@ -41,8 +40,7 @@ const Imager = (style) => (
 let red = "DB463B";
 let green = "5AC966"
 
-
-export const ActiveScreen = ({ navigation }) => {
+export const DirectionScreen = ({ navigation }) => {
   //driver status
   const [available, setAvailable] = useState({
     checked: true,
@@ -66,10 +64,6 @@ export const ActiveScreen = ({ navigation }) => {
     setOrder({ ...order, status: status == 'Active' ? "Not Active" : "Active", active: isChecked })
   };
 
-  const [Oldvalue, setValueOld] = React.useState('');
-  const [Newvalue, setValueNew] = React.useState('');
-  const [Confrimvalue, setValueConfrim] = React.useState('');
-
 
   //nav
   const navigateBack = () => {
@@ -80,6 +74,12 @@ export const ActiveScreen = ({ navigation }) => {
   };
   const navigatePending = () => {
     navigation.navigate('Pending');
+  };
+  const navigatePassword = () => {
+    navigation.navigate('Password');
+  };
+  const navigateProfile = () => {
+    navigation.navigate('Profile');
   };
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
@@ -99,69 +99,16 @@ export const ActiveScreen = ({ navigation }) => {
     // onPress={this.ToggleAvailability}
     />
   );
-  const labels = ["Crunchies Restaurant", "The Spot", "Order Summary", "Pepper Roni", "Buyer"];
-  const customStyles = {
-    stepIndicatorSize: 30,
-    currentStepIndicatorSize: 40,
-    separatorStrokeWidth: 2,
-    currentStepStrokeWidth: 0,
-    stepStrokeCurrentColor: '#FD901C',
-    stepStrokeWidth: 0,
-    stepStrokeFinishedColor: '#FD901C',
-    stepStrokeUnFinishedColor: '#aaaaaa',
-    separatorFinishedColor: '#FD901C',
-    separatorUnFinishedColor: '#aaaaaa',
-    stepIndicatorFinishedColor: '#FD901C',
-    stepIndicatorUnFinishedColor: '#C1C1C1',
-    stepIndicatorCurrentColor: '#FD901C',
-    stepIndicatorLabelFontSize: 13,
-    currentStepIndicatorLabelFontSize: 18,
-    stepIndicatorLabelCurrentColor: '#fff',
-    stepIndicatorLabelFinishedColor: '#C1C1C1',
-    stepIndicatorLabelUnFinishedColor: '#aaaaaa',
-    labelColor: '#515C6F',
-    labelSize: 10,
-    currentStepLabelColor: '#FD901C',
-  }
-
-  // constructor() {
-  //   this.state = {
-  //     currentPosition: 0
-  //   }
-  // }
-  // onPageChange(position){
-  //   this.setState({ currentPosition: position });
-
-  // }
-
-  const [currentPosition, currentPositionValue] = React.useState(0);
-
-
-  const onChangeCurrentPosition = (newPosition) => {
-    // console.warn("newPosition", newPosition)
-    currentPositionValue(newPosition)
-  };
-
-
 
   return (
-    <View style={{}}>
+    <View style={{ backgroundColor: '#f2f3f4', }}>
 
-      <TopNavigation title='Active Order' style={styles.topNavigation}
+      <TopNavigation title='Get Direction' style={styles.topNavigation}
         titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
       <Divider />
-      <View style={{ height: Dimensions.get('window').height - 100, width: Dimensions.get('window').width + 109, alignItems: 'center' }}>
-        <StepIndicator
-          customStyles={customStyles}
-          direction='vertical'
-          currentPosition={currentPosition}
-          labels={labels}
-          stepCount={4}
-          onPress={onChangeCurrentPosition}
-        // style={{ alignItems: 'center' }}
-        />
-      </View>
+      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 60 }}>
 
+      </ScrollView>
       <BottomNavigation
         selectedIndex={selectedIndex}
         appearance='noIndicator'
@@ -183,9 +130,7 @@ export const ActiveScreen = ({ navigation }) => {
 
   )
 
-
 };
-
 
 const styles = StyleSheet.create({
   topNavigation: {
@@ -214,11 +159,96 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
 
   },
+  orderHeadCard: {
+    margin: 0, padding: 0,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 2.49,
+    elevation: 2,
+    marginTop: 9
 
+  },
+  orderHead: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: "center",
+    // paddingVertical: 32,
+    // backgroundColor: 'green'
+  },
+  avatar: {
+    flex: 1,
+    alignItems: 'flex-start'
+  },
+  orderHeadContent: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: 'center',
+
+  },
+  clientName: {
+    fontSize: 14,
+    fontFamily: 'Muli',
+    color: '#515C6F',
+    // fontWeight: 'bold',
+    marginVertical: 2,
+    alignSelf: 'flex-start'
+
+    // justifyContent: 'space-between'
+  },
+  dot: {
+    fontSize: 30,
+    color: '#747D8C',
+  },
+  stops: {
+    fontSize: 12,
+    fontFamily: 'Muli',
+    color: '#747D8C',
+    // marginTop: -2,
+    marginVertical: 2
+  },
+  stopsCountNum: {
+    fontSize: 12,
+    fontFamily: 'Muli',
+    color: '#747D8C',
+    marginTop: -2,
+    fontWeight: 'bold'
+  },
+  date: {
+    fontSize: 10,
+    fontFamily: 'Muli',
+    alignSelf: 'center',
+    color: '#747D8C',
+    fontSize: 10,
+    // marginLeft: 9,
+    // justifyContent: 'flex-start'
+    // alignContent: 'center'
+    // top: 12
+    // marginBottom: 40
+  },
+  toggleStatus: {
+    marginLeft: 13,
+    marginTop: -33,
+    transform: [{
+      scaleX: moderateScale(0.7, 0.1)
+    }, {
+      scaleY: moderateScale(0.7, 0.2)
+    }]
+  },
+  toggleStatusText: {
+    fontSize: 14,
+    fontFamily: 'Muli',
+    color: '#828282',
+    fontWeight: 'bold',
+    marginLeft: -99
+  },
   toggleText: {
     fontSize: 14,
     fontFamily: 'Muli',
-    color: '#BDBDBD',
+    color: '#828282',
     fontWeight: 'bold',
     right: 50,
     position: 'absolute',
@@ -234,46 +264,71 @@ const styles = StyleSheet.create({
       scaleY: moderateScale(0.8, 0.2)
     }]
   },
-  inputEmail: {
-    borderRadius: 7,
-    // borderColor: 'blue',
-    margin: 10,
-    borderColor: '#BDBDBD',
-    backgroundColor: '#fff',
-    width: Dimensions.get('window').width - 20,
-    alignSelf: "center",
-    // height: 50
-    // borderWidth: 2
+  card: {
+    marginVertical: 4,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 1,
+    shadowRadius: 0.5,
+
+    elevation: 0.5,
   },
-  inputPass: {
-    borderRadius: 7,
-    borderColor: 'black',
-    margin: 10,
-    borderColor: '#BDBDBD',
-    backgroundColor: '#fff',
-    width: Dimensions.get('window').width - 20,
-    alignSelf: "center"
-  },
-  placeholder: {
-    fontSize: 18,
+  stopsCountText: {
+    fontSize: 12.5,
     fontFamily: 'Muli',
-    margin: 4
+    color: '#828282',
+    fontWeight: 'normal',
   },
-  button: {
-    backgroundColor: '#FD901C',
-    width: Dimensions.get('window').width - 30,
-    alignSelf: 'center',
-    // bottom: 15,
-    borderRadius: 7,
-    padding: 12,
-    top: Dimensions.get('window').height - 420
+  restaurantName: {
+    fontSize: 14,
+    fontFamily: 'Muli',
+    color: '#515C6F',
+    fontWeight: 'bold',
+    fontStyle: 'normal'
+  },
+  statusIcon: {
+    bottom: 19.5,
+    left: 117
+  },
+  orderItemStatus: {
+    fontSize: 12,
+    fontFamily: 'Muli',
+    color: '#747D8C',
 
   },
-  buttonText: {
-    fontSize: 18,
-    fontFamily: 'Muli',
-    alignSelf: 'center',
-    color: '#fff',
-    fontWeight: 'bold'
+  divider: {
+    padding: 0.5,
+    backgroundColor: '#b8bcc4'
   },
+  addrPhone: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 6
+  },
+  address: {
+    fontSize: 12,
+    fontFamily: 'Muli',
+    color: '#747D8C',
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+    flex: 1,
+  },
+  addressContent: {
+    fontSize: 12,
+    fontFamily: 'Muli',
+    color: '#747D8C',
+    fontStyle: 'normal',
+    flex: 1.4,
+    textAlign: 'left',
+    lineHeight: 16
+
+  },
+  statusStopIcon: {
+    bottom: 17.5, marginLeft: 170, marginBottom: -7
+  }
+
 });

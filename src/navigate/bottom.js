@@ -1,76 +1,61 @@
-import React, { useCallback } from 'react'
-import { View, Text } from 'react-native'
-import { createNavigator, TabRouter } from 'react-navigation'
-import BottomNavigation, {
-  FullTab
-} from 'react-native-material-bottom-navigation'
-import Icon from '@expo/vector-icons/MaterialCommunityIcons'
+// import React from 'react';
+// import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { Image } from 'react-native'
+// //screens
+// import { AccountScreen } from '../screens/account';
+// import { PendingScreen } from '../screens/pending';
+// import { HistoryScreen } from '../screens/history';
+// import { ActiveScreen } from '../screens/active';
 
-// Screens. Normally you would put these in separate files.
-const Movies = () => (
-  <View>
-    <Text>Movies</Text>
-  </View>
-)
-const Music = () => (
-  <View>
-    <Text>Music</Text>
-  </View>
-)
-const Books = () => (
-  <View>
-    <Text>Books</Text>
-  </View>
-)
-import { LoginScreen } from '../screens/login';
 
-function AppTabView(props) {
-  const tabs = [
-    { key: 'LoginScreen', label: 'LoginScreen', barColor: '#00695C', icon: 'movie' },
-    { key: 'Music', label: 'Music', barColor: '#6A1B9A', icon: 'music-note' },
-    { key: 'Books', label: 'Books', barColor: '#1565C0', icon: 'book' }
-  ]
+// const BottomTab = createBottomTabNavigator();
 
-  const { navigation, descriptors } = props
-  const { routes, index } = navigation.state
-  const activeScreenName = routes[index].key
-  const descriptor = descriptors[activeScreenName]
-  const ActiveScreen = descriptor.getComponent()
+// //icons
+// const pendingIcon = React.createElement(Image, {
+//   source: require('../assets/pending.png')
+// });
+// const historyIcon = React.createElement(Image, {
+//   source: require('../assets/history.png')
+// });
+// const activeIcon = React.createElement(Image, {
+//   source: require('../assets/active.png')
+// });
+// const mapIcon = React.createElement(Image, {
+//   source: require('../assets/map.png')
+// });
+// const accountIcon = React.createElement(Image, {
+//   source: require('../assets/account.png')
+// });
 
-  const handleTabPress = useCallback(
-    newTab => navigation.navigate(newTab.key),
-    [navigation]
-  )
 
-  return (
-    <View style={{ flex: 1 }}>
-      <View style={{ flex: 1 }}>
-        <ActiveScreen navigation={descriptor.navigation} />
-      </View>
+// export const BottomNavigator = () => (
+//   <BottomTab.Navigator tabBar={props => <HomeTabBar {...props} />}>
+//     <BottomTab.Screen
+//       name={Pending}
+//       component={PendingScreen}
+//       options={{ title: 'Pending', tabBarIcon: pendingIcon }}
+//     />
+//     <BottomTab.Screen
+//       name={History}
+//       component={HistoryScreen}
+//       options={{ title: 'History', tabBarIcon: historyIcon }}
+//     />
+//     <BottomTab.Screen
+//       name={Active}
+//       component={ActiveScreen}
+//       options={{ title: 'Active', tabBarIcon: activeIcon }}
+//     />
+//     <BottomTab.Screen
+//       name={Active}
+//       component={ActiveScreen}
+//       options={{ title: 'Active', tabBarIcon: mapIcon }}
+//     />
+//     <BottomTab.Screen
+//       name={Account}
+//       component={AccountScreen}
+//       options={{ title: 'Account', tabBarIcon: accountIcon }}
+//     />
 
-      <BottomNavigation
-        tabs={tabs}
-        activeTab={activeScreenName}
-        onTabPress={handleTabPress}
-        renderTab={({ tab, isActive }) => (
-          <FullTab
-            isActive={isActive}
-            key={tab.key}
-            label={tab.label}
-            renderIcon={() => <Icon name={tab.icon} size={24} color="white" />}
-          />
-        )}
-      />
-    </View>
-  )
-}
+//   </BottomTab.Navigator>
+// );
 
-const AppTabRouter = TabRouter({
-  Login: { screen: LoginScreen },
-  Music: { screen: Music },
-  Books: { screen: Books }
-})
-
-const AppNavigator = createNavigator(AppTabView, AppTabRouter, {})
-
-export default AppNavigator

@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { AccountScreen } from '../screens/account';
 import { PendingScreen } from '../screens/pending';
 import { HistoryScreen } from '../screens/history';
+import { DirectionScreen } from '../screens/direction';
 import { SingleOrderScreen } from '../screens/singleOrder';
 import { PasswordScreen } from '../screens/password';
 import { ProfileScreen } from '../screens/presonal';
@@ -20,6 +21,7 @@ const HomeNavigator = createStackNavigator({
   Pending: PendingScreen,
   History: HistoryScreen,
   Account: AccountScreen,
+  Direction: DirectionScreen,
   SingleOrder: SingleOrderScreen,
   Password: PasswordScreen,
   Profile: ProfileScreen,

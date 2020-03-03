@@ -14,6 +14,7 @@ import {
   BottomNavigation,
   BottomNavigationTab,
 } from '@ui-kitten/components';
+// import BottomNavigator from '../navigate/bottom'
 //  icons
 const BackIcon = (style) => (
   <Icon {...style} name='arrow-ios-back-outline' />
@@ -32,12 +33,47 @@ const History = (style) => (
 );
 const Imager = (style) => (
   <Image style={{
-    width: 20,
-    height: 20
+    width: 50 / 2,
+    height: 50 / 2
   }} source={require('../assets/loginVector.png')} />
 );
 let red = "DB463B";
 let green = "5AC966"
+
+//icons
+// const Imager = React.createElement(Image, {
+//   source: require('../assets/pending.png')
+// });
+const pendingIcon = (style) => (
+  <Image style={{
+    width: 25,
+    height: 25
+  }} source={require('../assets/pending.png')} />
+);
+const historyIcon = (style) => (
+  <Image style={{
+    width: 25,
+    height: 25
+  }} source={require('../assets/history.png')} />
+);
+const activeIcon = (style) => (
+  <Image style={{
+    width: 25,
+    height: 25
+  }} source={require('../assets/active.png')} />
+);
+const mapIcon = (style) => (
+  <Image style={{
+    width: 25,
+    height: 25
+  }} source={require('../assets/map.png')} />
+);
+const accountIcon = (style) => (
+  <Image style={{
+    width: 25,
+    height: 25
+  }} source={require('../assets/account.png')} />
+);
 
 export const PendingScreen = ({ navigation }) => {
   //driver status
@@ -76,6 +112,9 @@ export const PendingScreen = ({ navigation }) => {
   };
   const navigateActive = () => {
     navigation.navigate('Active');
+  };
+  const navigateDir = () => {
+    navigation.navigate('Direction');
   };
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
@@ -261,13 +300,20 @@ export const PendingScreen = ({ navigation }) => {
       </ScrollView>
       <BottomNavigation
         selectedIndex={selectedIndex}
-        appearance='noIndicator'
+        // appearance='noIndicator'
+        style={{
+          // marginBottom: '-14%',
+          // position: 'absolute',
+          // marginTop: 50,
+          // backgroundColor: 'red'
+
+        }}
         onSelect={setSelectedIndex}>
-        <BottomNavigationTab title='Pending' />
-        <BottomNavigationTab title='History' onPressIn={navigateHistory} titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='Active' onPressIn={navigateActive}  titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='Direction' titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='Account' onPressIn={navigateAccount} titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='Pending' icon={pendingIcon} titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='History' icon={historyIcon} onPressIn={navigateHistory} titleStyle={{ color: '#8B95A6' }} />
+        <BottomNavigationTab title='Active' icon={activeIcon} onPressIn={navigateActive} titleStyle={{ color: '#8B95A6' }} />
+        <BottomNavigationTab title='Direction' icon={mapIcon} onPressIn={navigateDir} titleStyle={{ color: '#8B95A6' }} />
+        <BottomNavigationTab title='Account' icon={accountIcon} onPressIn={navigateAccount} titleStyle={{ color: '#8B95A6' }} />
       </BottomNavigation>
     </View>
 
