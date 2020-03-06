@@ -11,8 +11,9 @@ import { HistoryScreen } from '../screens/history';
 import { DirectionScreen } from '../screens/direction';
 import { ActiveScreen } from '../screens/active';
 
-import Icon from 'react-native-vector-icons/Ionicons';
-
+// import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import IconF from 'react-native-vector-icons/FontAwesome5';
 const pendingIcon = (style) => (
   <Image style={{
     width: 25,
@@ -53,7 +54,7 @@ const Tab = createMaterialBottomTabNavigator(
         tabBarAccessibilityLabel: 'Pending',
         tabBarIcon: ({ tintColor }) => (
           <View>
-            <Icon style={[{ color: tintColor }]} size={25} name={'ios-home'} />
+            <IconF style={[{ color: tintColor }]} size={25} name={'stream'} />
           </View>),
       },
     },
@@ -61,10 +62,10 @@ const Tab = createMaterialBottomTabNavigator(
       screen: HistoryScreen,
       navigationOptions: {
         tabBarAccessibilityLabel: 'History',
-        // tabBarLabel: 'History',
+
         tabBarIcon: ({ tintColor }) => (
           <View>
-            <Icon style={[{ color: tintColor }]} size={25} name={'ios-home'} />
+            <Icon style={[{ color: tintColor }]} size={25} name={'history'} />
           </View>),
       },
     },
@@ -72,10 +73,10 @@ const Tab = createMaterialBottomTabNavigator(
       screen: ActiveScreen,
       navigationOptions: {
         tabBarAccessibilityLabel: 'Active',
-        // tabBarLabel: 'History',
+
         tabBarIcon: ({ tintColor }) => (
           <View>
-            <Icon style={[{ color: tintColor }]} size={25} name={'ios-home'} />
+            <IconF style={[{ color: tintColor }]} size={25} name={'shipping-fast'} />
           </View>),
       },
     },
@@ -83,10 +84,10 @@ const Tab = createMaterialBottomTabNavigator(
       screen: DirectionScreen,
       navigationOptions: {
         tabBarAccessibilityLabel: 'Direction',
-        // tabBarLabel: 'History',
+
         tabBarIcon: ({ tintColor }) => (
           <View>
-            <Icon style={[{ color: tintColor }]} size={25} name={'ios-home'} />
+            <IconF style={[{ color: tintColor }]} size={25} name={'route'} />
           </View>),
       },
     },
@@ -95,10 +96,10 @@ const Tab = createMaterialBottomTabNavigator(
       screen: AccountScreen,
       navigationOptions: {
         tabBarAccessibilityLabel: 'Account',
-        // tabBarLabel: 'History',
+
         tabBarIcon: ({ tintColor }) => (
           <View>
-            <Icon style={[{ color: tintColor }]} size={25} name={'ios-home'} />
+            <Icon style={[{ color: tintColor }]} size={25} name={'id-badge'} />
           </View>),
       },
 
@@ -108,8 +109,10 @@ const Tab = createMaterialBottomTabNavigator(
     initialRouteName: "Pending",
     activeColor: "#FD901C",
     inactiveColor: "#8B95A6",
-    barStyle: { backgroundColor: '#fff' },
-    labelStyle: { fontSize: 12 }
+    barStyle: { backgroundColor: '#fff', paddingVertical: 3 },
+    labelStyle: { fontSize: 12, },
+    shifting: true,
+
   }
 );
 export const AppNavigator = createAppContainer(Tab);

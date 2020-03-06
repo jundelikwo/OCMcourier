@@ -139,7 +139,7 @@ export const PendingScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={{ backgroundColor: '#f2f3f4' }}>
+    <View style={{ backgroundColor: '#f2f3f4', }}>
 
       <TopNavigation title='Pending Orders' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
@@ -336,10 +336,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 1.58,
     shadowRadius: 16.00,
     elevation: 6,
-    top: 16,
+    //  top: 16,
     // right: 9,
-    marginBottom: 9,
-    marginTop: 15,
+    //  marginBottom: 9,
+    // marginTop: 15,
     width: Dimensions.get('window').width + 8.8,
     flex: 1,
     flexDirection: 'row',

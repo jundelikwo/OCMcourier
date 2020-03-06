@@ -192,35 +192,21 @@ export const ActiveScreen = ({ navigation }) => {
       <TopNavigation title='Active Order' style={styles.topNavigation}
         titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
       <Divider />
-      <View style={{ height: Dimensions.get('window').height - 100, width: Dimensions.get('window').width + 109, alignItems: 'center' }}>
-        <StepIndicator
-          customStyles={customStyles}
-          direction='vertical'
-          currentPosition={currentPosition}
-          labels={labels}
-          stepCount={4}
-          onPress={onChangeCurrentPosition}
-        // style={{ alignItems: 'center' }}
-        />
-      </View>
-      {/* 
-      <BottomNavigation
-        selectedIndex={selectedIndex}
-        appearance='noIndicator'
-        style={{
-          // marginBottom: '-14%',
-          // position: 'absolute',
-          // marginTop: 50,
-          // backgroundColor: 'red'
+      <ScrollView>
+        <View style={{ height: Dimensions.get('window').height - 100, width: Dimensions.get('window').width + 109, alignItems: 'center' }}>
+          <StepIndicator
+            customStyles={customStyles}
+            direction='vertical'
+            currentPosition={currentPosition}
+            labels={labels}
+            stepCount={4}
+            onPress={onChangeCurrentPosition}
+          // style={{ alignItems: 'center' }}
+          />
+        </View>
+      </ScrollView>
 
-        }}
-        onSelect={setSelectedIndex}>
-        <BottomNavigationTab title='Pending' icon={pendingIcon}  onPressIn={navigatePending} titleStyle={{ color: '#8B95A6' }} />
-        <BottomNavigationTab title='History' icon={historyIcon} onPressIn={navigateHistory} titleStyle={{ color: '#8B95A6' }} />
-        <BottomNavigationTab title='Active' icon={activeIcon} onPressIn={navigateActive} titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='Direction' icon={mapIcon} onPressIn={navigateDir} titleStyle={{ color: '#8B95A6' }} />
-        <BottomNavigationTab title='Account' icon={accountIcon} onPressIn={navigateAccount} titleStyle={{ color: '#8B95A6' }} />
-      </BottomNavigation> */}
+
 
     </View >
 
@@ -240,10 +226,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 1.58,
     shadowRadius: 16.00,
     elevation: 6,
-    top: 16,
-    // right: 9,
-    marginBottom: 9,
-    marginTop: 15,
+    // top: 16,
+    // // right: 9,
+    // marginBottom: 9,
+    // marginTop: 15,
     width: Dimensions.get('window').width + 8.8,
     flex: 1,
     flexDirection: 'row'

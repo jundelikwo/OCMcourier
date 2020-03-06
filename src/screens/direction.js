@@ -24,7 +24,7 @@ GetLocation.getCurrentPosition({
   timeout: 15000,
 })
   .then(location => {
-    console.log(location);
+    // console.log(location);
 
 
   })
@@ -226,10 +226,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 1.58,
     shadowRadius: 16.00,
     elevation: 6,
-    top: 16,
-    // right: 9,
-    marginBottom: 9,
-    marginTop: 15,
+    // top: 16,
+    // // right: 9,
+    // marginBottom: 9,
+    // marginTop: 15,
     width: Dimensions.get('window').width + 8.8,
     flex: 1,
     flexDirection: 'row'
