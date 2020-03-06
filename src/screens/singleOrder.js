@@ -38,6 +38,7 @@ const Imager = (style) => (
 );
 let red = "DB463B";
 let green = "5AC966"
+console.log("single")
 
 export const SingleOrderScreen = ({ navigation }) => {
   //driver status
@@ -68,20 +69,55 @@ export const SingleOrderScreen = ({ navigation }) => {
   const navigateBack = () => {
     navigation.goBack();
   };
-  const navigateHistory = () => {
-    navigation.navigate('History');
-  };
   const navigatePending = () => {
     navigation.navigate('Pending');
   };
+  const navigateHistory = () => {
+    navigation.navigate('History');
+  };
   const navigateAccount = () => {
     navigation.navigate('Account');
+  };
+  const navigateActive = () => {
+    navigation.navigate('Active');
+  };
+  const navigateDir = () => {
+    navigation.navigate('Direction');
   };
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-
+  const pendingIcon = (style) => (
+    <Image style={{
+      width: 25,
+      height: 25
+    }} source={require('../assets/pending.png')} />
+  );
+  const historyIcon = (style) => (
+    <Image style={{
+      width: 25,
+      height: 25
+    }} source={require('../assets/history.png')} />
+  );
+  const activeIcon = (style) => (
+    <Image style={{
+      width: 25,
+      height: 25
+    }} source={require('../assets/active.png')} />
+  );
+  const mapIcon = (style) => (
+    <Image style={{
+      width: 25,
+      height: 25
+    }} source={require('../assets/map.png')} />
+  );
+  const accountIcon = (style) => (
+    <Image style={{
+      width: 25,
+      height: 25
+    }} source={require('../assets/account.png')} />
+  );
 
 
   const availableToggle = () => (
@@ -253,16 +289,23 @@ export const SingleOrderScreen = ({ navigation }) => {
         </Card>
 
       </ScrollView>
-      <BottomNavigation
+      {/* <BottomNavigation
         selectedIndex={selectedIndex}
         appearance='noIndicator'
+        style={{
+          // marginBottom: '-14%',
+          // position: 'absolute',
+          // marginTop: 50,
+          // backgroundColor: 'red'
+
+        }}
         onSelect={setSelectedIndex}>
-        <BottomNavigationTab title='Pending' onPressIn={navigatePending} titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='History' onPressIn={navigateHistory} />
-        <BottomNavigationTab title='Active' titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='Direction' titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='Account' onPressIn={navigateAccount} titleStyle={{ color: '#FD901C' }} />
-      </BottomNavigation>
+        <BottomNavigationTab title='Pending' icon={pendingIcon} onPressIn={navigatePending} titleStyle={{ color: '#8B95A6' }} />
+        <BottomNavigationTab title='History' icon={historyIcon} onPressIn={navigateHistory} titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='Active' icon={activeIcon} onPressIn={navigateActive} titleStyle={{ color: '#8B95A6' }} />
+        <BottomNavigationTab title='Direction' icon={mapIcon} onPressIn={navigateDir} titleStyle={{ color: '#8B95A6' }} />
+        <BottomNavigationTab title='Account' icon={accountIcon} onPressIn={navigateAccount} titleStyle={{ color: '#8B95A6' }} />
+      </BottomNavigation> */}
     </View>
 
   )

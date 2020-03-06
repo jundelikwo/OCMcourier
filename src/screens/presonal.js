@@ -11,7 +11,7 @@ import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { SafeAreaView } from 'react-navigation';
 import {
   Icon, Avatar, Text, Input, TopNavigationAction,
-  TopNavigation, Divider, Toggle, Card, Button, CardHeader,
+  TopNavigation, Divider, Toggle, Card, Modal, Layout,
   BottomNavigation,
   BottomNavigationTab,
 } from '@ui-kitten/components';
@@ -73,17 +73,55 @@ export const ProfileScreen = ({ navigation }) => {
   const navigateBack = () => {
     navigation.goBack();
   };
+  const navigatePending = () => {
+    navigation.navigate('Pending');
+  };
   const navigateHistory = () => {
     navigation.navigate('History');
   };
-  const navigatePending = () => {
-    navigation.navigate('Pending');
+  const navigateAccount = () => {
+    navigation.navigate('Account');
+  };
+  const navigateActive = () => {
+    navigation.navigate('Active');
+  };
+  const navigateDir = () => {
+    navigation.navigate('Direction');
   };
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-
+  const pendingIcon = (style) => (
+    <Image style={{
+      width: 25,
+      height: 25
+    }} source={require('../assets/pending.png')} />
+  );
+  const historyIcon = (style) => (
+    <Image style={{
+      width: 25,
+      height: 25
+    }} source={require('../assets/history.png')} />
+  );
+  const activeIcon = (style) => (
+    <Image style={{
+      width: 25,
+      height: 25
+    }} source={require('../assets/active.png')} />
+  );
+  const mapIcon = (style) => (
+    <Image style={{
+      width: 25,
+      height: 25
+    }} source={require('../assets/map.png')} />
+  );
+  const accountIcon = (style) => (
+    <Image style={{
+      width: 25,
+      height: 25
+    }} source={require('../assets/account.png')} />
+  );
 
 
   const availableToggle = () => (
@@ -96,6 +134,46 @@ export const ProfileScreen = ({ navigation }) => {
       checked={checked}
     // onPress={this.ToggleAvailability}
     />
+  );
+  const [visible, setVisible] = React.useState(false);
+
+  const toggleModal = () => {
+    setVisible(!visible);
+  };
+  const renderModalElement = () => (
+    <Layout
+      style={styles.modalContainer}>
+      <Image style={{
+        width: 50,
+        height: 50,
+        // marginTop: 50
+      }} source={require('../assets/success.png')} />
+      <Text style={{
+        fontSize: 18,
+        fontFamily: 'Muli',
+        alignSelf: 'center',
+        color: '#FD901C',
+        fontWeight: 'bold',
+        lineHeight: 23,
+        textAlign: 'center',
+        margin: 20
+      }}>Password Changed Successfully</Text>
+      <TouchableOpacity style={{ width: Dimensions.get('window').width - 90, backgroundColor: '#FD901C', padding: 14, }} onPress={toggleModal}>
+
+        <Text style={{
+          fontSize: 18,
+          fontFamily: 'Muli',
+          alignSelf: 'center',
+          color: '#fff',
+          fontWeight: 'bold',
+          lineHeight: 23,
+          textAlign: 'center',
+
+        }}>
+          Back
+          </Text>
+      </TouchableOpacity>
+    </Layout>
   );
 
   return (
@@ -119,9 +197,9 @@ export const ProfileScreen = ({ navigation }) => {
           }} >
             <Avatar style={{
               transform: [{
-                scaleX: moderateScale(2.5, 0.1)
+                scaleX: moderateScale(2, 0.1)
               }, {
-                scaleY: moderateScale(2.5, 0.2)
+                scaleY: moderateScale(2, 0.2)
               }],
               // justifyContent: 'flex-start',
               alignSelf: 'center',
@@ -129,7 +207,7 @@ export const ProfileScreen = ({ navigation }) => {
 
               // height: 90
 
-            }} size='giant' source={require('../assets/colorProfile.png')} />
+            }} size='giant' source={require('../assets/pic.png')} />
           </View>
         </View>
 
@@ -172,27 +250,36 @@ export const ProfileScreen = ({ navigation }) => {
             placeholderTextColor={'#515C6F'}
 
           />
-          <TouchableOpacity style={styles.button} ><Text style={styles.buttonText}>Update</Text></TouchableOpacity>
+          <Layout style={styles.container}>
+
+            <Modal visible={visible}
+              animationType="slide"
+              transparent={true}>
+              {renderModalElement()}
+            </Modal>
+          </Layout>
+          <TouchableOpacity onPress={toggleModal} style={styles.button} ><Text style={styles.buttonText}>Update</Text></TouchableOpacity>
         </View>
 
       </View>
 
-      <BottomNavigation
+      {/* <BottomNavigation
         selectedIndex={selectedIndex}
         appearance='noIndicator'
         style={{
           // marginBottom: '-14%',
           // position: 'absolute',
           // marginTop: 50,
+          // backgroundColor: 'red'
 
         }}
         onSelect={setSelectedIndex}>
-        <BottomNavigationTab title='Pending' onPressIn={navigatePending} titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='History' onPressIn={navigateHistory} titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='Active' titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='Direction' titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='Account' />
-      </BottomNavigation>
+        <BottomNavigationTab title='Pending' icon={pendingIcon} onPressIn={navigatePending} titleStyle={{ color: '#8B95A6' }} />
+        <BottomNavigationTab title='History' icon={historyIcon} onPressIn={navigateHistory} titleStyle={{ color: '#8B95A6' }} />
+        <BottomNavigationTab title='Active' icon={activeIcon} onPressIn={navigateActive} titleStyle={{ color: '#8B95A6' }} />
+        <BottomNavigationTab title='Direction' icon={mapIcon} onPressIn={navigateDir} titleStyle={{ color: '#8B95A6' }} />
+        <BottomNavigationTab title='Account' icon={accountIcon} onPressIn={navigateAccount} titleStyle={{ color: '#FD901C' }} />
+      </BottomNavigation> */}
 
     </View >
 
@@ -218,6 +305,26 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row'
 
+  },
+  modalContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: Dimensions.get('window').width - 90,
+    padding: 16,
+    height: 300,
+    // backgroundColor: 'red'
+    opacity: 0.9,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 12,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 16,
+    elevation: 3,
+    flexDirection: 'column',
+    flex: 1,
+    borderRadius: 16
   },
   title: {
     fontSize: 18,

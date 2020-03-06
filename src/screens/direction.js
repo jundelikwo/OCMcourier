@@ -15,6 +15,30 @@ import {
   BottomNavigation,
   BottomNavigationTab,
 } from '@ui-kitten/components';
+import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import GetLocation from 'react-native-get-location';
+
+
+GetLocation.getCurrentPosition({
+  enableHighAccuracy: true,
+  timeout: 15000,
+})
+  .then(location => {
+    console.log(location);
+
+
+  })
+  .catch(error => {
+    const { code, message } = error;
+    //  console.warn(code, message);
+  })
+const { width, height } = Dimensions.get('window');
+const ASPECT_RATIO = width / height;
+const LATITUDE = 4.926956;
+const LONGITUDE = 8.330295;
+const LATITUDE_DELTA = 0.0201 / 2;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
+
 //  icons
 const BackIcon = (style) => (
   <Icon {...style} name='arrow-ios-back-outline' />
@@ -69,23 +93,55 @@ export const DirectionScreen = ({ navigation }) => {
   const navigateBack = () => {
     navigation.goBack();
   };
-  const navigateHistory = () => {
-    navigation.navigate('History');
-  };
   const navigatePending = () => {
     navigation.navigate('Pending');
   };
-  const navigatePassword = () => {
-    navigation.navigate('Password');
+  const navigateHistory = () => {
+    navigation.navigate('History');
   };
-  const navigateProfile = () => {
-    navigation.navigate('Profile');
+  const navigateAccount = () => {
+    navigation.navigate('Account');
+  };
+  const navigateActive = () => {
+    navigation.navigate('Active');
+  };
+  const navigateDir = () => {
+    navigation.navigate('Direction');
   };
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-
+  const pendingIcon = (style) => (
+    <Image style={{
+      width: 25,
+      height: 25
+    }} source={require('../assets/pending.png')} />
+  );
+  const historyIcon = (style) => (
+    <Image style={{
+      width: 25,
+      height: 25
+    }} source={require('../assets/history.png')} />
+  );
+  const activeIcon = (style) => (
+    <Image style={{
+      width: 25,
+      height: 25
+    }} source={require('../assets/active.png')} />
+  );
+  const mapIcon = (style) => (
+    <Image style={{
+      width: 25,
+      height: 25
+    }} source={require('../assets/map.png')} />
+  );
+  const accountIcon = (style) => (
+    <Image style={{
+      width: 25,
+      height: 25
+    }} source={require('../assets/account.png')} />
+  );
 
 
   const availableToggle = () => (
@@ -106,25 +162,45 @@ export const DirectionScreen = ({ navigation }) => {
       <TopNavigation title='Get Direction' style={styles.topNavigation}
         titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
       <Divider />
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 60 }}>
+      <View style={{}}>
+        <MapView
+          provider={PROVIDER_GOOGLE}
+          style={{ height: Dimensions.get('window').height - 40, }}
+          region={{
+            latitude: LATITUDE,
+            longitude: LONGITUDE,
+            latitudeDelta: LATITUDE_DELTA,
+            longitudeDelta: LONGITUDE_DELTA
+          }}
+          // mapType="satellite"
+          showsUserLocation={true}
 
-      </ScrollView>
-      <BottomNavigation
+
+        />
+
+
+
+      </View>
+      {/* <BottomNavigation
         selectedIndex={selectedIndex}
         appearance='noIndicator'
         style={{
           // marginBottom: '-14%',
           // position: 'absolute',
           // marginTop: 50,
+          backgroundColor: 'green',
+          zIndex: 100,
+          padding: 10
 
         }}
+
         onSelect={setSelectedIndex}>
-        <BottomNavigationTab title='Pending' onPressIn={navigatePending} titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='History' onPressIn={navigateHistory} titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='Active' titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='Direction' titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='Account' />
-      </BottomNavigation>
+        <BottomNavigationTab title='Pending' style={{ backgroundColor: 'red' }} icon={pendingIcon} onPress={console.log('hi')} titleStyle={{ color: '#8B95A6' }} />
+        <BottomNavigationTab title='History' icon={historyIcon} onPressOut={console.log('hey')} titleStyle={{ color: '#8B95A6' }} />
+        <BottomNavigationTab title='Active' icon={activeIcon} onPressIn={navigateActive} titleStyle={{ color: '#8B95A6' }} />
+        <BottomNavigationTab title='Direction' icon={mapIcon} onPressIn={navigateDir} titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='Account' icon={accountIcon} onPressIn={navigateAccount} titleStyle={{ color: '#8B95A6' }} />
+      </BottomNavigation> */}
 
     </View >
 
@@ -133,6 +209,14 @@ export const DirectionScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
   topNavigation: {
     shadowColor: "#000",
     shadowOffset: {

@@ -13,6 +13,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 
 export const LoginScreen = ({ navigation }) => {
+
   const [Evalue, setValueE] = React.useState('');
   const [Pvalue, setValueP] = React.useState('');
   //icons

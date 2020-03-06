@@ -14,7 +14,7 @@ import {
   BottomNavigation,
   BottomNavigationTab,
 } from '@ui-kitten/components';
-// import BottomNavigator from '../navigate/bottom'
+import MyTabs from '../navigate/bottom'
 //  icons
 const BackIcon = (style) => (
   <Icon {...style} name='arrow-ios-back-outline' />
@@ -104,6 +104,9 @@ export const PendingScreen = ({ navigation }) => {
   const navigateBack = () => {
     navigation.goBack();
   };
+  const navigatePending = () => {
+    navigation.navigate('Pending');
+  };
   const navigateHistory = () => {
     navigation.navigate('History');
   };
@@ -139,7 +142,7 @@ export const PendingScreen = ({ navigation }) => {
     <View style={{ backgroundColor: '#f2f3f4' }}>
 
       <TopNavigation title='Pending Orders' style={styles.topNavigation}
-        titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
+        titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
 
       <Card style={styles.orderHeadCard}>
@@ -298,9 +301,10 @@ export const PendingScreen = ({ navigation }) => {
         </Card>
 
       </ScrollView>
-      <BottomNavigation
+      {/* <AppBottomNavigator selectedIndex={selectedIndex} /> */}
+      {/* <BottomNavigation
         selectedIndex={selectedIndex}
-        // appearance='noIndicator'
+        appearance='noIndicator'
         style={{
           // marginBottom: '-14%',
           // position: 'absolute',
@@ -309,12 +313,13 @@ export const PendingScreen = ({ navigation }) => {
 
         }}
         onSelect={setSelectedIndex}>
-        <BottomNavigationTab title='Pending' icon={pendingIcon} titleStyle={{ color: '#FD901C' }} />
+        <BottomNavigationTab title='Pending' icon={pendingIcon} onPressIn={navigatePending} titleStyle={{ color: '#FD901C' }} />
         <BottomNavigationTab title='History' icon={historyIcon} onPressIn={navigateHistory} titleStyle={{ color: '#8B95A6' }} />
         <BottomNavigationTab title='Active' icon={activeIcon} onPressIn={navigateActive} titleStyle={{ color: '#8B95A6' }} />
         <BottomNavigationTab title='Direction' icon={mapIcon} onPressIn={navigateDir} titleStyle={{ color: '#8B95A6' }} />
         <BottomNavigationTab title='Account' icon={accountIcon} onPressIn={navigateAccount} titleStyle={{ color: '#8B95A6' }} />
-      </BottomNavigation>
+      </BottomNavigation> */}
+
     </View>
 
   )
@@ -337,7 +342,8 @@ const styles = StyleSheet.create({
     marginTop: 15,
     width: Dimensions.get('window').width + 8.8,
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    // backgroundColor: 'green'
   },
   title: {
     fontSize: 18,
@@ -345,6 +351,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: '#FD901C',
     fontWeight: 'bold',
+    marginLeft: 18
+    // justifyContent: 'flex-end'
+    // backgroundColor: 'red'
 
   },
   orderHeadCard: {
