@@ -101,7 +101,9 @@ const Tab = createMaterialBottomTabNavigator(
           <View>
             <Icon style={[{ color: tintColor }]} size={25} name={'id-badge'} />
           </View>),
+
       },
+
 
     },
   },
@@ -112,6 +114,13 @@ const Tab = createMaterialBottomTabNavigator(
     barStyle: { backgroundColor: '#fff', paddingVertical: 3 },
     labelStyle: { fontSize: 12, },
     shifting: true,
+    labeled: true,
+    // useLayoutAnimation: true
+    backBehavior: 'history'
+    // backBehavior: { history },
+    // RouteConfigs: {
+    //   backBehavior: 'history'
+    // },
 
   }
 );

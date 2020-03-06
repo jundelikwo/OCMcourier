@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     // bottom: 15,
     borderRadius: 15,
     padding: 12,
-    top: Dimensions.get('window').height - 420
+    top: Dimensions.get('window').height - 460
 
   },
   buttonText: {
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.58,
     shadowRadius: 16.00,
 
-    elevation: 10,
+    elevation: 5,
   },
   lineStyle: {
     borderWidth: 0.5,

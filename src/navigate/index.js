@@ -5,6 +5,7 @@ import { SingleOrderScreen } from '../screens/singleOrder';
 import { PasswordScreen } from '../screens/password';
 import { ProfileScreen } from '../screens/presonal';
 import { LoginScreen } from '../screens/login';
+import { AppNavigator } from './bottomTab'
 
 
 const HomeNavigator = createStackNavigator({
@@ -12,10 +13,11 @@ const HomeNavigator = createStackNavigator({
   SingleOrder: SingleOrderScreen,
   Password: PasswordScreen,
   Profile: ProfileScreen,
+  Tab: AppNavigator
 }, {
   headerMode: 'none',
 });
 
-export const AppNavigator = createAppContainer(HomeNavigator);
+export const AppNavigatorScreens = createAppContainer(HomeNavigator);
 
 

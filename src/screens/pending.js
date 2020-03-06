@@ -4,7 +4,8 @@ import {
   View,
   Dimensions,
   ScrollView,
-  Image
+  Image,
+  StatusBar
 } from 'react-native';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { SafeAreaView } from 'react-navigation';
@@ -331,15 +332,16 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 12,
+      height: 1,
     },
-    shadowOpacity: 1.58,
-    shadowRadius: 16.00,
-    elevation: 6,
-    //  top: 16,
+    shadowOpacity: 0.58,
+    shadowRadius: 1,
+    elevation: 3,
+    paddingTop: StatusBar.currentHeight / 1.5,
     // right: 9,
-    //  marginBottom: 9,
-    // marginTop: 15,
+    // marginBottom: 10,
+    paddingVertical: 5,
+    marginTop: 22,
     width: Dimensions.get('window').width + 8.8,
     flex: 1,
     flexDirection: 'row',
@@ -365,7 +367,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.37,
     shadowRadius: 2.49,
-    elevation: 6,
+    elevation: 1,
     // marginTop: 6
 
   },
@@ -447,7 +449,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     right: 50,
     position: 'absolute',
-    top: 3
+    // top: 3
   },
   toggle: {
     margin: 5,
