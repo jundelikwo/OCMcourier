@@ -151,7 +151,7 @@ export const HistoryScreen = ({ navigation }) => {
     <View style={{ backgroundColor: '#f2f3f4', }}>
 
       <TopNavigation title='Order History' style={styles.topNavigation}
-        titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
+        titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 60 }}>
         <View style={{}}>
@@ -356,18 +356,19 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 12,
+      height: 1,
     },
-    shadowOpacity: 1.58,
-    shadowRadius: 16.00,
-    elevation: 6,
-    // top: 16,
-    // // right: 9,
-    // marginBottom: 9,
-    // marginTop: 15,
+    shadowOpacity: 0.58,
+    shadowRadius: 1,
+    elevation: 3,
+    paddingTop: StatusBar.currentHeight / 1.5,
+    // right: 9,
+    // marginBottom: 10,
+    paddingVertical: 5,
+    marginTop: 22,
     width: Dimensions.get('window').width + 8.8,
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   title: {
     fontSize: 18,
@@ -375,6 +376,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: '#FD901C',
     fontWeight: 'bold',
+    marginLeft: 18
 
   },
   orderHeadCard: {
@@ -470,7 +472,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     right: 50,
     position: 'absolute',
-    top: 3
+    // top: 3
   },
   toggle: {
     margin: 5,

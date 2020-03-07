@@ -5,7 +5,7 @@ import {
   Dimensions,
   ScrollView,
   Image,
-  TouchableOpacity
+  StatusBar
 } from 'react-native';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { SafeAreaView } from 'react-navigation';
@@ -160,7 +160,7 @@ export const ActiveScreen = ({ navigation }) => {
     stepIndicatorLabelFinishedColor: '#fff',
     stepIndicatorLabelUnFinishedColor: '#aaaaaa',
     labelColor: '#515C6F',
-    labelSize: 10,
+    labelSize: 11,
     currentStepLabelColor: '#FD901C',
     labelAlign: 'center',
     labelFontFamily: 'Muli'
@@ -190,10 +190,10 @@ export const ActiveScreen = ({ navigation }) => {
     <View style={{}}>
 
       <TopNavigation title='Active Order' style={styles.topNavigation}
-        titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
+        titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
       <ScrollView>
-        <View style={{ height: Dimensions.get('window').height - 100, width: Dimensions.get('window').width + 109, alignItems: 'center' }}>
+        <View style={{ height: Dimensions.get('window').height - 90, width: Dimensions.get('window').width + 114, alignItems: 'center' }}>
           <StepIndicator
             customStyles={customStyles}
             direction='vertical'
@@ -221,18 +221,19 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 12,
+      height: 1,
     },
-    shadowOpacity: 1.58,
-    shadowRadius: 16.00,
-    elevation: 6,
-    // top: 16,
-    // // right: 9,
-    // marginBottom: 9,
-    // marginTop: 15,
+    shadowOpacity: 0.58,
+    shadowRadius: 1,
+    elevation: 3,
+    paddingTop: StatusBar.currentHeight / 1.5,
+    // right: 9,
+    // marginBottom: 10,
+    paddingVertical: 5,
+    marginTop: 22,
     width: Dimensions.get('window').width + 8.8,
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
 
   },
   title: {
@@ -241,17 +242,18 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: '#FD901C',
     fontWeight: 'bold',
+    marginLeft: 18
 
   },
 
   toggleText: {
     fontSize: 14,
     fontFamily: 'Muli',
-    color: '#BDBDBD',
+    color: '#828282',
     fontWeight: 'bold',
     right: 50,
     position: 'absolute',
-    top: 3
+    // top: 3
   },
   toggle: {
     margin: 5,

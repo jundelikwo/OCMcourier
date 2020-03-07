@@ -143,7 +143,7 @@ export const AccountScreen = ({ navigation }) => {
     <View style={{ backgroundColor: '#f2f3f4', }}>
 
       <TopNavigation title='Account Settings' style={styles.topNavigation}
-        titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
+        titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 60 }}>
         <View style={{ marginTop: 5 }}>
@@ -243,6 +243,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: '#FD901C',
     fontWeight: 'bold',
+    marginLeft: 18
 
   },
   orderHeadCard: {

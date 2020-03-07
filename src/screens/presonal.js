@@ -3,7 +3,7 @@ import {
   StyleSheet,
   View,
   Dimensions,
-  ScrollView,
+  StatusBar,
   Image,
   TouchableOpacity
 } from 'react-native';
@@ -157,7 +157,7 @@ export const ProfileScreen = ({ navigation }) => {
         lineHeight: 23,
         textAlign: 'center',
         margin: 20
-      }}>Password Changed Successfully</Text>
+      }}>Account Settings Updated</Text>
       <TouchableOpacity style={{ width: Dimensions.get('window').width - 90, backgroundColor: '#FD901C', padding: 14, }} onPress={toggleModal}>
 
         <Text style={{
@@ -170,7 +170,7 @@ export const ProfileScreen = ({ navigation }) => {
           textAlign: 'center',
 
         }}>
-          Back
+          Cancel
           </Text>
       </TouchableOpacity>
     </Layout>
@@ -203,6 +203,8 @@ export const ProfileScreen = ({ navigation }) => {
               }],
               // justifyContent: 'flex-start',
               alignSelf: 'center',
+              borderColor: '#fff',
+              borderWidth: 0.5
 
 
               // height: 90
@@ -292,18 +294,19 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 12,
+      height: 1,
     },
-    shadowOpacity: 1.58,
-    shadowRadius: 16.00,
-    elevation: 6,
-    top: 16,
+    shadowOpacity: 0.58,
+    shadowRadius: 1,
+    elevation: 3,
+    paddingTop: StatusBar.currentHeight / 1.5,
     // right: 9,
-    marginBottom: 9,
-    marginTop: 15,
+    // marginBottom: 10,
+    paddingVertical: 5,
+    marginTop: 22,
     width: Dimensions.get('window').width + 8.8,
     flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
 
   },
   modalContainer: {
@@ -338,11 +341,11 @@ const styles = StyleSheet.create({
   toggleText: {
     fontSize: 14,
     fontFamily: 'Muli',
-    color: '#BDBDBD',
+    color: '#828282',
     fontWeight: 'bold',
     right: 50,
     position: 'absolute',
-    top: 3
+    // top: 3
   },
   toggle: {
     margin: 5,
@@ -360,7 +363,7 @@ const styles = StyleSheet.create({
     margin: 10,
     borderColor: '#BDBDBD',
     backgroundColor: '#fff',
-    width: Dimensions.get('window').width - 20,
+    width: Dimensions.get('window').width - 30,
     alignSelf: "center",
     // height: 50
     // borderWidth: 2
@@ -371,7 +374,7 @@ const styles = StyleSheet.create({
     margin: 10,
     borderColor: '#BDBDBD',
     backgroundColor: '#fff',
-    width: Dimensions.get('window').width - 20,
+    width: Dimensions.get('window').width - 30,
     alignSelf: "center"
   },
   placeholder: {
@@ -386,7 +389,7 @@ const styles = StyleSheet.create({
     // bottom: 15,
     borderRadius: 7,
     padding: 12,
-    marginTop: 90
+    marginVertical: 90
     // top: Dimensions.get('window').height - 420
 
   },
