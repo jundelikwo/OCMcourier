@@ -5,7 +5,8 @@ import {
   Dimensions,
   ScrollView,
   Image,
-  StatusBar
+  StatusBar,
+  ImageBackground
 } from 'react-native';
 import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
 import { SafeAreaView } from 'react-navigation';
@@ -193,17 +194,23 @@ export const ActiveScreen = ({ navigation }) => {
         titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
       <ScrollView>
-        <View style={{ height: Dimensions.get('window').height - 90, width: Dimensions.get('window').width + 114, alignItems: 'center' }}>
-          <StepIndicator
-            customStyles={customStyles}
-            direction='vertical'
-            currentPosition={currentPosition}
-            labels={labels}
-            stepCount={4}
-            onPress={onChangeCurrentPosition}
-          // style={{ alignItems: 'center' }}
-          />
-        </View>
+        <ImageBackground source={require('../assets/grid.png')} style={{ width: '100%', height: '100%' }}>
+          <View style={{ height: Dimensions.get('window').height - 90, width: Dimensions.get('window').width + 114, alignItems: 'center' }}>
+
+
+
+            <StepIndicator
+              customStyles={customStyles}
+              direction='vertical'
+              currentPosition={currentPosition}
+              labels={labels}
+              stepCount={4}
+              onPress={onChangeCurrentPosition}
+            // style={{ alignItems: 'center' }}
+            />
+
+          </View>
+        </ImageBackground>
       </ScrollView>
 
 
