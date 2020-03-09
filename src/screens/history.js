@@ -1,43 +1,19 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import {
-  Image,
   StyleSheet,
-  StatusBar,
   View,
   TouchableOpacity,
   Dimensions,
   ScrollView,
 } from 'react-native';
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
-import { SafeAreaView } from 'react-navigation';
-import {
-  Icon, Layout, Text, Avatar, TopNavigationAction,
-  TopNavigation, Divider, Toggle, Card, Button, CardHeader,
-  BottomNavigation,
-  BottomNavigationTab,
-} from '@ui-kitten/components';
-//  icons
-const BackIcon = (style) => (
-  <Icon {...style} name='arrow-ios-back-outline' />
-);
-const RightIcon = (style) => (
-  <Icon {...style} name='chevron-right' />
-);
+import { moderateScale } from 'react-native-size-matters';
 
-const Droplet = (style) => (
-  <Icon {...style} name='droplet' fill="#FF6B51" />
-);
-const DropletGreen = (style) => (
-  <Icon {...style} name='droplet' fill="#7CEA7E" />
-);
-const Clock = (style) => (
-  <Icon {...style} name='clock' fill="#FD901C" />
-);
-const History = (style) => (
-  <Icon {...style} name='sync' />
-);
-let red = "DB463B";
-let green = "5AC966"
+import {
+  Text, Avatar,
+  TopNavigation, Divider, Toggle, Card,
+} from '@ui-kitten/components';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 
 export const HistoryScreen = ({ navigation }) => {
   //driver status
@@ -52,77 +28,15 @@ export const HistoryScreen = ({ navigation }) => {
     setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
   };
 
-  //order status
-  const [order, setOrder] = useState({
-    active: false,
-    status: "Not Active"
-  });
-  const { active, status } = order;
-  const onCheckedChangeOrder = (isChecked) => {
-    // console.warn("isChecked", isChecked)
-    setOrder({ ...order, status: status == 'Active' ? "Not Active" : "Active", active: isChecked })
-  };
 
 
-  //nav
-  const navigateBack = () => {
-    navigation.goBack();
-  };
-  const navigatePending = () => {
-    navigation.navigate('Pending');
-  };
-  const navigateHistory = () => {
-    navigation.navigate('History');
-  };
-  const navigateAccount = () => {
-    navigation.navigate('Account');
-  };
-  const navigateActive = () => {
-    navigation.navigate('Active');
-  };
-  const navigateDir = () => {
-    navigation.navigate('Direction');
-  };
   const navigateSingleOrder = () => {
-    navigation.navigate('SingleOrder');
+    requestAnimationFrame(() => {
+      navigation.navigate('SingleOrder');
+    })
   };
-  const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
-  );
 
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const [hey, setSelectedScreen] = React.useState(true);
-  // const hey = true;
-  const pendingIcon = (style) => (
-    <Image style={{
-      width: 25,
-      height: 25
-    }} source={require('../assets/pending.png')} />
-  );
-  const historyIcon = (style) => (
-    <Image style={{
-      width: 25,
-      height: 25
-    }} source={require('../assets/history.png')} />
-  );
-  const activeIcon = (style) => (
-    <Image style={{
-      width: 25,
-      height: 25
-    }} source={require('../assets/active.png')} />
-  );
-  const mapIcon = (style) => (
-    <Image style={{
-      width: 25,
-      height: 25
-    }} source={require('../assets/map.png')} />
-  );
-  const accountIcon = (style) => (
-    <Image style={{
-      width: 25,
-      height: 25
-    }} source={require('../assets/account.png')} />
-  );
+
 
 
   const availableToggle = () => (
@@ -133,19 +47,9 @@ export const HistoryScreen = ({ navigation }) => {
       textStyle={styles.toggleText}
       onChange={onCheckedChangeCourier}
       checked={checked}
-    // onPress={this.ToggleAvailability}
+
     />
   );
-
-
-  const Header = () => (
-    <CardHeader
-      title='Stop 1'
-      description='By Wikipedia'
-      description='By Wikipedi'
-    />
-  );
-
 
   return (
     <View style={{ backgroundColor: '#f2f3f4', }}>
@@ -175,15 +79,7 @@ export const HistoryScreen = ({ navigation }) => {
                 </View>
                 <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
                   <Text style={styles.date}>1 week ago</Text>
-                  <Icon
-                    name='chevron-right'
-                    width={40}
-                    height={40}
-                    fill='#747D8C'
-                    style={{
-                      left: 9
-                    }}
-                  />
+                  <Icon style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
 
                 </View>
               </View>
@@ -209,15 +105,7 @@ export const HistoryScreen = ({ navigation }) => {
                 </View>
                 <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
                   <Text style={styles.date}>1 week ago</Text>
-                  <Icon
-                    name='chevron-right'
-                    width={40}
-                    height={40}
-                    fill='#747D8C'
-                    style={{
-                      left: 9
-                    }}
-                  />
+                  <Icon style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
 
                 </View>
               </View>
@@ -243,15 +131,7 @@ export const HistoryScreen = ({ navigation }) => {
                 </View>
                 <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
                   <Text style={styles.date}>1 week ago</Text>
-                  <Icon
-                    name='chevron-right'
-                    width={40}
-                    height={40}
-                    fill='#747D8C'
-                    style={{
-                      left: 9
-                    }}
-                  />
+                  <Icon style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
 
                 </View>
               </View>
@@ -277,15 +157,7 @@ export const HistoryScreen = ({ navigation }) => {
                 </View>
                 <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
                   <Text style={styles.date}>1 week ago</Text>
-                  <Icon
-                    name='chevron-right'
-                    width={40}
-                    height={40}
-                    fill='#747D8C'
-                    style={{
-                      left: 9
-                    }}
-                  />
+                  <Icon style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
 
                 </View>
               </View>
@@ -311,15 +183,7 @@ export const HistoryScreen = ({ navigation }) => {
                 </View>
                 <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
                   <Text style={styles.date}>1 week ago</Text>
-                  <Icon
-                    name='chevron-right'
-                    width={40}
-                    height={40}
-                    fill='#747D8C'
-                    style={{
-                      left: 9
-                    }}
-                  />
+                  <Icon style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
 
                 </View>
               </View>
@@ -327,23 +191,7 @@ export const HistoryScreen = ({ navigation }) => {
           </Card>
         </View>
       </ScrollView>
-      {/* <BottomNavigation
-        selectedIndex={selectedIndex}
-        appearance='noIndicator'
-        style={{
-          // marginBottom: '-14%',
-          // position: 'absolute',
-          // marginTop: 50,
-          // backgroundColor: 'red'
 
-        }}
-        onSelect={setSelectedIndex}>
-        <BottomNavigationTab title='Pending' icon={pendingIcon} onPressIn={navigatePending} titleStyle={{ color: '#8B95A6' }} />
-        <BottomNavigationTab title='History' icon={historyIcon} onPressIn={navigateHistory} titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='Active' icon={activeIcon} onPressIn={navigateActive} titleStyle={{ color: '#8B95A6' }} />
-        <BottomNavigationTab title='Direction' icon={mapIcon} onPressIn={navigateDir} titleStyle={{ color: '#8B95A6' }} />
-        <BottomNavigationTab title='Account' icon={accountIcon} onPressIn={navigateAccount} titleStyle={{ color: '#8B95A6' }} />
-      </BottomNavigation> */}
 
     </View >
 
@@ -361,11 +209,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.58,
     shadowRadius: 1,
     elevation: 3,
-    paddingTop: StatusBar.currentHeight / 1.5,
+    // paddingTop: StatusBar.currentHeight / 1.5,
     // right: 9,
     // marginBottom: 10,
     paddingVertical: 5,
-    marginTop: 22,
+    // marginTop: 22,
     width: Dimensions.get('window').width + 8.8,
     flex: 1,
     flexDirection: 'row',
@@ -410,7 +258,7 @@ const styles = StyleSheet.create({
   clientName: {
     fontSize: 16,
     fontFamily: 'Muli',
-    color: '#515C6F',
+    color: '#747D8C',
     fontWeight: 'bold',
     marginVertical: 2
     // justifyContent: 'space-between'
@@ -505,7 +353,7 @@ const styles = StyleSheet.create({
   restaurantName: {
     fontSize: 14,
     fontFamily: 'Muli',
-    color: '#515C6F',
+    color: '#747D8C',
     fontWeight: 'bold',
     fontStyle: 'normal'
   },

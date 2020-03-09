@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import {
   StyleSheet,
   View,
@@ -7,38 +7,19 @@ import {
   Image,
   TouchableOpacity
 } from 'react-native';
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
-import { SafeAreaView } from 'react-navigation';
+import { moderateScale } from 'react-native-size-matters';
+
 import {
-  Icon, Avatar, Text, Input, TopNavigationAction,
-  TopNavigation, Divider, Toggle, Card, Modal, Layout,
-  BottomNavigation,
-  BottomNavigationTab,
+  Avatar, Text, Input, TopNavigationAction,
+  TopNavigation, Divider, Toggle, Modal, Layout,
+
 } from '@ui-kitten/components';
+import Icon from 'react-native-vector-icons/Ionicons';
 //  icons
 const BackIcon = (style) => (
-  <Icon {...style} name='arrow-ios-back-outline' />
+  <Icon style={[{ color: '#515C6F' }]} name='ios-arrow-back' size={25} />
 );
-const Droplet = (style) => (
-  <Icon {...style} name='droplet' fill="#FF6B51" />
-);
-const DropletGreen = (style) => (
-  <Icon {...style} name='droplet' fill="#7CEA7E" />
-);
-const Clock = (style) => (
-  <Icon {...style} name='clock' fill="#FD901C" />
-);
-const History = (style) => (
-  <Icon {...style} name='sync' />
-);
-const Imager = (style) => (
-  <Image style={{
-    width: 20,
-    height: 20
-  }} source={require('../assets/loginVector.png')} />
-);
-let red = "DB463B";
-let green = "5AC966"
+
 
 export const ProfileScreen = ({ navigation }) => {
   //driver status
@@ -53,17 +34,6 @@ export const ProfileScreen = ({ navigation }) => {
     setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
   };
 
-  //order status
-  const [order, setOrder] = useState({
-    active: false,
-    status: "Not Active"
-  });
-  const { active, status } = order;
-  const onCheckedChangeOrder = (isChecked) => {
-    // console.warn("isChecked", isChecked)
-    setOrder({ ...order, status: status == 'Active' ? "Not Active" : "Active", active: isChecked })
-  };
-
   const [Namevalue, setValueName] = React.useState('');
   const [Emailvalue, setValueEmail] = React.useState('');
   const [Mobilevalue, setValueMobile] = React.useState('');
@@ -73,54 +43,9 @@ export const ProfileScreen = ({ navigation }) => {
   const navigateBack = () => {
     navigation.goBack();
   };
-  const navigatePending = () => {
-    navigation.navigate('Pending');
-  };
-  const navigateHistory = () => {
-    navigation.navigate('History');
-  };
-  const navigateAccount = () => {
-    navigation.navigate('Account');
-  };
-  const navigateActive = () => {
-    navigation.navigate('Active');
-  };
-  const navigateDir = () => {
-    navigation.navigate('Direction');
-  };
+
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
-  );
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const pendingIcon = (style) => (
-    <Image style={{
-      width: 25,
-      height: 25
-    }} source={require('../assets/pending.png')} />
-  );
-  const historyIcon = (style) => (
-    <Image style={{
-      width: 25,
-      height: 25
-    }} source={require('../assets/history.png')} />
-  );
-  const activeIcon = (style) => (
-    <Image style={{
-      width: 25,
-      height: 25
-    }} source={require('../assets/active.png')} />
-  );
-  const mapIcon = (style) => (
-    <Image style={{
-      width: 25,
-      height: 25
-    }} source={require('../assets/map.png')} />
-  );
-  const accountIcon = (style) => (
-    <Image style={{
-      width: 25,
-      height: 25
-    }} source={require('../assets/account.png')} />
   );
 
 
@@ -158,7 +83,7 @@ export const ProfileScreen = ({ navigation }) => {
         textAlign: 'center',
         margin: 20
       }}>Account Settings Updated</Text>
-      <TouchableOpacity style={{ width: Dimensions.get('window').width - 90, backgroundColor: '#FD901C', padding: 14, }} onPress={toggleModal}>
+      <TouchableOpacity style={{ width: Dimensions.get('window').width - 130, borderRadius: 7, backgroundColor: '#FD901C', padding: 14, alignSelf: 'center', marginTop: 40 }} onPress={toggleModal}>
 
         <Text style={{
           fontSize: 18,
@@ -265,23 +190,6 @@ export const ProfileScreen = ({ navigation }) => {
 
       </View>
 
-      {/* <BottomNavigation
-        selectedIndex={selectedIndex}
-        appearance='noIndicator'
-        style={{
-          // marginBottom: '-14%',
-          // position: 'absolute',
-          // marginTop: 50,
-          // backgroundColor: 'red'
-
-        }}
-        onSelect={setSelectedIndex}>
-        <BottomNavigationTab title='Pending' icon={pendingIcon} onPressIn={navigatePending} titleStyle={{ color: '#8B95A6' }} />
-        <BottomNavigationTab title='History' icon={historyIcon} onPressIn={navigateHistory} titleStyle={{ color: '#8B95A6' }} />
-        <BottomNavigationTab title='Active' icon={activeIcon} onPressIn={navigateActive} titleStyle={{ color: '#8B95A6' }} />
-        <BottomNavigationTab title='Direction' icon={mapIcon} onPressIn={navigateDir} titleStyle={{ color: '#8B95A6' }} />
-        <BottomNavigationTab title='Account' icon={accountIcon} onPressIn={navigateAccount} titleStyle={{ color: '#FD901C' }} />
-      </BottomNavigation> */}
 
     </View >
 
@@ -299,11 +207,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.58,
     shadowRadius: 1,
     elevation: 3,
-    paddingTop: StatusBar.currentHeight / 1.5,
+    // paddingTop: StatusBar.currentHeight / 1.5,
     // right: 9,
     // marginBottom: 10,
     paddingVertical: 5,
-    marginTop: 22,
+    // marginTop: 22,
     width: Dimensions.get('window').width + 8.8,
     flex: 1,
     flexDirection: 'row',

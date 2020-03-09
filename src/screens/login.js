@@ -1,54 +1,55 @@
-import React, { Component } from 'react'
+import SplashScreen from 'react-native-splash-screen';
+import React, { useEffect } from 'react'
 import {
   Image,
   StyleSheet,
-  StatusBar,
   View,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
-import { Icon, Layout, Text, Input } from '@ui-kitten/components';
+import { Layout, Text, Input } from '@ui-kitten/components';
 import LinearGradient from 'react-native-linear-gradient';
-
+import Icon from 'react-native-vector-icons/FontAwesome5';
+//icons
+const LockIcon = (tintColor) => (
+  <View>
+    <Icon style={[{ color: '#828282' }]} size={18} name={'lock'} />
+  </View>
+);
+const MailIcon = (tintColor) => (
+  <View>
+    <Icon style={[{ color: '#828282' }]} size={18} name={'envelope'} />
+  </View>
+);
 
 export const LoginScreen = ({ navigation }) => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, [])
 
+  const navigatePending = () => {
+    requestAnimationFrame(() => {
+      navigation.navigate('Pending');
+    })
+
+  };
   const [Evalue, setValueE] = React.useState('');
   const [Pvalue, setValueP] = React.useState('');
-  //icons
-  const LockIcon = (style) => (
-    <Icon {...style} fill='#828282' name='lock-outline' />
-  );
-  const MailIcon = (style) => (
-    <Icon {...style} fill='#828282' name='email-outline' />
-  );
-  const navigatePending = () => {
-    navigation.navigate('Pending');
-  };
 
-  // const emailIcon = (style) => (
-  //   <Image
-  //     style={styles.icon}
-  //     source={require('../assets/emailIcon.png')}
-  //   />
-  // );
-  // const Lockk = (style) => (
-  //   <Image
-  //     style={styles.icon}
-  //     // source={require('../assets/passWordIcon.png')}
-  //     source={{ uri: '../assets/passWordIcon.png' }}
-  //   />
-  // );
 
   return (
 
     <SafeAreaView style={styles.container}>
-      <StatusBar translucent={true} />
+
       <LinearGradient colors={['#D86800', '#d97309', '#e77307', '#EA7D00', '#ed8304', '#ed8302', '#ed8200',]} style={styles.gradient}>
+
         <Text style={styles.loginText}>Login</Text>
         <Image source={require('../assets/loginVector.png')} style={styles.img} />
+        {/* <KeyboardAvoidingView style={styles.form} behavior="padding" keyboardVerticalOffset="200" enabled></KeyboardAvoidingView> */}
+
         <Layout style={styles.form}>
+          {/* <KeyboardAwareScrollView extraHeight={200}> */}
           <Input
             value={Evalue}
             placeholder='Email'
@@ -60,7 +61,6 @@ export const LoginScreen = ({ navigation }) => {
             icon={MailIcon}
             textStyle={styles.placeholder}
             placeholderTextColor={'#828282'}
-
           />
           <View style={styles.lineStyle} />
           <Input
@@ -75,15 +75,16 @@ export const LoginScreen = ({ navigation }) => {
             secureTextEntry={true}
             textStyle={styles.placeholder}
             placeholderTextColor={'#828282'}
-
-
           />
+          {/* </KeyboardAwareScrollView> */}
         </Layout>
 
         <TouchableOpacity style={styles.forgotBut}><Text style={styles.forgot}>Forgot password?</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button} onPress={navigatePending}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
       </LinearGradient>
-    </SafeAreaView>
+
+    </SafeAreaView >
+
   )
 
 }
@@ -101,7 +102,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 87,
     color: '#ffffff',
-    // backgroundColor: 'transparent',
     fontWeight: 'bold',
     padding: 4
   },
@@ -112,7 +112,6 @@ const styles = StyleSheet.create({
     marginTop: 97,
     color: '#FD901C',
     backgroundColor: 'transparent',
-
   },
   placeholder: {
     fontSize: 13,
@@ -122,8 +121,6 @@ const styles = StyleSheet.create({
   img: {
     alignSelf: 'center',
     marginTop: 70,
-
-
   },
   inputEmail: { borderRadius: 12, margin: 2, borderColor: 'transparent', backgroundColor: '#fff', },
   inputPass: { borderRadius: 12, margin: 2, borderColor: 'transparent', backgroundColor: '#fff', },
@@ -131,13 +128,8 @@ const styles = StyleSheet.create({
   inputLabel: { color: '#3366FF' },
   inputCaption: { color: '#3366FF' },
   icon: {
-    // width: 50,
-    // height: 20
-    // alignSelf: 'center',
-    // left: 30
     color: 'red',
     borderColor: 'transparent'
-
   },
   forgotBut: {
     padding: 2,
@@ -147,21 +139,16 @@ const styles = StyleSheet.create({
   forgot: {
     fontSize: 13,
     fontFamily: 'Muli',
-    // textAlign: 'center',
-
     color: '#ffffff',
     backgroundColor: 'transparent',
-    // fontWeight: 'bold'
   },
   button: {
     backgroundColor: '#fff',
     width: Dimensions.get('window').width - 30,
     alignSelf: 'center',
-    // bottom: 15,
     borderRadius: 15,
     padding: 12,
-    top: Dimensions.get('window').height - 460
-
+    top: Dimensions.get('window').height - 500
   },
   buttonText: {
     fontSize: 18,
@@ -184,12 +171,10 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.58,
     shadowRadius: 16.00,
-
     elevation: 5,
   },
   lineStyle: {
     borderWidth: 0.5,
     borderColor: '#FD901C',
-    // margin: -1,
   }
 });

@@ -1,94 +1,54 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import {
   StyleSheet,
   View,
   Dimensions,
   ScrollView,
-  Image,
-  StatusBar
+  StatusBar,
 } from 'react-native';
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
-import { SafeAreaView } from 'react-navigation';
+import { moderateScale } from 'react-native-size-matters';
+
 import {
-  Icon, Layout, Text, Avatar, TopNavigationAction,
-  TopNavigation, Divider, Toggle, Card, Button, CardHeader,
-  BottomNavigation,
-  BottomNavigationTab,
+  Text, Avatar,
+  TopNavigation, Divider, Toggle, Card, Layout,
 } from '@ui-kitten/components';
-import MyTabs from '../navigate/bottom'
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import ToggleSwitch from 'toggle-switch-react-native';
 //  icons
-const BackIcon = (style) => (
-  <Icon {...style} name='arrow-ios-back-outline' />
-);
-const Droplet = (style) => (
-  <Icon {...style} name='droplet' fill="#FF6B51" />
-);
-const DropletGreen = (style) => (
-  <Icon {...style} name='droplet' fill="#7CEA7E" />
-);
-const Clock = (style) => (
-  <Icon {...style} name='clock' fill="#FD901C" />
-);
-const History = (style) => (
-  <Icon {...style} name='sync' />
-);
-const Imager = (style) => (
-  <Image style={{
-    width: 50 / 2,
-    height: 50 / 2
-  }} source={require('../assets/loginVector.png')} />
-);
+
 let red = "DB463B";
 let green = "5AC966"
-
-//icons
-// const Imager = React.createElement(Image, {
-//   source: require('../assets/pending.png')
-// });
-const pendingIcon = (style) => (
-  <Image style={{
-    width: 25,
-    height: 25
-  }} source={require('../assets/pending.png')} />
-);
-const historyIcon = (style) => (
-  <Image style={{
-    width: 25,
-    height: 25
-  }} source={require('../assets/history.png')} />
-);
-const activeIcon = (style) => (
-  <Image style={{
-    width: 25,
-    height: 25
-  }} source={require('../assets/active.png')} />
-);
-const mapIcon = (style) => (
-  <Image style={{
-    width: 25,
-    height: 25
-  }} source={require('../assets/map.png')} />
-);
-const accountIcon = (style) => (
-  <Image style={{
-    width: 25,
-    height: 25
-  }} source={require('../assets/account.png')} />
-);
 
 export const PendingScreen = ({ navigation }) => {
   //driver status
   const [available, setAvailable] = useState({
     checked: true,
-    text: "Not Available"
+    text: "Available"
   });
   const { checked, text } = available;
 
   const onCheckedChangeCourier = (isChecked) => {
+    // requestAnimationFrame(() => {
     // console.warn("isChecked", isChecked)
     setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
+    // })
   };
 
+
+  const availableToggle = () => (
+
+    <View style={{ marginRight: 18 }}>
+      <ToggleSwitch
+        isOn={checked}
+        onColor='#FD901C'
+        offColor="#747D8C"
+        label={available.text}
+        labelStyle={styles.toggleText}
+        size='meduim'
+        onToggle={onCheckedChangeCourier}
+      />
+    </View>
+  );
   //order status
   const [order, setOrder] = useState({
     active: false,
@@ -101,225 +61,175 @@ export const PendingScreen = ({ navigation }) => {
   };
 
 
-  //nav
-  const navigateBack = () => {
-    navigation.goBack();
-  };
-  const navigatePending = () => {
-    navigation.navigate('Pending');
-  };
-  const navigateHistory = () => {
-    navigation.navigate('History');
-  };
-  const navigateAccount = () => {
-    navigation.navigate('Account');
-  };
-  const navigateActive = () => {
-    navigation.navigate('Active');
-  };
-  const navigateDir = () => {
-    navigation.navigate('Direction');
-  };
-  const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
-  );
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
-
-
-
-  const availableToggle = () => (
-    <Toggle
-      style={styles.toggle}
-      text={available.text}
-      text={'Availablity'}
-      textStyle={styles.toggleText}
-      onChange={onCheckedChangeCourier}
-      checked={checked}
-    // onPress={this.ToggleAvailability}
-    />
-  );
-
   return (
-    <View style={{ backgroundColor: '#f2f3f4', }}>
+    <View >
 
       <TopNavigation title='Pending Orders' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
-
-      <Card style={styles.orderHeadCard}>
-        <View style={styles.orderHead}>
-          <View style={styles.avatar} >
-            <Avatar style={{}} size='large' source={require('../assets/person.png')} />
-          </View>
-          <View style={styles.orderHeadContent}>
-            <View style={{ flex: 2 }}>
-              <Text style={styles.clientName}>Brown Samson Dappa</Text>
-              <Text style={styles.timeToKilo}>20mins<Text style={styles.dot}> .</Text> 2.6km</Text>
-              <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processing</Text>
-              <Icon
+      <View style={{ height: Dimensions.get('window').height - 135, zIndex: 0, }}>
+        <Card style={styles.orderHeadCard}>
+          <View style={styles.orderHead}>
+            <View style={styles.avatar} >
+              <Avatar style={{}} size='large' source={require('../assets/person.png')} />
+            </View>
+            <View style={styles.orderHeadContent}>
+              <View style={{ flex: 2 }}>
+                <Text style={styles.clientName}>Brown Samson Dappa</Text>
+                <Text style={styles.timeToKilo}>20mins<Text style={styles.dot}> .</Text> 2.6km</Text>
+                <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processing</Text>
+                {/* <Icon
                 name='droplet'
                 width={12}
                 height={12}
                 fill='#DB463B'
                 style={styles.statusIcon}
-              />
+              /> */}
+                {/* <Icon style={[{ color: '#DB463B', }]} size={18} name={'circle-o'} /> */}
+              </View>
+              <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'space-evenly', bottom: 3 }}>
+                <Text style={styles.time}>2 mins ago</Text>
+
+                <ToggleSwitch
+                  isOn={active}
+                  onColor='#FD901C'
+                  offColor="#747D8C"
+                  label={'Status'}
+                  labelStyle={styles.toggleStatusText}
+                  size='meduim'
+                  onToggle={onCheckedChangeOrder}
+                />
+                {/* </View> */}
+              </View>
             </View>
-            <View style={{ flex: 1, }}>
-              <Text style={styles.time}>2 mins ago</Text>
-              <Toggle
-                style={styles.toggleStatus}
-                onChange={onCheckedChangeOrder}
-                textStyle={styles.toggleStatusText}
-                checked={active}
-                text={'Status'}
-              />
-            </View>
-          </View>
-        </View>
-      </Card>
-      <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ height: Dimensions.get('window').height - 155 }}>
-        <Card style={styles.card} >
-          <Text style={styles.stopsCountText}>
-            Stop 1
-          </Text>
-          <Text style={styles.restaurantName}>
-            Crunchies Restaurant
-          </Text>
-          <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
-            <Text style={styles.dot}>.</Text> Processed</Text>
-          </Text>
-          <Icon
-            name='droplet'
-            width={12}
-            height={12}
-            fill='#5AC966'
-            style={styles.statusStopIcon}
-          />
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Address:</Text>
-            <Text style={styles.addressContent}>
-              6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
-            </Text>
-          </View>
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Phone:</Text>
-            <Text style={styles.addressContent}>
-              +234 817 496 9237
-            </Text>
           </View>
         </Card>
+        <ScrollView>
+          <Card style={styles.card} >
+            <Text style={styles.stopsCountText}>
+              Stop 1
+          </Text>
+            <Text style={styles.restaurantName}>
+              Crunchies Restaurant
+          </Text>
+            <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
+              <Text style={styles.dot}>.</Text> Processed</Text>
+            </Text>
+            <Icon
+              name='droplet'
+              width={12}
+              height={12}
+              fill='#5AC966'
+              style={styles.statusStopIcon}
+            />
+            <Divider style={styles.divider} />
+            <View style={styles.addrPhone}>
+              <Text style={styles.address}>Address:</Text>
+              <Text style={styles.addressContent}>
+                6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
+            </Text>
+            </View>
+            <Divider style={styles.divider} />
+            <View style={styles.addrPhone}>
+              <Text style={styles.address}>Phone:</Text>
+              <Text style={styles.addressContent}>
+                +234 817 496 9237
+            </Text>
+            </View>
+          </Card>
 
-        <Card style={styles.card} >
-          <Text style={styles.stopsCountText}>
-            Stop 2
+          <Card style={styles.card} >
+            <Text style={styles.stopsCountText}>
+              Stop 2
           </Text>
-          <Text style={styles.restaurantName}>
-            The Spot
+            <Text style={styles.restaurantName}>
+              The Spot
           </Text>
-          <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
-            <Text style={styles.dot}>.</Text> Processing </Text>
-          </Text>
-          <Icon
+            <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
+              <Text style={styles.dot}>.</Text> Processing </Text>
+            </Text>
+            {/* <Icon
             name='droplet'
             width={12}
             height={12}
             fill='#DB463B'
             style={styles.statusStopIcon}
-          />
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Address:</Text>
-            <Text style={styles.addressContent}>
-              6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
+          /> */}
+            <Divider style={styles.divider} />
+            <View style={styles.addrPhone}>
+              <Text style={styles.address}>Address:</Text>
+              <Text style={styles.addressContent}>
+                6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
             </Text>
-          </View>
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Phone:</Text>
-            <Text style={styles.addressContent}>
-              +234 817 496 9237
+            </View>
+            <Divider style={styles.divider} />
+            <View style={styles.addrPhone}>
+              <Text style={styles.address}>Phone:</Text>
+              <Text style={styles.addressContent}>
+                +234 817 496 9237
             </Text>
-          </View>
-        </Card>
+            </View>
+          </Card>
 
 
-        <Card style={styles.card} >
-          <Text style={styles.stopsCountText}>
-            Stop 3
+          <Card style={styles.card} >
+            <Text style={styles.stopsCountText}>
+              Stop 3
           </Text>
-          <Text style={styles.restaurantName}>
-            Pepper Roni
+            <Text style={styles.restaurantName}>
+              Pepper Roni
           </Text>
-          <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
-            <Text style={styles.dot}>.</Text> Processed </Text>
-          </Text>
-          <Icon
-            name='droplet'
-            width={12}
-            height={12}
-            fill='#5AC966'
-            style={styles.statusStopIcon}
-          />
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Address:</Text>
-            <Text style={styles.addressContent}>
-              6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
+            <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
+              <Text style={styles.dot}>.</Text> Processed </Text>
             </Text>
-          </View>
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Phone:</Text>
-            <Text style={styles.addressContent}>
-              +234 817 496 9237
+            <Icon
+              name='droplet'
+              width={12}
+              height={12}
+              fill='#5AC966'
+              style={styles.statusStopIcon}
+            />
+            <Divider style={styles.divider} />
+            <View style={styles.addrPhone}>
+              <Text style={styles.address}>Address:</Text>
+              <Text style={styles.addressContent}>
+                6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
             </Text>
-          </View>
-        </Card>
-        <Card style={styles.card} >
-          <Text style={styles.stopsCountText}>
-            Deliver to
+            </View>
+            <Divider style={styles.divider} />
+            <View style={styles.addrPhone}>
+              <Text style={styles.address}>Phone:</Text>
+              <Text style={styles.addressContent}>
+                +234 817 496 9237
+            </Text>
+            </View>
+          </Card>
+          <Card style={styles.card} >
+            <Text style={styles.stopsCountText}>
+              Deliver to
           </Text>
-          <Text style={styles.restaurantName}>
-            Brown Samson Dappa
+            <Text style={styles.restaurantName}>
+              Brown Samson Dappa
           </Text>
-          <Text style={styles.timeToKilo}>1.3km</Text>
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Address:</Text>
-            <Text style={styles.addressContent}>
-              6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
+            <Text style={styles.timeToKilo}>1.3km</Text>
+            <Divider style={styles.divider} />
+            <View style={styles.addrPhone}>
+              <Text style={styles.address}>Address:</Text>
+              <Text style={styles.addressContent}>
+                6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
             </Text>
-          </View>
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Phone:</Text>
-            <Text style={styles.addressContent}>
-              +234 817 496 9237
+            </View>
+            <Divider style={styles.divider} />
+            <View style={styles.addrPhone}>
+              <Text style={styles.address}>Phone:</Text>
+              <Text style={styles.addressContent}>
+                +234 817 496 9237
             </Text>
-          </View>
-        </Card>
+            </View>
+          </Card>
 
-      </ScrollView>
-      {/* <AppBottomNavigator selectedIndex={selectedIndex} /> */}
-      {/* <BottomNavigation
-        selectedIndex={selectedIndex}
-        appearance='noIndicator'
-        style={{
-          // marginBottom: '-14%',
-          // position: 'absolute',
-          // marginTop: 50,
-          // backgroundColor: 'red'
-
-        }}
-        onSelect={setSelectedIndex}>
-        <BottomNavigationTab title='Pending' icon={pendingIcon} onPressIn={navigatePending} titleStyle={{ color: '#FD901C' }} />
-        <BottomNavigationTab title='History' icon={historyIcon} onPressIn={navigateHistory} titleStyle={{ color: '#8B95A6' }} />
-        <BottomNavigationTab title='Active' icon={activeIcon} onPressIn={navigateActive} titleStyle={{ color: '#8B95A6' }} />
-        <BottomNavigationTab title='Direction' icon={mapIcon} onPressIn={navigateDir} titleStyle={{ color: '#8B95A6' }} />
-        <BottomNavigationTab title='Account' icon={accountIcon} onPressIn={navigateAccount} titleStyle={{ color: '#8B95A6' }} />
-      </BottomNavigation> */}
+        </ScrollView>
+      </View>
 
     </View>
 
@@ -337,12 +247,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.58,
     shadowRadius: 1,
     elevation: 3,
-    paddingTop: StatusBar.currentHeight / 1.5,
+    // paddingTop: StatusBar.currentHeight / 2.5,
     // right: 9,
     // marginBottom: 10,
     paddingVertical: 5,
-    marginTop: 22,
-    width: Dimensions.get('window').width + 8.8,
+    // marginTop: 22,
+    width: Dimensions.get('window').width,
     flex: 1,
     flexDirection: 'row',
     // backgroundColor: 'green'
@@ -369,6 +279,8 @@ const styles = StyleSheet.create({
     shadowRadius: 2.49,
     elevation: 1,
     // marginTop: 6
+    // zIndex: 1
+    overflow: 'visible'
 
   },
   orderHead: {
@@ -433,22 +345,25 @@ const styles = StyleSheet.create({
       scaleX: moderateScale(0.7, 0.1)
     }, {
       scaleY: moderateScale(0.7, 0.2)
-    }]
+    }],
+    color: '#FD901C',
+
   },
   toggleStatusText: {
     fontSize: 14,
     fontFamily: 'Muli',
     color: '#828282',
     fontWeight: 'bold',
-    marginLeft: -99
+    // marginLeft: -99
   },
   toggleText: {
     fontSize: 14,
     fontFamily: 'Muli',
     color: '#828282',
     fontWeight: 'bold',
-    right: 50,
-    position: 'absolute',
+
+    // right: 50,
+    // position: 'absolute',
     // top: 3
   },
   toggle: {
@@ -488,7 +403,8 @@ const styles = StyleSheet.create({
   },
   statusIcon: {
     bottom: 16.6,
-    left: 119
+    left: 119,
+    color: '#828282'
   },
   orderItemStatus: {
     fontSize: 12,

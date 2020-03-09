@@ -1,46 +1,22 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import {
   StyleSheet,
   View,
   Dimensions,
   ScrollView,
-  Image,
   StatusBar,
   ImageBackground
 } from 'react-native';
-import { scale, verticalScale, moderateScale } from 'react-native-size-matters';
-import { SafeAreaView } from 'react-navigation';
+import { moderateScale } from 'react-native-size-matters';
 import {
-  Icon, Layout, Text, Input, TopNavigationAction,
-  TopNavigation, Divider, Toggle, Card, Button, CardHeader,
-  BottomNavigation,
-  BottomNavigationTab,
+  TopNavigation, Divider, Toggle,
 } from '@ui-kitten/components';
 import StepIndicator from 'react-native-step-indicator';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 //  icons
 const BackIcon = (style) => (
   <Icon {...style} name='arrow-ios-back-outline' />
 );
-const Droplet = (style) => (
-  <Icon {...style} name='droplet' fill="#FF6B51" />
-);
-const DropletGreen = (style) => (
-  <Icon {...style} name='droplet' fill="#7CEA7E" />
-);
-const Clock = (style) => (
-  <Icon {...style} name='clock' fill="#FD901C" />
-);
-const History = (style) => (
-  <Icon {...style} name='sync' />
-);
-const Imager = (style) => (
-  <Image style={{
-    width: 20,
-    height: 20
-  }} source={require('../assets/loginVector.png')} />
-);
-let red = "DB463B";
-let green = "5AC966"
 
 
 export const ActiveScreen = ({ navigation }) => {
@@ -56,77 +32,6 @@ export const ActiveScreen = ({ navigation }) => {
     setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
   };
 
-  //order status
-  const [order, setOrder] = useState({
-    active: false,
-    status: "Not Active"
-  });
-  const { active, status } = order;
-  const onCheckedChangeOrder = (isChecked) => {
-    // console.warn("isChecked", isChecked)
-    setOrder({ ...order, status: status == 'Active' ? "Not Active" : "Active", active: isChecked })
-  };
-
-  const [Oldvalue, setValueOld] = React.useState('');
-  const [Newvalue, setValueNew] = React.useState('');
-  const [Confrimvalue, setValueConfrim] = React.useState('');
-
-
-  //nav
-  const navigateBack = () => {
-    navigation.goBack();
-  };
-  const navigatePending = () => {
-    navigation.navigate('Pending');
-  };
-  const navigateHistory = () => {
-    navigation.navigate('History');
-  };
-  const navigateAccount = () => {
-    navigation.navigate('Account');
-  };
-  const navigateActive = () => {
-    navigation.navigate('Active');
-  };
-  const navigateDir = () => {
-    navigation.navigate('Direction');
-  };
-  const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
-  );
-
-  const pendingIcon = (style) => (
-    <Image style={{
-      width: 25,
-      height: 25
-    }} source={require('../assets/pending.png')} />
-  );
-  const historyIcon = (style) => (
-    <Image style={{
-      width: 25,
-      height: 25
-    }} source={require('../assets/history.png')} />
-  );
-  const activeIcon = (style) => (
-    <Image style={{
-      width: 25,
-      height: 25
-    }} source={require('../assets/active.png')} />
-  );
-  const mapIcon = (style) => (
-    <Image style={{
-      width: 25,
-      height: 25
-    }} source={require('../assets/map.png')} />
-  );
-  const accountIcon = (style) => (
-    <Image style={{
-      width: 25,
-      height: 25
-    }} source={require('../assets/account.png')} />
-  );
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
-
 
 
   const availableToggle = () => (
@@ -140,7 +45,7 @@ export const ActiveScreen = ({ navigation }) => {
     // onPress={this.ToggleAvailability}
     />
   );
-  const labels = ["Crunchies Restaurant", "The Spot", "Pepper Roni", "Buyer"];
+  const labels = ["Crunchies Restaurant", "The Spot", "Pepper Roni", "Buyer",];
   const customStyles = {
     stepIndicatorSize: 30,
     currentStepIndicatorSize: 40,
@@ -167,21 +72,10 @@ export const ActiveScreen = ({ navigation }) => {
     labelFontFamily: 'Muli'
   }
 
-  // constructor() {
-  //   this.state = {
-  //     currentPosition: 0
-  //   }
-  // }
-  // onPageChange(position){
-  //   this.setState({ currentPosition: position });
-
-  // }
-
   const [currentPosition, currentPositionValue] = React.useState(0);
 
 
   const onChangeCurrentPosition = (newPosition) => {
-    // console.warn("newPosition", newPosition)
     currentPositionValue(newPosition)
   };
 
@@ -194,10 +88,8 @@ export const ActiveScreen = ({ navigation }) => {
         titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
       <ScrollView>
-        <ImageBackground source={require('../assets/grid.png')} style={{ width: '100%', height: '100%' }}>
+        <ImageBackground source={require('../assets/grid.png')} style={{ width: Dimensions.get('window').widths, height: Dimensions.get('window').height }}>
           <View style={{ height: Dimensions.get('window').height - 90, width: Dimensions.get('window').width + 114, alignItems: 'center' }}>
-
-
 
             <StepIndicator
               customStyles={customStyles}
@@ -206,7 +98,7 @@ export const ActiveScreen = ({ navigation }) => {
               labels={labels}
               stepCount={4}
               onPress={onChangeCurrentPosition}
-            // style={{ alignItems: 'center' }}
+
             />
 
           </View>
@@ -233,11 +125,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.58,
     shadowRadius: 1,
     elevation: 3,
-    paddingTop: StatusBar.currentHeight / 1.5,
+    // paddingTop: StatusBar.currentHeight / 1.5,
     // right: 9,
     // marginBottom: 10,
     paddingVertical: 5,
-    marginTop: 22,
+    // marginTop: 22,
     width: Dimensions.get('window').width + 8.8,
     flex: 1,
     flexDirection: 'row',
