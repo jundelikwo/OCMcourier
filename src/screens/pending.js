@@ -4,6 +4,7 @@ import {
   View,
   Dimensions,
   ScrollView,
+  SafeAreaView
 } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import {
@@ -59,7 +60,7 @@ export const PendingScreen = ({ navigation }) => {
 
 
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
 
       <TopNavigation title='Pending Orders' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
@@ -205,7 +206,7 @@ export const PendingScreen = ({ navigation }) => {
         </ScrollView>
       </View>
 
-    </View>
+    </SafeAreaView>
 
   )
 

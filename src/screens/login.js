@@ -80,7 +80,7 @@ export const LoginScreen = ({ navigation }) => {
         </Layout>
 
         <TouchableOpacity style={styles.forgotBut}><Text style={styles.forgot}>Forgot password?</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={navigatePending}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPressIn={navigatePending}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
       </LinearGradient>
 
     </SafeAreaView >
