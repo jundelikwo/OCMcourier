@@ -6,9 +6,9 @@ import {
   View,
   TouchableOpacity,
   Dimensions,
-  KeyboardAvoidingView
+  KeyboardAvoidingView,
+  SafeAreaView
 } from 'react-native';
-import { SafeAreaView } from 'react-navigation';
 import { Layout, Text, Input } from '@ui-kitten/components';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -30,9 +30,9 @@ export const LoginScreen = ({ navigation }) => {
   }, [])
 
   const navigatePending = () => {
-    requestAnimationFrame(() => {
-      navigation.navigate('Pending');
-    })
+    // requestAnimationFrame(() => {
+    navigation.navigate('Pending');
+    // })
 
   };
   const [Evalue, setValueE] = React.useState('');
@@ -50,7 +50,7 @@ export const LoginScreen = ({ navigation }) => {
         <KeyboardAvoidingView style={styles.key} behavior="padding" enabled>
 
           <Layout style={styles.form}>
-            {/* <KeyboardAwareScrollView extraHeight={200}> */}
+
             <Input
               value={Evalue}
               placeholder='Email'
@@ -77,7 +77,7 @@ export const LoginScreen = ({ navigation }) => {
               textStyle={styles.placeholder}
               placeholderTextColor={'#828282'}
             />
-            {/* </KeyboardAwareScrollView> */}
+
           </Layout>
         </KeyboardAvoidingView>
 
@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   key: {
-    // backgroundColor: '#FD901C',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

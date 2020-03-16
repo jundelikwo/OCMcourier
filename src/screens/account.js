@@ -5,6 +5,7 @@ import {
   Dimensions,
   ScrollView,
   TouchableOpacity,
+  SafeAreaView
 } from 'react-native';
 import {
   Text,
@@ -56,7 +57,7 @@ export const AccountScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
 
       <TopNavigation title='Account Settings' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
@@ -109,7 +110,7 @@ export const AccountScreen = ({ navigation }) => {
         </View>
       </ScrollView>
 
-    </View >
+    </SafeAreaView >
 
   )
 

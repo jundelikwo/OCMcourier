@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Dimensions,
   ScrollView,
+  SafeAreaView
 } from 'react-native';
 import {
   Text, Avatar,
@@ -52,7 +53,7 @@ export const HistoryScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <TopNavigation title='Order History' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
@@ -156,7 +157,7 @@ export const HistoryScreen = ({ navigation }) => {
           </Card>
         </View>
       </ScrollView>
-    </View >
+    </SafeAreaView >
   )
 };
 

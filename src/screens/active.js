@@ -4,7 +4,8 @@ import {
   View,
   Dimensions,
   ScrollView,
-  ImageBackground
+  ImageBackground,
+  SafeAreaView
 } from 'react-native';
 import {
   TopNavigation, Divider,
@@ -81,7 +82,7 @@ export const ActiveScreen = ({ navigation }) => {
 
 
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <TopNavigation title='Active Order' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
@@ -99,7 +100,7 @@ export const ActiveScreen = ({ navigation }) => {
           </View>
         </ImageBackground>
       </ScrollView>
-    </View >
+    </SafeAreaView >
   )
 };
 

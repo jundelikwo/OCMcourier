@@ -3,6 +3,7 @@ import {
   StyleSheet,
   View,
   Dimensions,
+  SafeAreaView
 } from 'react-native';
 import {
   TopNavigation, Divider,
@@ -57,7 +58,7 @@ export const DirectionScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <TopNavigation title='Get Direction' style={styles.topNavigation}
         titleStyle={styles.title} rightControls={availableToggle()} />
       <Divider />
@@ -74,7 +75,7 @@ export const DirectionScreen = ({ navigation }) => {
           showsUserLocation={true}
         />
       </View>
-    </View >
+    </SafeAreaView >
   )
 };
 
