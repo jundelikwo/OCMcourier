@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   Dimensions,
+  KeyboardAvoidingView
 } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { Layout, Text, Input } from '@ui-kitten/components';
@@ -46,38 +47,39 @@ export const LoginScreen = ({ navigation }) => {
 
         <Text style={styles.loginText}>Login</Text>
         <Image source={require('../assets/loginVector.png')} style={styles.img} />
-        {/* <KeyboardAvoidingView style={styles.form} behavior="padding" keyboardVerticalOffset="200" enabled></KeyboardAvoidingView> */}
+        <KeyboardAvoidingView style={styles.key} behavior="padding" enabled>
 
-        <Layout style={styles.form}>
-          {/* <KeyboardAwareScrollView extraHeight={200}> */}
-          <Input
-            value={Evalue}
-            placeholder='Email'
-            style={styles.inputEmail}
-            textStyle={styles.inputText}
-            labelStyle={styles.inputLabel}
-            captionTextStyle={styles.inputCaption}
-            onChangeText={setValueE}
-            icon={MailIcon}
-            textStyle={styles.placeholder}
-            placeholderTextColor={'#828282'}
-          />
-          <View style={styles.lineStyle} />
-          <Input
-            value={Pvalue}
-            placeholder='Password'
-            style={styles.inputPass}
-            textStyle={styles.inputText}
-            labelStyle={styles.inputLabel}
-            captionTextStyle={styles.inputCaption}
-            onChangeText={setValueP}
-            icon={LockIcon}
-            secureTextEntry={true}
-            textStyle={styles.placeholder}
-            placeholderTextColor={'#828282'}
-          />
-          {/* </KeyboardAwareScrollView> */}
-        </Layout>
+          <Layout style={styles.form}>
+            {/* <KeyboardAwareScrollView extraHeight={200}> */}
+            <Input
+              value={Evalue}
+              placeholder='Email'
+              style={styles.inputEmail}
+              textStyle={styles.inputText}
+              labelStyle={styles.inputLabel}
+              captionTextStyle={styles.inputCaption}
+              onChangeText={setValueE}
+              icon={MailIcon}
+              textStyle={styles.placeholder}
+              placeholderTextColor={'#828282'}
+            />
+            <View style={styles.lineStyle} />
+            <Input
+              value={Pvalue}
+              placeholder='Password'
+              style={styles.inputPass}
+              textStyle={styles.inputText}
+              labelStyle={styles.inputLabel}
+              captionTextStyle={styles.inputCaption}
+              onChangeText={setValueP}
+              icon={LockIcon}
+              secureTextEntry={true}
+              textStyle={styles.placeholder}
+              placeholderTextColor={'#828282'}
+            />
+            {/* </KeyboardAwareScrollView> */}
+          </Layout>
+        </KeyboardAvoidingView>
 
         <TouchableOpacity style={styles.forgotBut}><Text style={styles.forgot}>Forgot password?</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button} onPressIn={navigatePending}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
@@ -95,6 +97,12 @@ const styles = StyleSheet.create({
   },
   gradient: {
     flex: 1,
+  },
+  key: {
+    // backgroundColor: '#FD901C',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   loginText: {
     fontSize: 24,
@@ -148,7 +156,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 15,
     padding: 12,
-    top: Dimensions.get('window').height - 500
+    top: Dimensions.get('window').height - 750
   },
   buttonText: {
     fontSize: 18,
@@ -163,7 +171,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 40,
     height: 105,
     alignSelf: 'center',
-    top: 130,
+    top: 30,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
