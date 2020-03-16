@@ -115,13 +115,13 @@ export const ProfileScreen = ({ navigation }) => {
           }} >
             <Avatar style={{
               transform: [{
-                scaleX: moderateScale(2, 0.1)
+                scaleX: moderateScale(2, 5)
               }, {
-                scaleY: moderateScale(2, 0.2)
+                scaleY: moderateScale(2, 5)
               }],
               alignSelf: 'center',
               borderColor: '#fff',
-              borderWidth: 0.5
+              // borderWidth: 0.1
             }} size='giant' source={require('../assets/pic.png')} />
           </View>
         </View>

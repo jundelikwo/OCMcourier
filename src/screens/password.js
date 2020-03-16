@@ -53,7 +53,7 @@ export const PasswordScreen = ({ navigation }) => {
         textAlign: 'center',
         margin: 20
       }}>Password Changed Successfully</Text>
-      <TouchableOpacity style={{ width: Dimensions.get('window').width - 130, borderRadius: 7, backgroundColor: '#FD901C', padding: 14, alignSelf: 'center', marginTop: 40 }} onPress={toggleModal}>
+      <TouchableOpacity style={{ width: Dimensions.get('window').width - 130, borderRadius: 7, backgroundColor: '#FD901C', padding: 14, alignSelf: 'center', marginTop: 30 }} onPress={toggleModal}>
         <Text style={{
           fontSize: 18,
           fontFamily: 'Muli',
@@ -94,11 +94,11 @@ export const PasswordScreen = ({ navigation }) => {
   );
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <TopNavigation title='Change Password' style={styles.topNavigation}
         titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
       <Divider />
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <View style={{ marginTop: 30 }}>
           <Input
             value={Oldvalue}
@@ -176,7 +176,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: Dimensions.get('window').width - 90,
     padding: 16,
-    height: 300,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

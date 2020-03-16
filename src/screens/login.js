@@ -30,9 +30,9 @@ export const LoginScreen = ({ navigation }) => {
   }, [])
 
   const navigatePending = () => {
-    // requestAnimationFrame(() => {
-    navigation.navigate('Pending');
-    // })
+    requestAnimationFrame(() => {
+      navigation.navigate('Pending');
+    })
 
   };
   const [Evalue, setValueE] = React.useState('');
@@ -77,12 +77,13 @@ export const LoginScreen = ({ navigation }) => {
               textStyle={styles.placeholder}
               placeholderTextColor={'#828282'}
             />
-
+            <TouchableOpacity style={styles.forgotBut}><Text style={styles.forgot}>Forgot password?</Text></TouchableOpacity>
           </Layout>
+
         </KeyboardAvoidingView>
 
-        <TouchableOpacity style={styles.forgotBut}><Text style={styles.forgot}>Forgot password?</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPressIn={navigatePending}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
+
+        <TouchableOpacity style={styles.button} onPress={navigatePending}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
       </LinearGradient>
 
     </SafeAreaView >
@@ -139,15 +140,17 @@ const styles = StyleSheet.create({
     borderColor: 'transparent'
   },
   forgotBut: {
-    padding: 2,
-    top: 146,
-    left: 25,
+    padding: 5,
+    top: Dimensions.get('window').height - 700,
+    width: Dimensions.get('window').width / 2.7,
+
   },
   forgot: {
     fontSize: 13,
     fontFamily: 'Muli',
     color: '#ffffff',
     backgroundColor: 'transparent',
+
   },
   button: {
     backgroundColor: '#fff',

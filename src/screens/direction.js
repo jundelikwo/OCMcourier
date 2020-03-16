@@ -12,18 +12,23 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import GetLocation from 'react-native-get-location';
 import ToggleSwitch from 'toggle-switch-react-native';
 
+// const LATITUDE
+// const LONGITUDE
+
 GetLocation.getCurrentPosition({
   enableHighAccuracy: true,
   timeout: 15000,
 })
   .then(location => {
-    // console.log(location);
+    console.log(location);
+    
 
   })
   .catch(error => {
     const { code, message } = error;
     //  console.warn(code, message);
   })
+
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE = 4.926956;
@@ -65,7 +70,7 @@ export const DirectionScreen = ({ navigation }) => {
       <View style={{ flex: 1 }}>
         <MapView
           provider={PROVIDER_GOOGLE}
-          style={{ height: Dimensions.get('window').height - 100, }}
+          style={{ height: Dimensions.get('window').height, width: Dimensions.get('window').width }}
           region={{
             latitude: LATITUDE,
             longitude: LONGITUDE,
