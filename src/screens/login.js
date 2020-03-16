@@ -77,13 +77,15 @@ export const LoginScreen = ({ navigation }) => {
               textStyle={styles.placeholder}
               placeholderTextColor={'#828282'}
             />
-            <TouchableOpacity style={styles.forgotBut}><Text style={styles.forgot}>Forgot password?</Text></TouchableOpacity>
-          </Layout>
 
+          </Layout>
+          <TouchableOpacity style={styles.forgotBut}><Text style={styles.forgot}>Forgot password?</Text></TouchableOpacity>
+
+          <TouchableOpacity style={styles.button} onPress={navigatePending}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
         </KeyboardAvoidingView>
 
 
-        <TouchableOpacity style={styles.button} onPress={navigatePending}><Text style={styles.buttonText}>Login</Text></TouchableOpacity>
+
       </LinearGradient>
 
     </SafeAreaView >
@@ -140,16 +142,21 @@ const styles = StyleSheet.create({
     borderColor: 'transparent'
   },
   forgotBut: {
-    padding: 5,
-    top: Dimensions.get('window').height - 700,
+    padding: 4,
     width: Dimensions.get('window').width / 2.7,
-
+    top: 40,
+    alignSelf: 'flex-start',
+    // alignItems: 'center',
+    // justifyContent: 'flex-end'
   },
   forgot: {
     fontSize: 13,
     fontFamily: 'Muli',
     color: '#ffffff',
     backgroundColor: 'transparent',
+    // alignSelf: 'center',
+    marginLeft: 20
+
 
   },
   button: {
@@ -158,7 +165,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 15,
     padding: 12,
-    top: Dimensions.get('window').height - 750
+    // marginVertical: 10,
+    marginTop: 60,
+    top: 60
+    // top: Dimensions.get('window').height - 750
   },
   buttonText: {
     fontSize: 18,
