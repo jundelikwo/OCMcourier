@@ -12,16 +12,30 @@ import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import GetLocation from 'react-native-get-location';
 import ToggleSwitch from 'toggle-switch-react-native';
 
-// const LATITUDE
-// const LONGITUDE
+
+
+const { width, height } = Dimensions.get('window');
+const ASPECT_RATIO = width / height;
+let LATITUDE;
+let LONGITUDE;
+let TIME;
+let BEARING;
+let SPEED;
+let ACCURACY;
+const LATITUDE_DELTA = 0.046;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 GetLocation.getCurrentPosition({
   enableHighAccuracy: true,
   timeout: 15000,
 })
-  .then(location => {
-    console.log(location);
-    
+  .then(coords => {
+    LATITUDE = coords.latitude;
+    LONGITUDE = coords.longitude;
+    TIME = coords.time;
+    BEARING = coords.bearing;
+    SPEED = coords.speed;
+    ACCURACY = coords.accuracy;
 
   })
   .catch(error => {
@@ -29,12 +43,6 @@ GetLocation.getCurrentPosition({
     //  console.warn(code, message);
   })
 
-const { width, height } = Dimensions.get('window');
-const ASPECT_RATIO = width / height;
-const LATITUDE = 4.926956;
-const LONGITUDE = 8.330295;
-const LATITUDE_DELTA = 0.0201 / 2;
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 export const DirectionScreen = ({ navigation }) => {
   //driver status
@@ -70,14 +78,27 @@ export const DirectionScreen = ({ navigation }) => {
       <View style={{ flex: 1 }}>
         <MapView
           provider={PROVIDER_GOOGLE}
-          style={{ height: Dimensions.get('window').height, width: Dimensions.get('window').width }}
+          style={{ height: Dimensions.get('window').height - 100, width: Dimensions.get('window').width }}
           region={{
             latitude: LATITUDE,
             longitude: LONGITUDE,
             latitudeDelta: LATITUDE_DELTA,
-            longitudeDelta: LONGITUDE_DELTA
+            longitudeDelta: LONGITUDE_DELTA,
+            time: TIME,
+            bearing: BEARING,
+            speed: SPEED,
+            accuracy: ACCURACY
           }}
+          mapType={'hybrid'}
           showsUserLocation={true}
+          userLocationPriority={'high'}
+          userLocationFastestInterval={4000}
+          userLocationUpdateInterval={5000}
+          showsIndoorLevelPicker={true}
+          loadingEnabled={true}
+          loadingIndicatorColor={'#606060'}
+          loadingBackgroundColor={'#FFF'}
+          isAccessibilityElement={true}
         />
       </View>
     </SafeAreaView >
