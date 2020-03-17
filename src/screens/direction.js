@@ -45,6 +45,7 @@ GetLocation.getCurrentPosition({
 
 
 export const DirectionScreen = ({ navigation }) => {
+  console.log('map');
   //driver status
   const [available, setAvailable] = useState({
     checked: true,
@@ -73,7 +74,7 @@ export const DirectionScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <TopNavigation title='Get Direction' style={styles.topNavigation}
-        titleStyle={styles.title} rightControls={availableToggle()} />
+        titleStyle={styles.title} />
       <Divider />
       <View style={{ flex: 1 }}>
         <MapView
