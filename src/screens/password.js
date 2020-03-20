@@ -8,25 +8,14 @@ import {
 } from 'react-native';
 import {
   Layout, Text, Input, TopNavigationAction,
-  TopNavigation, Divider, Modal,
+  Divider, Modal,
 } from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/Ionicons';
-import ToggleSwitch from 'toggle-switch-react-native';
-//  icons
-const BackIcon = (style) => (
-  <Icon style={[{ color: '#515C6F' }]} name='ios-arrow-back' size={25} />
-);
+import TopNav from '../components/topNav';
+
 
 export const PasswordScreen = ({ navigation }) => {
-  //driver status
-  const [available, setAvailable] = useState({
-    checked: true,
-    text: "Available"
-  });
-  const { checked, text } = available;
-  const onCheckedChangeCourier = (isChecked) => {
-    setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
-  };
+
   const [Oldvalue, setValueOld] = React.useState('');
   const [Newvalue, setValueNew] = React.useState('');
   const [Confrimvalue, setValueConfrim] = React.useState('');
@@ -74,29 +63,17 @@ export const PasswordScreen = ({ navigation }) => {
       navigation.goBack();
     })
   };
-
-  const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
+  const BackIcon = () => (
+    <Icon style={[{ color: '#515C6F', marginRight: -29, }]} name='ios-arrow-back' size={25} />
   );
 
-  const availableToggle = () => (
-    <View style={{ marginRight: 18 }}>
-      <ToggleSwitch
-        isOn={checked}
-        onColor='#FD901C'
-        offColor="#747D8C"
-        label={available.text}
-        labelStyle={styles.toggleText}
-        size='meduim'
-        onToggle={onCheckedChangeCourier}
-      />
-    </View>
+  const BackAction = () => (
+    <TopNavigationAction icon={BackIcon} onPress={navigateBack} style={[{}]} />
   );
 
   return (
     <View style={{ flex: 1 }}>
-      <TopNavigation title='Change Password' style={styles.topNavigation}
-        titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
+      <TopNav title='Change Password' leftControl={BackAction()} />
       <Divider />
       <View style={{ flex: 1 }}>
         <View style={{ marginTop: 30 }}>
@@ -151,26 +128,7 @@ export const PasswordScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  topNavigation: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 1,
-    elevation: 3,
-    paddingVertical: 5,
-    width: Dimensions.get('window').width + 8.8,
-    flexDirection: 'row',
-  },
-  title: {
-    fontSize: 18,
-    fontFamily: 'Muli',
-    alignSelf: 'center',
-    color: '#FD901C',
-    fontWeight: 'bold',
-  },
+
   modalContainer: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -187,14 +145,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     flex: 1,
     borderRadius: 16
-  },
-  toggleText: {
-    fontSize: 14,
-    fontFamily: 'Muli',
-    color: '#828282',
-    fontWeight: 'bold',
-    right: 50,
-    position: 'absolute',
   },
   inputEmail: {
     margin: 10,
