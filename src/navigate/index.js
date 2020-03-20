@@ -5,6 +5,7 @@ import { AppNavigator } from './bottomTab'
 import { SingleOrderScreen } from '../screens/singleOrder';
 import { PasswordScreen } from '../screens/password';
 import { ProfileScreen } from '../screens/presonal';
+// import { HistoryCardsScreen } from '../components/historyCards';
 
 const HomeNavigator = createStackNavigator({
   Login: LoginScreen,
@@ -12,6 +13,7 @@ const HomeNavigator = createStackNavigator({
   SingleOrder: SingleOrderScreen,
   Password: PasswordScreen,
   Profile: ProfileScreen,
+  // HistoryCards: HistoryCardsScreen
 }, {
   headerMode: 'none',
 });
