@@ -11,7 +11,7 @@ import {
 import ToggleSwitch from 'toggle-switch-react-native';
 
 
-export default TopNav = () => {
+export default TopNav = ({ title, leftControl }) => {
 
   const availableToggle = () => (
 
@@ -27,6 +27,7 @@ export default TopNav = () => {
       />
     </View>
   );
+
   const [available, setAvailable] = useState({
     checked: true,
     text: "Available"
@@ -41,8 +42,8 @@ export default TopNav = () => {
   };
 
   return (
-    <TopNavigation title='Pending Orders' style={styles.topNavigation}
-      titleStyle={styles.title} rightControls={availableToggle()} />
+    <TopNavigation title={title} style={styles.topNavigation}
+      titleStyle={styles.title} leftControl={leftControl} rightControls={availableToggle()} />
   )
 
 };
