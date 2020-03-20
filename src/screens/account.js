@@ -9,29 +9,18 @@ import {
 } from 'react-native';
 import {
   Text,
-  TopNavigation, Divider, Card,
+  Divider, Card,
 } from '@ui-kitten/components';
+import TopNav from '../components/topNav';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import ToggleSwitch from 'toggle-switch-react-native';
+
 
 export const AccountScreen = ({ navigation }) => {
-  //driver status
-  const [available, setAvailable] = useState({
-    checked: true,
-    text: "Available"
-  });
-  const { checked, text } = available;
-
-  const onCheckedChangeCourier = (isChecked) => {
-    // requestAnimationFrame(() => {
-    // console.warn("isChecked", isChecked)
-    setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
-    // })
-  };
 
   //nav
   const navigatePassword = () => {
     requestAnimationFrame(() => {
+      console.log(navigation)
       navigation.navigate('Password');
     })
   };
@@ -42,25 +31,12 @@ export const AccountScreen = ({ navigation }) => {
   };
 
 
-  const availableToggle = () => (
-    <View style={{ marginRight: 18 }}>
-      <ToggleSwitch
-        isOn={checked}
-        onColor='#FD901C'
-        offColor="#747D8C"
-        label={available.text}
-        labelStyle={styles.toggleText}
-        size='meduim'
-        onToggle={onCheckedChangeCourier}
-      />
-    </View>
-  );
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
 
-      <TopNavigation title='Account Settings' style={styles.topNavigation}
-        titleStyle={styles.title} rightControls={availableToggle()} />
+
+      <TopNav title='Account Settings' />
       <Divider />
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ flex: 1 }}>
         <View style={{ marginTop: 5 }}>
@@ -117,28 +93,7 @@ export const AccountScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  topNavigation: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 1,
-    elevation: 3,
-    paddingVertical: 5,
-    width: Dimensions.get('window').width + 8.8,
 
-    flexDirection: 'row',
-  },
-  title: {
-    fontSize: 18,
-    fontFamily: 'Muli',
-    alignSelf: 'center',
-    color: '#FD901C',
-    fontWeight: 'bold',
-    marginLeft: 18
-  },
   headCard: {
     margin: 0, padding: 0,
     shadowColor: "#000",
