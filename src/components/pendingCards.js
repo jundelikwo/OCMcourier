@@ -191,6 +191,6 @@ const styles = StyleSheet.create({
     lineHeight: 16
   },
   statusStopIcon: {
-    bottom: 17.5, marginLeft: 175, marginBottom: -7
+    bottom: 17.5, marginLeft: 173, marginBottom: -7
   }
 });
