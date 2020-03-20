@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {
-  StyleSheet,
   View,
   Dimensions,
   ScrollView,
@@ -8,43 +7,13 @@ import {
   SafeAreaView
 } from 'react-native';
 import {
-  TopNavigation, Divider,
+  Divider,
 } from '@ui-kitten/components';
 import StepIndicator from 'react-native-step-indicator';
-import Icon from 'react-native-vector-icons/FontAwesome5';
-import ToggleSwitch from 'toggle-switch-react-native';
-//  icons
-const BackIcon = (style) => (
-  <Icon {...style} name='arrow-ios-back-outline' />
-);
+import TopNav from '../components/topNav';
 
 export const ActiveScreen = ({ navigation }) => {
-  //driver status
-  const [available, setAvailable] = useState({
-    checked: true,
-    text: "Available"
-  });
-  const { checked, text } = available;
 
-  const onCheckedChangeCourier = (isChecked) => {
-    // requestAnimationFrame(() => {
-    // console.warn("isChecked", isChecked)
-    setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
-    // })
-  };
-  const availableToggle = () => (
-    <View style={{ marginRight: 18 }}>
-      <ToggleSwitch
-        isOn={checked}
-        onColor='#FD901C'
-        offColor="#747D8C"
-        label={available.text}
-        labelStyle={styles.toggleText}
-        size='meduim'
-        onToggle={onCheckedChangeCourier}
-      />
-    </View>
-  );
   const labels = ["Crunchies Restaurant", "The Spot", "Pepper Roni", "Buyer",];
   const customStyles = {
     stepIndicatorSize: 30,
@@ -72,7 +41,7 @@ export const ActiveScreen = ({ navigation }) => {
     labelFontFamily: 'Muli'
   }
 
-  const [currentPosition, currentPositionValue] = React.useState(0);
+  const [currentPosition, currentPositionValue] = useState(0);
 
 
   const onChangeCurrentPosition = (newPosition) => {
@@ -83,11 +52,10 @@ export const ActiveScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <TopNavigation title='Active Order' style={styles.topNavigation}
-        titleStyle={styles.title} rightControls={availableToggle()} />
+      <TopNav title='Active Order' />
       <Divider />
       <ScrollView style={{ flex: 1 }}>
-        <ImageBackground source={require('../assets/grid.png')} style={{ width: Dimensions.get('window').widths, height: Dimensions.get('window').height }}>
+        <ImageBackground source={require('../assets/grid.png')} style={{ flex: 1 }}>
           <View style={{ height: Dimensions.get('window').height - 90, width: Dimensions.get('window').width + 114, alignItems: 'center' }}>
             <StepIndicator
               customStyles={customStyles}
@@ -104,36 +72,3 @@ export const ActiveScreen = ({ navigation }) => {
   )
 };
 
-
-const styles = StyleSheet.create({
-  topNavigation: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 1,
-    elevation: 3,
-    paddingVertical: 5,
-    width: Dimensions.get('window').width + 8.8,
-    flexDirection: 'row',
-
-  },
-  title: {
-    fontSize: 18,
-    fontFamily: 'Muli',
-    alignSelf: 'center',
-    color: '#FD901C',
-    fontWeight: 'bold',
-    marginLeft: 18
-  },
-  toggleText: {
-    fontSize: 14,
-    fontFamily: 'Muli',
-    color: '#828282',
-    fontWeight: 'bold',
-    right: 50,
-    position: 'absolute',
-  },
-});
