@@ -1,99 +1,49 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
+  ScrollView,
+  SafeAreaView,
   StyleSheet,
   View,
-  TouchableOpacity,
-  Dimensions,
-  ScrollView,
-  SafeAreaView
+  TouchableOpacity
 } from 'react-native';
 import {
-  Text, Avatar,
-  TopNavigation, Divider, Card,
+  Divider, Text, Avatar, Card,
 } from '@ui-kitten/components';
+import HistoryCardsScreen from '../components/historyCards';
 import IconI from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import ToggleSwitch from 'toggle-switch-react-native';
+import TopNav from '../components/topNav';
 
 export const HistoryScreen = ({ navigation }) => {
-
-  //driver status
-  const [available, setAvailable] = useState({
-    checked: true,
-    text: "Available"
-  });
-  const { checked, text } = available;
-
-  const onCheckedChangeCourier = (isChecked) => {
-    // requestAnimationFrame(() => {
-    // console.warn("isChecked", isChecked)
-    setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
-    // })
-  };
-
-
   const navigateSingleOrder = () => {
     requestAnimationFrame(() => {
+      console.log(navigation);
+
       navigation.navigate('SingleOrder');
     })
   };
-
-  const availableToggle = () => (
-    <View style={{ marginRight: 18 }}>
-      <ToggleSwitch
-        isOn={checked}
-        onColor='#FD901C'
-        offColor="#747D8C"
-        label={available.text}
-        labelStyle={styles.toggleText}
-        size='meduim'
-        onToggle={onCheckedChangeCourier}
-      />
-    </View>
-  );
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <TopNavigation title='Order History' style={styles.topNavigation}
-        titleStyle={styles.title} rightControls={availableToggle()} />
+      <TopNav title='Order History' />
       <Divider />
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ flex: 1 }}>
         <View style={{}}>
+
           <Card style={styles.orderHeadCard}>
             <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
               <View style={styles.avatar} >
-                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
+                <Avatar source={require('../assets/person.png')} />
               </View>
               <View style={styles.orderHeadContent}>
-                <View style={{ flex: 2, alignSelf: 'flex-start', }}>
-                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
-
-                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processing</Text>
-                  <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#DB463B'} />
-                </View>
-                <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
-                  <Text style={styles.date}>1 week ago</Text>
-                  <IconI style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
-
-                </View>
-              </View>
-            </TouchableOpacity>
-          </Card>
-          <Card style={styles.orderHeadCard}>
-            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
-              <View style={styles.avatar} >
-                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
-              </View>
-              <View style={styles.orderHeadContent}>
-                <View style={{ flex: 2, alignSelf: 'flex-start', }}>
+                <View style={{ flex: 2, }}>
                   <Text style={styles.clientName}>Brown Samson Dappa</Text>
 
                   <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
                   <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#5AC966'} />
                 </View>
-                <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
+                <View style={{ flex: 1, flexDirection: 'row', }}>
                   <Text style={styles.date}>1 week ago</Text>
-                  <IconI style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
+                  <IconI style={[{ color: '#747D8C', }]} name='ios-arrow-forward' size={25} />
                 </View>
               </View>
             </TouchableOpacity>
@@ -101,18 +51,18 @@ export const HistoryScreen = ({ navigation }) => {
           <Card style={styles.orderHeadCard}>
             <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
               <View style={styles.avatar} >
-                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
+                <Avatar source={require('../assets/person.png')} />
               </View>
               <View style={styles.orderHeadContent}>
-                <View style={{ flex: 2, alignSelf: 'flex-start', }}>
+                <View style={{ flex: 2, }}>
                   <Text style={styles.clientName}>Brown Samson Dappa</Text>
 
                   <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
                   <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#5AC966'} />
                 </View>
-                <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
+                <View style={{ flex: 1, flexDirection: 'row', }}>
                   <Text style={styles.date}>1 week ago</Text>
-                  <IconI style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
+                  <IconI style={[{ color: '#747D8C', }]} name='ios-arrow-forward' size={25} />
                 </View>
               </View>
             </TouchableOpacity>
@@ -120,18 +70,18 @@ export const HistoryScreen = ({ navigation }) => {
           <Card style={styles.orderHeadCard}>
             <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
               <View style={styles.avatar} >
-                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
+                <Avatar source={require('../assets/person.png')} />
               </View>
               <View style={styles.orderHeadContent}>
-                <View style={{ flex: 2, alignSelf: 'flex-start', }}>
+                <View style={{ flex: 2, }}>
                   <Text style={styles.clientName}>Brown Samson Dappa</Text>
 
                   <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
                   <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#5AC966'} />
                 </View>
-                <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
+                <View style={{ flex: 1, flexDirection: 'row', }}>
                   <Text style={styles.date}>1 week ago</Text>
-                  <IconI style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
+                  <IconI style={[{ color: '#747D8C', }]} name='ios-arrow-forward' size={25} />
                 </View>
               </View>
             </TouchableOpacity>
@@ -139,51 +89,143 @@ export const HistoryScreen = ({ navigation }) => {
           <Card style={styles.orderHeadCard}>
             <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
               <View style={styles.avatar} >
-                <Avatar style={{}} size='large' source={require('../assets/person.png')} />
+                <Avatar source={require('../assets/person.png')} />
               </View>
               <View style={styles.orderHeadContent}>
-                <View style={{ flex: 2, alignSelf: 'flex-start', }}>
+                <View style={{ flex: 2, }}>
                   <Text style={styles.clientName}>Brown Samson Dappa</Text>
 
                   <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
                   <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#5AC966'} />
                 </View>
-                <View style={{ flex: 1.1, flexDirection: 'row', alignSelf: 'center', }}>
+                <View style={{ flex: 1, flexDirection: 'row', }}>
                   <Text style={styles.date}>1 week ago</Text>
-                  <IconI style={[{ color: '#747D8C', right: 7, top: 6 }]} name='ios-arrow-forward' size={25} />
+                  <IconI style={[{ color: '#747D8C', }]} name='ios-arrow-forward' size={25} />
                 </View>
               </View>
             </TouchableOpacity>
           </Card>
+          <Card style={styles.orderHeadCard}>
+            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
+              <View style={styles.avatar} >
+                <Avatar source={require('../assets/person.png')} />
+              </View>
+              <View style={styles.orderHeadContent}>
+                <View style={{ flex: 2, }}>
+                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
+
+                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
+                  <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#5AC966'} />
+                </View>
+                <View style={{ flex: 1, flexDirection: 'row', }}>
+                  <Text style={styles.date}>1 week ago</Text>
+                  <IconI style={[{ color: '#747D8C', }]} name='ios-arrow-forward' size={25} />
+                </View>
+              </View>
+            </TouchableOpacity>
+          </Card>
+          <Card style={styles.orderHeadCard}>
+            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
+              <View style={styles.avatar} >
+                <Avatar source={require('../assets/person.png')} />
+              </View>
+              <View style={styles.orderHeadContent}>
+                <View style={{ flex: 2, }}>
+                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
+
+                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
+                  <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#5AC966'} />
+                </View>
+                <View style={{ flex: 1, flexDirection: 'row', }}>
+                  <Text style={styles.date}>1 week ago</Text>
+                  <IconI style={[{ color: '#747D8C', }]} name='ios-arrow-forward' size={25} />
+                </View>
+              </View>
+            </TouchableOpacity>
+          </Card>
+          <Card style={styles.orderHeadCard}>
+            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
+              <View style={styles.avatar} >
+                <Avatar source={require('../assets/person.png')} />
+              </View>
+              <View style={styles.orderHeadContent}>
+                <View style={{ flex: 2, }}>
+                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
+
+                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
+                  <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#5AC966'} />
+                </View>
+                <View style={{ flex: 1, flexDirection: 'row', }}>
+                  <Text style={styles.date}>1 week ago</Text>
+                  <IconI style={[{ color: '#747D8C', }]} name='ios-arrow-forward' size={25} />
+                </View>
+              </View>
+            </TouchableOpacity>
+          </Card>
+          <Card style={styles.orderHeadCard}>
+            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
+              <View style={styles.avatar} >
+                <Avatar source={require('../assets/person.png')} />
+              </View>
+              <View style={styles.orderHeadContent}>
+                <View style={{ flex: 2, }}>
+                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
+
+                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
+                  <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#5AC966'} />
+                </View>
+                <View style={{ flex: 1, flexDirection: 'row', }}>
+                  <Text style={styles.date}>1 week ago</Text>
+                  <IconI style={[{ color: '#747D8C', }]} name='ios-arrow-forward' size={25} />
+                </View>
+              </View>
+            </TouchableOpacity>
+          </Card>
+          <Card style={styles.orderHeadCard}>
+            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
+              <View style={styles.avatar} >
+                <Avatar source={require('../assets/person.png')} />
+              </View>
+              <View style={styles.orderHeadContent}>
+                <View style={{ flex: 2, }}>
+                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
+
+                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
+                  <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#5AC966'} />
+                </View>
+                <View style={{ flex: 1, flexDirection: 'row', }}>
+                  <Text style={styles.date}>1 week ago</Text>
+                  <IconI style={[{ color: '#747D8C', }]} name='ios-arrow-forward' size={25} />
+                </View>
+              </View>
+            </TouchableOpacity>
+          </Card>
+          <Card style={styles.orderHeadCard}>
+            <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder}>
+              <View style={styles.avatar} >
+                <Avatar source={require('../assets/person.png')} />
+              </View>
+              <View style={styles.orderHeadContent}>
+                <View style={{ flex: 2, }}>
+                  <Text style={styles.clientName}>Brown Samson Dappa</Text>
+
+                  <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processed</Text>
+                  <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#5AC966'} />
+                </View>
+                <View style={{ flex: 1, flexDirection: 'row', }}>
+                  <Text style={styles.date}>1 week ago</Text>
+                  <IconI style={[{ color: '#747D8C', }]} name='ios-arrow-forward' size={25} />
+                </View>
+              </View>
+            </TouchableOpacity>
+          </Card>
+
         </View>
       </ScrollView>
     </SafeAreaView >
   )
 };
-
 const styles = StyleSheet.create({
-  topNavigation: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 1,
-    elevation: 3,
-    paddingVertical: 5,
-    width: Dimensions.get('window').width + 8.8,
-    flexDirection: 'row',
-  },
-  title: {
-    fontSize: 18,
-    fontFamily: 'Muli',
-    alignSelf: 'center',
-    color: '#FD901C',
-    fontWeight: 'bold',
-    marginLeft: 18
-
-  },
   orderHeadCard: {
     margin: 0, padding: 0,
     shadowColor: "#000",
@@ -194,12 +236,17 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.37,
     shadowRadius: 2.49,
     elevation: 3,
+    // backgroundColor: 'yellow',
+    flex: 1,
+    marginBottom: -10
+    // alignItems: 'center'
 
   },
   orderHead: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: "center",
+    // alignItems: "center",
+    // backgroundColor: 'green'
   },
   avatar: {
     flex: 1,
@@ -208,14 +255,17 @@ const styles = StyleSheet.create({
   orderHeadContent: {
     flex: 4,
     flexDirection: "row",
-    alignItems: 'center'
+    alignItems: 'center',
+    // backgroundColor: 'red',
+
   },
   clientName: {
     fontSize: 16,
     fontFamily: 'Muli',
     color: '#747D8C',
     fontWeight: 'bold',
-    marginVertical: 2
+    marginTop: 2
+    // marginVertical: 2
   },
   dot: {
     fontSize: 30,
@@ -225,13 +275,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: 'Muli',
     color: '#747D8C',
-    marginVertical: 2
+    // marginVertical: 2
   },
   stopsCountNum: {
     fontSize: 12,
     fontFamily: 'Muli',
     color: '#747D8C',
-    marginTop: -2,
+    // marginTop: -2,
     fontWeight: 'bold'
   },
   date: {
@@ -241,20 +291,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     flex: 1,
     alignSelf: 'flex-start',
-    marginTop: 9,
-    left: 16
-  },
-  toggleText: {
-    fontSize: 14,
-    fontFamily: 'Muli',
-    color: '#828282',
-    fontWeight: 'bold',
-    right: 50,
-    position: 'absolute',
+    // marginTop: 9,
+    // left: 16
   },
   statusIcon: {
-    bottom: 19.5,
-    left: 123
+    bottom: 17,
+    left: 121
   },
-
-});
+})
