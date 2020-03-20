@@ -14,7 +14,7 @@ import PendingCards from '../components/pendingCards';
 export const PendingScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <TopNav />
+      <TopNav title='Pending Orders' />
       <Divider />
       <View style={{ flex: 1 }}>
         <OrderStatus />
