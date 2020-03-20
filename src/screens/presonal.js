@@ -9,25 +9,13 @@ import {
 import { moderateScale } from 'react-native-size-matters';
 import {
   Avatar, Text, Input, TopNavigationAction,
-  TopNavigation, Divider, Modal, Layout
+  Divider, Modal, Layout
 } from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/Ionicons';
-import ToggleSwitch from 'toggle-switch-react-native';
-//  icons
-const BackIcon = (style) => (
-  <Icon style={[{ color: '#515C6F' }]} name='ios-arrow-back' size={25} />
-);
+import TopNav from '../components/topNav';
 
 export const ProfileScreen = ({ navigation }) => {
-  //driver status
-  const [available, setAvailable] = useState({
-    checked: true,
-    text: "Available"
-  });
-  const { checked, text } = available;
-  const onCheckedChangeCourier = (isChecked) => {
-    setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
-  };
+
   const [Namevalue, setValueName] = React.useState('');
   const [Emailvalue, setValueEmail] = React.useState('');
   const [Mobilevalue, setValueMobile] = React.useState('');
@@ -40,21 +28,12 @@ export const ProfileScreen = ({ navigation }) => {
     })
   };
 
-  const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
+  const BackIcon = () => (
+    <Icon style={[{ color: '#515C6F', marginRight: -29, }]} name='ios-arrow-back' size={25} />
   );
-  const availableToggle = () => (
-    <View style={{ marginRight: 18 }}>
-      <ToggleSwitch
-        isOn={checked}
-        onColor='#FD901C'
-        offColor="#747D8C"
-        label={available.text}
-        labelStyle={styles.toggleText}
-        size='meduim'
-        onToggle={onCheckedChangeCourier}
-      />
-    </View>
+
+  const BackAction = () => (
+    <TopNavigationAction icon={BackIcon} onPress={navigateBack} style={[{}]} />
   );
   const [visible, setVisible] = React.useState(false);
 
@@ -98,8 +77,7 @@ export const ProfileScreen = ({ navigation }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <TopNavigation title='Personal Settings' style={styles.topNavigation}
-        titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
+      <TopNav title='Personal Settings' leftControl={BackAction()} />
       <Divider />
       <View style={{ flex: 1, flexDirection: 'column' }}>
         <View style={{ backgroundColor: '#FD901C', flex: 0.5, }}>
@@ -179,19 +157,7 @@ export const ProfileScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  topNavigation: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 1,
-    elevation: 3,
-    paddingVertical: 5,
-    width: Dimensions.get('window').width + 8.8,
-    flexDirection: 'row',
-  },
+
   modalContainer: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -209,31 +175,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 16
   },
-  title: {
-    fontSize: 18,
-    fontFamily: 'Muli',
-    alignSelf: 'center',
-    color: '#FD901C',
-    fontWeight: 'bold',
-  },
-  toggleText: {
-    fontSize: 14,
-    fontFamily: 'Muli',
-    color: '#828282',
-    fontWeight: 'bold',
-    right: 50,
-    position: 'absolute',
-  },
-  toggle: {
-    margin: 5,
-    flex: 1,
-    justifyContent: 'flex-end',
-    transform: [{
-      scaleX: moderateScale(0.8, 0.1)
-    }, {
-      scaleY: moderateScale(0.8, 0.2)
-    }]
-  },
+
   inputEmail: {
     borderRadius: 7,
     margin: 10,
