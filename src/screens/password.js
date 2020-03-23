@@ -20,43 +20,71 @@ export const PasswordScreen = ({ navigation }) => {
   const [Newvalue, setValueNew] = React.useState('');
   const [Confrimvalue, setValueConfrim] = React.useState('');
   const [visible, setVisible] = React.useState(false);
+  const toggleModalBack = () => {
+    setVisible(!visible);
+  };
   const toggleModal = () => {
     requestAnimationFrame(() => {
       setVisible(!visible)
     })
   };
   const renderModalElement = () => (
-    <Layout
-      style={styles.modalContainer}>
-      <Image style={{
-        width: 50,
-        height: 50,
-      }} source={require('../assets/success.png')} />
-      <Text style={{
-        fontSize: 18,
-        fontFamily: 'Muli',
-        alignSelf: 'center',
-        color: '#FD901C',
-        fontWeight: 'bold',
-        lineHeight: 23,
-        textAlign: 'center',
-        margin: 20
-      }}>Password Changed Successfully</Text>
-      <TouchableOpacity style={{ width: Dimensions.get('window').width - 130, borderRadius: 7, backgroundColor: '#FD901C', padding: 14, alignSelf: 'center', marginTop: 30 }} onPress={toggleModal}>
-        <Text style={{
-          fontSize: 18,
-          fontFamily: 'Muli',
-          alignSelf: 'center',
-          color: '#fff',
-          fontWeight: 'bold',
-          lineHeight: 23,
-          textAlign: 'center',
-        }}>
-          Cancel
+    <View style={{}}>
+      <Layout style={{
+        flex: 1, flexDirection: 'column', height: 290, width: Dimensions.get('window').width - 60, borderRadius: 16, shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 12,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 16,
+        elevation: 3,
+
+      }}>
+        <TouchableOpacity style={{ backgroundColor: 'white', flex: 0.6, borderRadius: 16, alignSelf: 'flex-start', width: Dimensions.get('window').width - 60, flexDirection: 'row', justifyContent: 'flex-end' }} onPress={toggleModal}>
+          <Image style={{
+            width: 20,
+            height: 20,
+            margin: 20
+          }} source={require('../assets/x.png')} />
+        </TouchableOpacity>
+        <View style={{ backgroundColor: 'white', flex: 0.6, alignSelf: 'flex-start', width: Dimensions.get('window').width - 60, flexDirection: 'row', justifyContent: 'center' }}>
+          <Image style={{
+            width: 65,
+            height: 65,
+            alignSelf: 'center'
+          }} source={require('../assets/success.png')} />
+        </View>
+        <View style={{ backgroundColor: 'white', flex: 1.5, alignSelf: 'center', width: Dimensions.get('window').width - 60, justifyContent: 'center', margin: 10 }}>
+          <Text style={{
+            fontSize: 18,
+            fontFamily: 'Muli',
+            alignSelf: 'center',
+            color: '#FD901C',
+            fontWeight: 'bold',
+            lineHeight: 23,
+            textAlign: 'center',
+            margin: 20
+          }}>Password Changed Successfully</Text>
+        </View>
+        <TouchableOpacity style={{ backgroundColor: '#FD901C', flex: 0.7, alignSelf: 'flex-end', width: Dimensions.get('window').width - 60, justifyContent: 'center', borderBottomRightRadius: 16, borderBottomLeftRadius: 16 }} onPress={toggleModal}>
+          <Text style={{
+            fontSize: 18,
+            fontFamily: 'Muli',
+            alignSelf: 'center',
+            color: '#fff',
+            fontWeight: 'bold',
+            lineHeight: 23,
+            textAlign: 'center',
+          }}>
+            Back
         </Text>
-      </TouchableOpacity>
-    </Layout>
+        </TouchableOpacity>
+      </Layout >
+    </View>
+
   );
+
   //nav
   const navigateBack = () => {
     requestAnimationFrame(() => {
@@ -117,7 +145,9 @@ export const PasswordScreen = ({ navigation }) => {
         <Layout style={styles.container}>
           <Modal visible={visible}
             animationType="slide"
-            transparent={true}>
+            onBackdropPress={toggleModalBack}
+            backdropStyle={styles.backdrop}
+            transparent={false}>
             {renderModalElement()}
           </Modal>
         </Layout>
@@ -145,6 +175,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     flex: 1,
     borderRadius: 16
+  },
+  backdrop: {
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
   },
   inputEmail: {
     margin: 10,
