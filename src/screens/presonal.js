@@ -20,33 +20,30 @@ import ImagePicker from 'react-native-image-picker';
 export const ProfileScreen = ({ navigation }) => {
 
 
-  const [order, setOrder] = useState({
+
+  const [image, setImage] = useState({
     filePath: null,
 
   });
   // // const { filePath, status } = order;
   const onChangeFilePath = (isChecked) => {
     // console.warn("isChecked", isChecked)
-    setOrder({ filePath: isChecked })
+    setImage({ filePath: isChecked })
     console.warn("hi");
 
   };
-
-
-
-
-  chooseFile = () => {
-    var options = {
-      title: 'Select Image',
-      customButtons: [
-        { name: 'customOptionKey', title: 'Choose Photo from Custom Option' },
-      ],
+  const selectPhotoTapped = () => {
+    const options = {
+      title: 'Select Avatar',
       storageOptions: {
         skipBackup: true,
         path: 'images',
       },
     };
-    ImagePicker.showImagePicker(options, response => {
+
+
+
+    ImagePicker.showImagePicker(options, (response) => {
       console.log('Response = ', response);
 
       if (response.didCancel) {
@@ -55,18 +52,18 @@ export const ProfileScreen = ({ navigation }) => {
         console.log('ImagePicker Error: ', response.error);
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
-        alert(response.customButton);
       } else {
-        let source = response;
+        const source = { uri: response.uri };
+
         // You can also display the image using data:
-        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+
         this.setState({
-          filePath: source,
+          avatarSource: source,
         });
       }
     });
-  };
-
+  }
 
   const [Namevalue, setValueName] = React.useState('');
   const [Emailvalue, setValueEmail] = React.useState('');
@@ -157,36 +154,44 @@ export const ProfileScreen = ({ navigation }) => {
     <View style={{ flex: 1 }}>
       <TopNav title='Personal Settings' leftControl={BackAction()} />
       <Divider />
-      <View style={{ flex: 1, flexDirection: 'column' }}>
-        <View style={{ backgroundColor: '#FD901C', flex: 0.5, }}>
+      <View style={{ flex: 1, }}>
+        <View style={{
+          backgroundColor: '#FD901C',
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.23,
+          shadowRadius: 2.62,
+          elevation: 4,
+          alignSelf: 'flex-start', flex: 0.5, flexDirection: 'row', justifyContent: 'center', width: Dimensions.get('window').width,
+        }}>
+
           <View style={{
-            backgroundColor: '#FD901C', paddingTop: 100, shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.23,
-            shadowRadius: 2.62,
-            elevation: 4,
+            backgroundColor: '#FD901C',
+            justifyContent: 'flex-end',
           }} >
-            <Avatar onPress={onChangeFilePath} style={{
-              transform: [{
-                scaleX: moderateScale(3, 0)
-              }, {
-                scaleY: moderateScale(3, 0)
-              }],
-              alignSelf: 'center',
-              borderColor: '#fff',
-              // borderWidth: 0.1
-              // backgroundColor: 'red',
-              // flex: 1
-            }} size='giant' source={require('../assets/pic.png')} />
-            {/* <TouchableOpacity style={{ width: 20, height: 20, backgroundColor: 'green' }} onPress={onChangeFilePath}></TouchableOpacity> */}
+            {/* <Image source={this.state.avatarSource} style={styles.uploadAvatar} /> */}
+            <TouchableOpacity style={{}} onPress={selectPhotoTapped}>
+              <Avatar style={{
+                transform: [{
+                  scaleX: moderateScale(3, 0)
+                }, {
+                  scaleY: moderateScale(3, 0)
+                }],
+                borderColor: '#fff',
+
+              }} size='giant' source={require('../assets/pic.png')} />
+
+            </TouchableOpacity>
+
 
 
 
           </View>
         </View>
+
         <View style={{ flex: 1.5, paddingTop: 100 }}>
           <Input
             value={Namevalue}
