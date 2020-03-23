@@ -33,6 +33,7 @@ export const ProfileScreen = ({ navigation }) => {
 
   };
   const selectPhotoTapped = () => {
+
     const options = {
       title: 'Select Avatar',
       storageOptions: {
@@ -64,6 +65,7 @@ export const ProfileScreen = ({ navigation }) => {
       }
     });
   }
+
 
   const [Namevalue, setValueName] = React.useState('');
   const [Emailvalue, setValueEmail] = React.useState('');
@@ -173,7 +175,7 @@ export const ProfileScreen = ({ navigation }) => {
             justifyContent: 'flex-end',
           }} >
             {/* <Image source={this.state.avatarSource} style={styles.uploadAvatar} /> */}
-            <TouchableOpacity style={{}} onPress={selectPhotoTapped}>
+            <TouchableOpacity style={{ top: 10 }} onPress={selectPhotoTapped}>
               <Avatar style={{
                 transform: [{
                   scaleX: moderateScale(3, 0)
