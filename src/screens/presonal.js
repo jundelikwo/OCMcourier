@@ -194,7 +194,7 @@ export const ProfileScreen = ({ navigation }) => {
           </View>
         </View>
 
-        <View style={{ flex: 1.5, paddingTop: 100 }}>
+        <View style={{ flex: 1.5, paddingTop: 80 }}>
           <Input
             value={Namevalue}
             placeholder='Brown Samson Dappa'
