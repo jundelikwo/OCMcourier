@@ -4,7 +4,7 @@ import {
   View,
   Dimensions,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import {
@@ -17,9 +17,8 @@ import ImagePicker from 'react-native-image-picker';
 
 
 
-
-
 export const ProfileScreen = ({ navigation }) => {
+
 
   const [order, setOrder] = useState({
     filePath: null,
@@ -32,6 +31,8 @@ export const ProfileScreen = ({ navigation }) => {
     console.warn("hi");
 
   };
+
+
 
 
   chooseFile = () => {
@@ -87,84 +88,69 @@ export const ProfileScreen = ({ navigation }) => {
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} style={[{}]} />
   );
   const [visible, setVisible] = React.useState(false);
-
+  const toggleModalBack = () => {
+    setVisible(!visible);
+  };
   const toggleModal = () => {
     requestAnimationFrame(() => {
       setVisible(!visible)
     })
   };
-  // <TouchableOpacity style={{ padding: 14, backgroundColor: '#FD901C', }} onPress={toggleModal}>
-  //   {/* <Icon style={[{ color: '#fff', top: 20 }]} name='ios-arrow-back' size={25} /> */}
-  //   <Text style={{
-  //     fontSize: 18,
-  //     fontFamily: 'Muli',
-  //     // alignSelf: 'center',
-  //     color: '#fff',
-  //     fontWeight: 'bold',
-  //     lineHeight: 23,
-  //     // textAlign: 'center',
-  //     // padding: 5
-  //     // marginBottom: 10
-  //     // bottom: -10
-
-  //   }}>
-
-  //     Back
-
-  //         </Text>
-  // </TouchableOpacity>
   const renderModalElement = () => (
-    <Layout style={{
-      flex: 1, flexDirection: 'column', height: 290, width: Dimensions.get('window').width - 60, borderRadius: 16, shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 12,
-      },
-      shadowOpacity: 0.3,
-      shadowRadius: 16,
-      elevation: 3,
+    <View style={{}}>
+      <Layout style={{
+        flex: 1, flexDirection: 'column', height: 290, width: Dimensions.get('window').width - 60, borderRadius: 16, shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 12,
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 16,
+        elevation: 3,
 
-    }}>
-      <TouchableOpacity style={{ backgroundColor: 'white', flex: 0.6, borderRadius: 16, alignSelf: 'flex-start', width: Dimensions.get('window').width - 60, flexDirection: 'row', justifyContent: 'flex-end' }} onPress={toggleModal}>
-        <Image style={{
-          width: 20,
-          height: 20,
-          margin: 20
-        }} source={require('../assets/x.png')} />
-      </TouchableOpacity>
-      <View style={{ backgroundColor: 'white', flex: 0.6, alignSelf: 'flex-start', width: Dimensions.get('window').width - 60, flexDirection: 'row', justifyContent: 'center' }}>
-        <Image style={{
-          width: 65,
-          height: 65,
-          alignSelf: 'center'
-        }} source={require('../assets/success.png')} />
-      </View>
-      <View style={{ backgroundColor: 'white', flex: 1.5, alignSelf: 'center', width: Dimensions.get('window').width - 60, justifyContent: 'center', margin: 10 }}>
-        <Text style={{
-          fontSize: 18,
-          fontFamily: 'Muli',
-          alignSelf: 'center',
-          color: '#FD901C',
-          fontWeight: 'bold',
-          lineHeight: 23,
-          textAlign: 'center',
-          margin: 20
-        }}>Account Settings Updated</Text>
-      </View>
-      <TouchableOpacity style={{ backgroundColor: '#FD901C', flex: 0.7, alignSelf: 'flex-end', width: Dimensions.get('window').width - 60, justifyContent: 'center', borderBottomRightRadius: 16, borderBottomLeftRadius: 16 }} onPress={toggleModal}>
-        <Text style={{
-          fontSize: 18,
-          fontFamily: 'Muli',
-          alignSelf: 'center',
-          color: '#fff',
-          fontWeight: 'bold',
-          lineHeight: 23,
-          textAlign: 'center',
-        }}>
-          Back
+      }}>
+        <TouchableOpacity style={{ backgroundColor: 'white', flex: 0.6, borderRadius: 16, alignSelf: 'flex-start', width: Dimensions.get('window').width - 60, flexDirection: 'row', justifyContent: 'flex-end' }} onPress={toggleModal}>
+          <Image style={{
+            width: 20,
+            height: 20,
+            margin: 20
+          }} source={require('../assets/x.png')} />
+        </TouchableOpacity>
+        <View style={{ backgroundColor: 'white', flex: 0.6, alignSelf: 'flex-start', width: Dimensions.get('window').width - 60, flexDirection: 'row', justifyContent: 'center' }}>
+          <Image style={{
+            width: 65,
+            height: 65,
+            alignSelf: 'center'
+          }} source={require('../assets/success.png')} />
+        </View>
+        <View style={{ backgroundColor: 'white', flex: 1.5, alignSelf: 'center', width: Dimensions.get('window').width - 60, justifyContent: 'center', margin: 10 }}>
+          <Text style={{
+            fontSize: 18,
+            fontFamily: 'Muli',
+            alignSelf: 'center',
+            color: '#FD901C',
+            fontWeight: 'bold',
+            lineHeight: 23,
+            textAlign: 'center',
+            margin: 20
+          }}>Account Settings Updated</Text>
+        </View>
+        <TouchableOpacity style={{ backgroundColor: '#FD901C', flex: 0.7, alignSelf: 'flex-end', width: Dimensions.get('window').width - 60, justifyContent: 'center', borderBottomRightRadius: 16, borderBottomLeftRadius: 16 }} onPress={toggleModal}>
+          <Text style={{
+            fontSize: 18,
+            fontFamily: 'Muli',
+            alignSelf: 'center',
+            color: '#fff',
+            fontWeight: 'bold',
+            lineHeight: 23,
+            textAlign: 'center',
+          }}>
+            Back
         </Text>
-      </TouchableOpacity>
-    </Layout >
+        </TouchableOpacity>
+      </Layout >
+    </View>
+
   );
 
   return (
@@ -185,9 +171,9 @@ export const ProfileScreen = ({ navigation }) => {
           }} >
             <Avatar onPress={onChangeFilePath} style={{
               transform: [{
-                scaleX: moderateScale(2, 5)
+                scaleX: moderateScale(3, 0)
               }, {
-                scaleY: moderateScale(2, 5)
+                scaleY: moderateScale(3, 0)
               }],
               alignSelf: 'center',
               borderColor: '#fff',
@@ -195,7 +181,7 @@ export const ProfileScreen = ({ navigation }) => {
               // backgroundColor: 'red',
               // flex: 1
             }} size='giant' source={require('../assets/pic.png')} />
-            <TouchableOpacity style={{ width: 20, height: 20, backgroundColor: 'green' }} onPress={onChangeFilePath}></TouchableOpacity>
+            {/* <TouchableOpacity style={{ width: 20, height: 20, backgroundColor: 'green' }} onPress={onChangeFilePath}></TouchableOpacity> */}
 
 
 
@@ -238,7 +224,9 @@ export const ProfileScreen = ({ navigation }) => {
           <Layout style={styles.container}>
             <Modal visible={visible}
               animationType="slide"
-              transparent={true}>
+              onBackdropPress={toggleModalBack}
+              backdropStyle={styles.backdrop}
+              transparent={false}>
               {renderModalElement()}
             </Modal>
           </Layout>
@@ -257,8 +245,6 @@ export const ProfileScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
 
   modalContainer: {
-    // justifyContent: 'center',
-    // alignItems: 'center',
     width: Dimensions.get('window').width - 90,
     padding: 16,
     shadowColor: "#000",
@@ -274,7 +260,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
 
   },
-
+  backdrop: {
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+  },
   inputEmail: {
     borderRadius: 7,
     margin: 10,
