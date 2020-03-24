@@ -5,6 +5,7 @@ import {
   Dimensions,
   Image,
   TouchableOpacity,
+  Alert
 } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import {
@@ -21,21 +22,12 @@ export const ProfileScreen = ({ navigation }) => {
 
 
 
-  const [image, setImage] = useState({
-    filePath: null,
+  let [photo, setPhoto] = useState('https://res.cloudinary.com/ogcodes/image/upload/v1585058144/pic.png');
 
-  });
-  // // const { filePath, status } = order;
-  const onChangeFilePath = (isChecked) => {
-    // console.warn("isChecked", isChecked)
-    setImage({ filePath: isChecked })
-    console.warn("hi");
-
-  };
   const selectPhotoTapped = () => {
 
     const options = {
-      title: 'Select Avatar',
+      title: 'Select Photo',
       storageOptions: {
         skipBackup: true,
         path: 'images',
@@ -45,31 +37,52 @@ export const ProfileScreen = ({ navigation }) => {
 
 
     ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
+      // console.log('Response = ', response);
 
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
       } else {
-        const source = { uri: response.uri };
+        // const source = { uri: response.uri };
 
         // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+        // const source = { uri: 'data:image/jpeg;base64, ' + response.data };
 
-        this.setState({
-          avatarSource: source,
-        });
+        const source = {
+          uri: response.uri,
+          type: response.type,
+          name: response.fileName,
+          // type: `image/${response.uri.split(".")[1]}`,
+          // name: `image.${response.uri.split(".")[1]}`,
+        }
+        // console.log(source)
+        // setPhoto({ source })
+        handleUpload(source)
       }
     });
   }
+  const handleUpload = (photo) => {
+    const data = new FormData()
+    data.append('file', photo)
+    data.append('upload_preset', 'i4hpnx9j')
+    data.append("cloud_name", "ogcodes")
+
+    fetch("https://api.cloudinary.com/v1_1/ogcodes/upload", {
+      method: "post",
+      body: data
+    }).then(res => res.json()).
+      then(data => {
+        setPhoto(data.secure_url)
+      }).catch(err => {
+        Alert.alert("An Error Occured while uploading")
+      })
+  }
 
 
-  const [Namevalue, setValueName] = React.useState('');
-  const [Emailvalue, setValueEmail] = React.useState('');
-  const [Mobilevalue, setValueMobile] = React.useState('');
+  const [Namevalue, setValueName] = useState('');
+  const [Emailvalue, setValueEmail] = useState('');
+  const [Mobilevalue, setValueMobile] = useState('');
 
 
   //nav
@@ -86,7 +99,7 @@ export const ProfileScreen = ({ navigation }) => {
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} style={[{}]} />
   );
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = useState(false);
   const toggleModalBack = () => {
     setVisible(!visible);
   };
@@ -184,7 +197,7 @@ export const ProfileScreen = ({ navigation }) => {
                 }],
                 borderColor: '#fff',
 
-              }} size='giant' source={require('../assets/pic.png')} />
+              }} size='giant' source={{ uri: photo }} />
 
             </TouchableOpacity>
 
