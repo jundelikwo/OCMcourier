@@ -16,75 +16,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import TopNav from '../components/topNav';
 import ImagePicker from 'react-native-image-picker';
 
-
-
 export const ProfileScreen = ({ navigation }) => {
-
-
-
-  let [photo, setPhoto] = useState('https://res.cloudinary.com/ogcodes/image/upload/v1585058144/pic.png');
-
-  const selectPhotoTapped = () => {
-
-    const options = {
-      title: 'Select Photo',
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
-    };
-
-
-
-    ImagePicker.showImagePicker(options, (response) => {
-      // console.log('Response = ', response);
-
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else {
-        // const source = { uri: response.uri };
-
-        // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64, ' + response.data };
-
-        const source = {
-          uri: response.uri,
-          type: response.type,
-          name: response.fileName,
-          // type: `image/${response.uri.split(".")[1]}`,
-          // name: `image.${response.uri.split(".")[1]}`,
-        }
-        // console.log(source)
-        // setPhoto({ source })
-        handleUpload(source)
-      }
-    });
-  }
-  const handleUpload = (photo) => {
-    const data = new FormData()
-    data.append('file', photo)
-    data.append('upload_preset', 'i4hpnx9j')
-    data.append("cloud_name", "ogcodes")
-
-    fetch("https://api.cloudinary.com/v1_1/ogcodes/upload", {
-      method: "post",
-      body: data
-    }).then(res => res.json()).
-      then(data => {
-        setPhoto(data.secure_url)
-      }).catch(err => {
-        Alert.alert("An Error Occured while uploading")
-      })
-  }
-
-
-  const [Namevalue, setValueName] = useState('');
-  const [Emailvalue, setValueEmail] = useState('');
-  const [Mobilevalue, setValueMobile] = useState('');
-
-
   //nav
   const navigateBack = () => {
     requestAnimationFrame(() => {
@@ -97,11 +29,61 @@ export const ProfileScreen = ({ navigation }) => {
   );
 
   const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack} style={[{}]} />
+    <TopNavigationAction icon={BackIcon} onPress={navigateBack} style={[{ padding: 5 }]} />
   );
+
+  const [photo, setPhoto] = useState('https://res.cloudinary.com/ogcodes/image/upload/v1585058144/pic.png');
+  const [Namevalue, setValueName] = useState('');
+  const [Emailvalue, setValueEmail] = useState('');
+  const [Mobilevalue, setValueMobile] = useState('');
+  const selectPhotoTapped = () => {
+
+    const options = {
+      title: 'Select Photo',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+    ImagePicker.showImagePicker(options, (response) => {
+      // console.log('Response = ', response);
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else {
+        // You can also display the image using data:
+        // const source = { uri: 'data:image/jpeg;base64, ' + response.data };
+        const source = {
+          uri: response.uri,
+          type: response.type,
+          name: response.fileName,
+        }
+        handleUpload(source)
+      }
+    });
+  }
+  const handleUpload = (photo) => {
+    const data = new FormData()
+    data.append('file', photo)
+    data.append('upload_preset', 'i4hpnx9j')
+    data.append("cloud_name", "ogcodes")
+    fetch("https://api.cloudinary.com/v1_1/ogcodes/upload", {
+      method: "post",
+      body: data
+    }).then(res => res.json()).
+      then(data => {
+        setPhoto(data.secure_url)
+      }).catch(err => {
+        Alert.alert("An Error Occured while uploading")
+      })
+  }
+
   const [visible, setVisible] = useState(false);
   const toggleModalBack = () => {
-    setVisible(!visible);
+    requestAnimationFrame(() => {
+      setVisible(!visible);
+    })
   };
   const toggleModal = () => {
     requestAnimationFrame(() => {
@@ -119,7 +101,6 @@ export const ProfileScreen = ({ navigation }) => {
         shadowOpacity: 0.3,
         shadowRadius: 16,
         elevation: 3,
-
       }}>
         <TouchableOpacity style={{ backgroundColor: 'white', flex: 0.6, borderRadius: 16, alignSelf: 'flex-start', width: Dimensions.get('window').width - 60, flexDirection: 'row', justifyContent: 'flex-end' }} onPress={toggleModal}>
           <Image style={{
@@ -147,7 +128,8 @@ export const ProfileScreen = ({ navigation }) => {
             margin: 20
           }}>Account Settings Updated</Text>
         </View>
-        <TouchableOpacity style={{ backgroundColor: '#FD901C', flex: 0.7, alignSelf: 'flex-end', width: Dimensions.get('window').width - 60, justifyContent: 'center', borderBottomRightRadius: 16, borderBottomLeftRadius: 16 }} onPress={toggleModal}>
+        <TouchableOpacity style={{ backgroundColor: '#FD901C', flex: 0.7, alignSelf: 'flex-end', width: Dimensions.get('window').width - 60, justifyContent: 'center', borderBottomRightRadius: 16, borderBottomLeftRadius: 16 }}
+          onPress={navigateBack}>
           <Text style={{
             fontSize: 18,
             fontFamily: 'Muli',
@@ -162,7 +144,6 @@ export const ProfileScreen = ({ navigation }) => {
         </TouchableOpacity>
       </Layout >
     </View>
-
   );
 
   return (
@@ -182,12 +163,10 @@ export const ProfileScreen = ({ navigation }) => {
           elevation: 4,
           alignSelf: 'flex-start', flex: 0.5, flexDirection: 'row', justifyContent: 'center', width: Dimensions.get('window').width,
         }}>
-
           <View style={{
             backgroundColor: '#FD901C',
             justifyContent: 'flex-end',
           }} >
-            {/* <Image source={this.state.avatarSource} style={styles.uploadAvatar} /> */}
             <TouchableOpacity style={{ top: 10 }} onPress={selectPhotoTapped}>
               <Avatar style={{
                 transform: [{
@@ -196,17 +175,10 @@ export const ProfileScreen = ({ navigation }) => {
                   scaleY: moderateScale(3, 0)
                 }],
                 borderColor: '#fff',
-
               }} size='giant' source={{ uri: photo }} />
-
             </TouchableOpacity>
-
-
-
-
           </View>
         </View>
-
         <View style={{ flex: 1.5, paddingTop: 80 }}>
           <Input
             value={Namevalue}
@@ -252,34 +224,12 @@ export const ProfileScreen = ({ navigation }) => {
           </Layout>
           <TouchableOpacity onPress={toggleModal} style={styles.button} ><Text style={styles.buttonText}>Update</Text></TouchableOpacity>
         </View>
-
       </View>
-
-
     </View >
-
   )
-
 };
 
 const styles = StyleSheet.create({
-
-  modalContainer: {
-    width: Dimensions.get('window').width - 90,
-    padding: 16,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 12,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 16,
-    elevation: 3,
-    flexDirection: 'column',
-    flex: 1,
-    borderRadius: 16,
-
-  },
   backdrop: {
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
   },
