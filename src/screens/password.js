@@ -16,12 +16,28 @@ import TopNav from '../components/topNav';
 
 export const PasswordScreen = ({ navigation }) => {
 
-  const [Oldvalue, setValueOld] = React.useState('');
-  const [Newvalue, setValueNew] = React.useState('');
-  const [Confrimvalue, setValueConfrim] = React.useState('');
-  const [visible, setVisible] = React.useState(false);
+  //nav
+  const navigateBack = () => {
+    requestAnimationFrame(() => {
+      navigation.goBack();
+    })
+  };
+  const BackIcon = () => (
+    <Icon style={[{ color: '#515C6F', marginRight: -29, }]} name='ios-arrow-back' size={25} />
+  );
+
+  const BackAction = () => (
+    <TopNavigationAction icon={BackIcon} onPress={navigateBack} style={[{ padding: 3 }]} />
+  );
+
+  const [Oldvalue, setValueOld] = useState('');
+  const [Newvalue, setValueNew] = useState('');
+  const [Confrimvalue, setValueConfrim] = useState('');
+  const [visible, setVisible] = useState(false);
   const toggleModalBack = () => {
-    setVisible(!visible);
+    requestAnimationFrame(() => {
+      setVisible(!visible);
+    })
   };
   const toggleModal = () => {
     requestAnimationFrame(() => {
@@ -67,7 +83,8 @@ export const PasswordScreen = ({ navigation }) => {
             margin: 20
           }}>Password Changed Successfully</Text>
         </View>
-        <TouchableOpacity style={{ backgroundColor: '#FD901C', flex: 0.7, alignSelf: 'flex-end', width: Dimensions.get('window').width - 60, justifyContent: 'center', borderBottomRightRadius: 16, borderBottomLeftRadius: 16 }} onPress={toggleModal}>
+        <TouchableOpacity style={{ backgroundColor: '#FD901C', flex: 0.7, alignSelf: 'flex-end', width: Dimensions.get('window').width - 60, justifyContent: 'center', borderBottomRightRadius: 16, borderBottomLeftRadius: 16 }}
+          onPress={navigateBack}>
           <Text style={{
             fontSize: 18,
             fontFamily: 'Muli',
@@ -85,19 +102,7 @@ export const PasswordScreen = ({ navigation }) => {
 
   );
 
-  //nav
-  const navigateBack = () => {
-    requestAnimationFrame(() => {
-      navigation.goBack();
-    })
-  };
-  const BackIcon = () => (
-    <Icon style={[{ color: '#515C6F', marginRight: -29, }]} name='ios-arrow-back' size={25} />
-  );
 
-  const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack} style={[{}]} />
-  );
 
   return (
     <View style={{ flex: 1 }}>
