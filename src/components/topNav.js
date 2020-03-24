@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Muli',
     color: '#828282',
     fontWeight: 'bold',
+    marginRight: 5
   },
   toggle: {
     margin: 5,
