@@ -75,7 +75,7 @@ export const ProfileScreen = ({ navigation }) => {
       then(data => {
         setPhoto(data.secure_url)
       }).catch(err => {
-        Alert.alert("An Error Occured while uploading")
+        Alert.alert("An Error Occured While Uploading")
       })
   }
 
