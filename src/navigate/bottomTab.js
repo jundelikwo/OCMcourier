@@ -1,7 +1,7 @@
 import { createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import React from 'react'
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import IconF from 'react-native-vector-icons/FontAwesome5';
 //screens
 import { AccountScreen } from '../screens/account';
@@ -20,6 +20,7 @@ const Tab = createMaterialBottomTabNavigator(
           <View>
             <IconF style={[{ color: tintColor }]} size={20} name={'stream'} />
           </View>),
+
       },
     },
     History: {
@@ -70,7 +71,7 @@ const Tab = createMaterialBottomTabNavigator(
     inactiveColor: "#8B95A6",
     barStyle: { backgroundColor: '#fff', paddingVertical: 3 },
     labelStyle: { fontSize: 12, },
-    // shifting: true,
+    shifting: true,
     labeled: true,
     useLayoutAnimation: true,
     backBehavior: 'history',

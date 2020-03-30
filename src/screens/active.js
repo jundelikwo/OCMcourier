@@ -4,13 +4,18 @@ import {
   Dimensions,
   ScrollView,
   ImageBackground,
-  SafeAreaView
+  SafeAreaView,
+  Text
 } from 'react-native';
 import {
   Divider,
 } from '@ui-kitten/components';
-import StepIndicator from 'react-native-step-indicator';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import TopNav from '../components/topNav';
+import StepIndicatorRight from '../components/stepIndicatorRight';
+import StepIndicatorLeft from '../components/stepIndicatorLeft';
+import UserLeft from '../components/stepUserLeft';
+import UserRight from '../components/stepUserRight';
 
 export const ActiveScreen = ({ navigation }) => {
 
@@ -48,7 +53,23 @@ export const ActiveScreen = ({ navigation }) => {
     currentPositionValue(newPosition)
   };
 
-
+  const data = {
+    0: {
+      'title': 'MAMA G',
+      'status': 'Picked Up',
+      'distance': '0.3km'
+    },
+    1: {
+      'title': 'MAMA G',
+      'status': 'Picked Up',
+      'distance': '0.3km'
+    },
+    2: {
+      'title': 'MAMA G',
+      'status': 'Picked Up',
+      'distance': '0.3km'
+    }
+  }
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -56,16 +77,40 @@ export const ActiveScreen = ({ navigation }) => {
       <Divider />
       <ScrollView style={{ flex: 1 }}>
         <ImageBackground source={require('../assets/grid.png')} style={{ flex: 1 }}>
-          <View style={{ height: Dimensions.get('window').height - 90, width: Dimensions.get('window').width + 114, alignItems: 'center' }}>
-            <StepIndicator
-              customStyles={customStyles}
-              direction='vertical'
-              currentPosition={currentPosition}
-              labels={labels}
-              stepCount={4}
-              onPress={onChangeCurrentPosition}
-            />
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', margin: 50, }}>
+            {/* <View style={{
+              // // // paddingLeft: 10,
+              // height: 300,
+              // // // marginBottom: 10,
+              // // borderStyle: 'dotted',
+              // // borderRadius: -1,
+              // borderWidth: 2,
+              // borderColor: 'red',
+              // // borderTopColor: 'red',
+              // // borderEndColor: 'green'
+              // borderStyle: 'dotted',
+              // borderRadius: 1,
+              margin: 30,
+              borderStyle: 'dotted',
+              borderWidth: 1,
+              borderRadius: 1,
+              borderColor: 'red',
+              width: 1, height: 50,
+            }}>
+            </View> */}
+
+            {/* <View style={{ height: 0.9, width: '100%', borderRadius: 1, borderWidth: 1, borderColor: 'red', borderStyle: 'dotted', zIndex: 0, }}>
+              <View style={{ position: 'absolute', left: 0, bottom: 0, width: '100%', height: 1, backgroundColor: 'white', zIndex: 1 }} />
+            </View> */}
+            <StepIndicatorRight distance='0.3km 2min' title='Crunchies Restaurant' status='Picked Up' />
+            <StepIndicatorLeft distance='0.3km 2min' title='The Spot' status='Processed' />
+            <UserRight title='Buyer' status='Waiting' />
+
+
+
           </View>
+
+
         </ImageBackground>
       </ScrollView>
     </SafeAreaView >
