@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 import {
   View,
-  Dimensions,
-  ScrollView,
-  ImageBackground,
-  SafeAreaView,
   Text
 } from 'react-native';
 
@@ -13,13 +9,11 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 export default UserRightBox = ({ title, status }) => {
   return (
     <View style={{ backgroundColor: 'transparent', left: 83, bottom: 18 }}>
-
       <View style={{
         width: 100,
         height: 60,
         backgroundColor: '#dcd6f7',
         borderRadius: 10,
-
       }} />
       <Text style={{
         position: 'absolute',
@@ -29,26 +23,23 @@ export default UserRightBox = ({ title, status }) => {
         left: 17,
         top: 5,
         color: '#515C6F',
-        // backgroundColor: 'green',
         width: 70,
         fontWeight: 'bold',
-        // padding: 10
         height: 34.5
-
-      }}>{title}</Text>
+      }}>
+        {title}
+      </Text>
       <Text style={{
         position: 'absolute',
-
         zIndex: 2,
         fontSize: 11,
         left: 17,
         top: 40,
         color: '#515C6F',
-        // backgroundColor: 'red',
         width: 50,
-
-
-      }}>{status}</Text>
+      }}>
+        {status}
+      </Text>
       <Icon name='ello' style={{ left: 59, bottom: 16 }} size={8} color={'#FD901C'} />
       <View style={{
         position: 'absolute',
