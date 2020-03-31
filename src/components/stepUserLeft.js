@@ -2,13 +2,7 @@ import React, { useState } from 'react'
 import {
   View,
   Dimensions,
-  ScrollView,
-  ImageBackground,
-  TouchableOpacity,
-  Text
 } from 'react-native';
-
-import Icon from 'react-native-vector-icons/FontAwesome5';
 import UserLeftBox from './userLeftBox';
 
 export default UserLeft = ({ title, status }) => {
@@ -47,12 +41,9 @@ export default UserLeft = ({ title, status }) => {
           bottom: 5,
           alignSelf: 'flex-end'
         }}>
-
         </View>
-
       </View>
       <UserLeftBox title={title} status={status} />
-
     </View>
   )
 };
