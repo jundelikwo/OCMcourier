@@ -23,12 +23,12 @@ export const ActiveScreen = ({ navigation }) => {
     },
     {
       'title': 'The Spot',
-      'status': 'Picked Up',
+      'status': 'Processed',
       'distance': '1.3km 2min'
     },
     {
       'title': 'Pepper Roni',
-      'status': 'Processed',
+      'status': 'Picked Up',
       'distance': '0.3km 1min'
     },
     {
