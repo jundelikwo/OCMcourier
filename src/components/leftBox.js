@@ -1,10 +1,6 @@
 import React, { useState } from 'react'
 import {
   View,
-  Dimensions,
-  ScrollView,
-  ImageBackground,
-  SafeAreaView,
   Text
 } from 'react-native';
 
@@ -19,7 +15,6 @@ export default LeftBox = ({ title, status }) => {
         height: 60,
         backgroundColor: '#dcd6f7',
         borderRadius: 10,
-
       }} />
       <Text style={{
         position: 'absolute',
@@ -31,13 +26,9 @@ export default LeftBox = ({ title, status }) => {
         color: '#515C6F',
         width: 70,
         fontWeight: 'bold'
-        // backgroundColor: 'green',
-        // padding: 10
-
       }}>{title}</Text>
       <Text style={{
         position: 'absolute',
-
         zIndex: 20,
         fontSize: 11,
         left: 17,
@@ -45,12 +36,8 @@ export default LeftBox = ({ title, status }) => {
         color: '#515C6F',
         width: 60,
         height: 34.5,
-
-        // backgroundColor: 'red',
-
-
       }}>{status}</Text>
-      {/* <Icon name='ello' style={{ alignSelf: 'flex-end', left: 45, bottom: 16 }} size={8} color={'#FD901C'} /> */}
+      <Icon name='ello' style={{ position: 'absolute', left: 72, bottom: 7 }} size={8} color={'#FD901C'} />
       <View style={{
         position: 'absolute',
         left: 88,
@@ -64,8 +51,6 @@ export default LeftBox = ({ title, status }) => {
         borderBottomWidth: 13,
         borderBottomColor: 'transparent'
       }} />
-
     </View>
-
   )
 };
