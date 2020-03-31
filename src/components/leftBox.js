@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default LeftBox = ({ title, status }) => {
   return (
-    <View style={{ backgroundColor: 'transparent', right: 119, bottom: 12 }}>
+    <View style={{ position: 'absolute', backgroundColor: 'transparent', right: 55, bottom: -10 }}>
 
       <View style={{
         width: 100,
@@ -50,7 +50,7 @@ export default LeftBox = ({ title, status }) => {
 
 
       }}>{status}</Text>
-      <Icon name='ello' style={{ alignSelf: 'flex-end', left: 45, bottom: 16 }} size={8} color={'#FD901C'} />
+      {/* <Icon name='ello' style={{ alignSelf: 'flex-end', left: 45, bottom: 16 }} size={8} color={'#FD901C'} /> */}
       <View style={{
         position: 'absolute',
         left: 88,

@@ -62,10 +62,10 @@ export const DirectionScreen = ({ navigation }) => {
             longitude: LONGITUDE,
             latitudeDelta: LATITUDE_DELTA,
             longitudeDelta: LONGITUDE_DELTA,
-            time: TIME,
-            bearing: BEARING,
-            speed: SPEED,
-            accuracy: ACCURACY
+            // time: TIME,
+            // bearing: BEARING,
+            // speed: SPEED,
+            // accuracy: ACCURACY
           }}
           customMapStyle={mapStyle}
           // mapType={'hybrid'}

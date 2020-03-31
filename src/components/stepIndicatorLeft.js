@@ -10,11 +10,15 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import LeftBox from './leftBox';
+import RightBox from './rightBox';
+import UserLeft from './stepUserLeft';
+import UserRight from './stepUserRight';
 
-export default StepIndicatorRight = ({ distance, title, status }) => {
+
+export default StepIndicatorRight = ({ distance, title, status, order, index }) => {
   return (
 
-    <View style={{ height: 200, width: Dimensions.get('window').width - 40, alignSelf: 'center', justifyContent: 'center', flexDirection: 'row' }}>
+    <View key={index} style={{ height: 200, width: Dimensions.get('window').width - 40, alignSelf: 'center', justifyContent: 'center', flexDirection: 'row' }}>
 
       <TouchableOpacity style={{
         position: 'absolute',
@@ -25,7 +29,11 @@ export default StepIndicatorRight = ({ distance, title, status }) => {
         borderRadius: 100,
         // top: -55
       }}>
-        <LeftBox title={title} status={status} />
+
+        {index % 2 == 0 ? (<RightBox title={order.title} status={order.status} />) : (<LeftBox title={order.title} status={order.status} />)}
+
+
+
       </TouchableOpacity>
 
 
@@ -45,7 +53,7 @@ export default StepIndicatorRight = ({ distance, title, status }) => {
           color: '#717A89', fontSize: 12, position: 'absolute', top: 100, left: 10,
           // backgroundColor: 'red',
           width: 40
-        }}>{distance}</Text>
+        }}>{order.distance}</Text>
 
       </View>
 

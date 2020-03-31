@@ -46,30 +46,34 @@ export const ActiveScreen = ({ navigation }) => {
     labelFontFamily: 'Muli'
   }
 
-  const [currentPosition, currentPositionValue] = useState(0);
+  // const [currentPosition, currentPositionValue] = useState(0);
 
-
-  const onChangeCurrentPosition = (newPosition) => {
-    currentPositionValue(newPosition)
-  };
-
-  const data = {
-    0: {
-      'title': 'MAMA G',
+  const [orders, setOrders] = useState([
+    {
+      'title': 'MAMA A',
       'status': 'Picked Up',
       'distance': '0.3km'
     },
-    1: {
-      'title': 'MAMA G',
+    {
+      'title': 'MAMA B',
       'status': 'Picked Up',
       'distance': '0.3km'
     },
-    2: {
-      'title': 'MAMA G',
+    {
+      'title': 'MAMA C',
+      'status': 'Picked Up',
+      'distance': '0.3km'
+    },
+    {
+      'title': 'MAMA D',
       'status': 'Picked Up',
       'distance': '0.3km'
     }
-  }
+  ]);
+
+
+  const lastIndexOfOrder = orders.length - 1;
+
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -102,9 +106,25 @@ export const ActiveScreen = ({ navigation }) => {
             {/* <View style={{ height: 0.9, width: '100%', borderRadius: 1, borderWidth: 1, borderColor: 'red', borderStyle: 'dotted', zIndex: 0, }}>
               <View style={{ position: 'absolute', left: 0, bottom: 0, width: '100%', height: 1, backgroundColor: 'white', zIndex: 1 }} />
             </View> */}
-            <StepIndicatorRight distance='0.3km 2min' title='Crunchies Restaurant' status='Picked Up' />
-            <StepIndicatorLeft distance='0.3km 2min' title='The Spot' status='Processed' />
-            <UserRight title='Buyer' status='Waiting' />
+            {/* {display} */}
+
+            {/* {orders.map(key => {
+              return (
+                <Text key={key.title}>Helflo</Text>
+
+              )
+            })} */}
+            {
+              orders.map((order, i) => {
+                return (
+                  <StepIndicatorLeft distance='0.3km 2min' title='Crunchies Restaurant' status='Picked Up' order={order} index={i} key={i} />
+                )
+              })
+            }
+
+            {/* <StepIndicatorLeft distance='0.3km 2min' title='The Spot' status='Processed' /> */}
+            {lastIndexOfOrder % 2 == 0 ? (<UserLeft title='Buyer' status='Waiting' />) : (<UserRight title='Buyer' status='Waiting' />)}
+
 
 
 

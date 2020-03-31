@@ -12,7 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default RightBox = ({ title, status }) => {
   return (
-    <View style={{ backgroundColor: 'transparent', left: 64, bottom: 13.5 }}>
+    <View style={{ position: 'absolute', backgroundColor: 'transparent', left: 55, bottom: -10 }}>
 
       <View style={{
         width: 100,
@@ -49,7 +49,7 @@ export default RightBox = ({ title, status }) => {
 
 
       }}>{status}</Text>
-      <Icon name='ello' style={{ position: 'relative', alignSelf: 'flex-end', left: 33, bottom: 16 }} size={8} color={'#5AC966'} />
+      {/* <Icon name='ello' style={{ position: 'relative', alignSelf: 'flex-end', left: 33, bottom: 16 }} size={8} color={'#5AC966'} /> */}
       <View style={{
         position: 'absolute',
         left: -15,
