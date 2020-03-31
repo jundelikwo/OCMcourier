@@ -45,7 +45,7 @@ export default RightBox = ({ title, status }) => {
         top: 40,
         color: '#515C6F',
         // backgroundColor: 'red',
-        width: 50,
+        width: 60,
 
 
       }}>{status}</Text>
