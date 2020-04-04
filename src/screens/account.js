@@ -20,7 +20,7 @@ export const AccountScreen = ({ navigation }) => {
   //nav
   const navigatePassword = () => {
     requestAnimationFrame(() => {
-      console.log(navigation)
+      // console.log(navigation)
       navigation.navigate('Password');
     })
   };

@@ -17,7 +17,7 @@ import TopNav from '../components/topNav';
 export const HistoryScreen = ({ navigation }) => {
   const navigateSingleOrder = () => {
     requestAnimationFrame(() => {
-      console.log(navigation);
+      // console.log(navigation);
 
       navigation.navigate('SingleOrder');
     })
