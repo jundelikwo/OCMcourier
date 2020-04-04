@@ -50,7 +50,7 @@ export const ActiveScreen = ({ navigation }) => {
             {
               orders.map((order, i) => {
                 return (
-                  <StepIndicator order={order} index={i} key={i} />
+                  <StepIndicator navigation={navigation} order={order} index={i} key={i} />
                 )
               })
             }
