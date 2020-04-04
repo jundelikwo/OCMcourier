@@ -34,7 +34,7 @@ export default StepIndicator = ({ order, index }) => {
         borderStyle: 'dotted', borderRadius: 1,
       }}>
         <Text style={{
-          color: '#717A89', fontSize: 12, position: 'absolute', top: 100, left: 10,
+          color: '#717A89', fontSize: 12, position: 'absolute', top: 100, left: index % 2 == 0 ? 10 : -45,
           width: 40
         }}>{order.distance}</Text>
 
