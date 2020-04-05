@@ -8,20 +8,16 @@ import {
   Image
 } from 'react-native';
 import {
-  Layout, Modal,
+  Layout, Modal, Divider
 } from '@ui-kitten/components';
-
+import Icon from 'react-native-vector-icons/Entypo'
+import IconF from 'react-native-vector-icons/FontAwesome5';
 import LeftBox from './leftBox';
 import RightBox from './rightBox';
 import ModalStatus from './modalStatus';
 
 
-export default StepIndicator = ({ order, index, navigation }) => {
-  const navigateBack = () => {
-    requestAnimationFrame(() => {
-      navigation.goBack();
-    })
-  };
+export default StepIndicator = ({ order, index, navigation, isChecked, }) => {
   const navigateDirection = () => {
     requestAnimationFrame(() => {
       navigation.navigate('Direction');
@@ -37,6 +33,7 @@ export default StepIndicator = ({ order, index, navigation }) => {
     requestAnimationFrame(() => {
       setVisible(!visible)
     })
+    // console.log(order)
   };
 
 
@@ -44,37 +41,158 @@ export default StepIndicator = ({ order, index, navigation }) => {
   const renderModalElement = () => (
     <View style={{}}>
       <Layout style={{
-        flex: 1, flexDirection: 'column', height: 290, width: Dimensions.get('window').width - 60, borderRadius: 16, shadowColor: "#000",
+        flex: 1, flexDirection: 'column', height: 400, width: Dimensions.get('window').width - 60, borderRadius: 16, shadowColor: "#000",
         shadowOffset: {
           width: 0,
           height: 12,
         },
         shadowOpacity: 0.3,
         shadowRadius: 16,
-        elevation: 3,
+        elevation: 5,
 
       }}>
-        <TouchableOpacity style={{ backgroundColor: 'white', flex: 0.6, borderRadius: 16, alignSelf: 'flex-start', width: Dimensions.get('window').width - 60, flexDirection: 'row', justifyContent: 'flex-end' }} onPress={toggleModal}>
+        <TouchableOpacity style={{
+          backgroundColor: 'transparent', flex: 0.5, borderRadius: 16, alignSelf: 'flex-end',
+          flexDirection: 'row',
+        }} onPress={toggleModal}>
           <Image style={{
             width: 20,
             height: 20,
             margin: 20
           }} source={require('../assets/x.png')} />
         </TouchableOpacity>
-        <View style={{ backgroundColor: 'white', flex: 0.6, alignSelf: 'flex-start', width: Dimensions.get('window').width - 60, flexDirection: 'row', justifyContent: 'center' }}>
-          <Image style={{
-            width: 65,
-            height: 65,
-            alignSelf: 'center'
-          }} source={require('../assets/success.png')} />
-        </View>
-        <View style={{ backgroundColor: 'white', flex: 1.5, alignSelf: 'center', width: Dimensions.get('window').width - 60, justifyContent: 'center', margin: 10 }}>
-
-          <ModalStatus />
+        <View style={{
+          backgroundColor: 'transparent', flex: 0.3, alignSelf: 'flex-start', width: Dimensions.get('window').width - 60,
+          flexDirection: 'row', justifyContent: 'flex-end',
+        }}>
+          <ModalStatus isChecked={isChecked} />
 
         </View>
-        <TouchableOpacity style={{ backgroundColor: '#FD901C', flex: 0.7, alignSelf: 'flex-end', width: Dimensions.get('window').width - 60, justifyContent: 'center', borderBottomRightRadius: 16, borderBottomLeftRadius: 16 }}
+        <View style={{
+          backgroundColor: 'transparent', flex: 0.5, alignSelf: 'center', width: Dimensions.get('window').width - 90,
+          justifyContent: 'center',
+        }}>
+          <Text style={{
+            fontSize: 15,
+            fontFamily: 'Muli',
+            color: '#828282',
+            fontWeight: 'normal',
+            // marginBottom: 6
+            bottom: 12
+          }}>
+            Stop 1
+          </Text>
+          <Text style={{
+            fontSize: 18,
+            fontFamily: 'Muli',
+            color: '#515C6F',
+            fontWeight: 'bold',
+            fontStyle: 'normal'
+          }}>
+            Pepper Roni
+          </Text>
+          <Text style={{
+            fontSize: 15,
+            fontFamily: 'Muli',
+            color: '#747D8C',
+            fontWeight: 'bold',
+            marginTop: -5
+          }}>10mins<Text style={{
+            fontSize: 30,
+            color: '#747D8C',
+          }}> .</Text> 1.3km <Text style={{
+            fontSize: 15,
+            fontFamily: 'Muli',
+            color: '#747D8C',
+          }}>
+              <Text style={{
+                fontSize: 30,
+                color: '#747D8C',
+              }}>. </Text >
+              Picked Up </Text>
+          </Text>
+          <IconF style={{ bottom: 17.5, marginLeft: 210, }} name='ello' size={10} color={'#5AC966'} />
+
+
+        </View>
+        <Divider style={{
+          padding: 0.5,
+          backgroundColor: '#b8bcc4',
+          width: Dimensions.get('window').width - 90,
+          alignSelf: 'center',
+          margin: 15
+        }} />
+        <View style={{
+          backgroundColor: 'transparent', flex: 0.6, alignSelf: 'center', width: Dimensions.get('window').width - 90,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+
+        }}>
+
+          <Text style={{
+            fontSize: 15,
+            fontFamily: 'Muli',
+            color: '#747D8C',
+            fontWeight: 'bold',
+            fontStyle: 'normal',
+            flex: 1,
+          }}>Address:</Text>
+          <Text style={{
+            fontSize: 15,
+            fontFamily: 'Muli',
+            color: '#747D8C',
+            fontStyle: 'normal',
+            flex: 1.4,
+            textAlign: 'left',
+            lineHeight: 16
+          }}>
+            6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
+            </Text>
+
+        </View>
+        <Divider style={{
+          padding: 0.5,
+          backgroundColor: '#b8bcc4',
+          width: Dimensions.get('window').width - 90,
+          alignSelf: 'center',
+          margin: 15
+        }} />
+        <View style={{
+          backgroundColor: 'transparent', flex: 0.4, alignSelf: 'center', width: Dimensions.get('window').width - 90,
+          // justifyContent: 'center',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          // marginVertical: 6
+        }}>
+          <Text style={{
+            fontSize: 15,
+            fontFamily: 'Muli',
+            color: '#747D8C',
+            fontWeight: 'bold',
+            fontStyle: 'normal',
+            flex: 1,
+          }}>Phone:</Text>
+          <Text style={{
+            fontSize: 15,
+            fontFamily: 'Muli',
+            color: '#747D8C',
+            fontStyle: 'normal',
+            flex: 1.4,
+            textAlign: 'left',
+            lineHeight: 16
+          }}>
+            +234 817 496 9237
+            </Text>
+
+
+        </View>
+        <TouchableOpacity style={{
+          backgroundColor: '#FD901C', flex: 0.5, alignSelf: 'flex-end', width: Dimensions.get('window').width - 60,
+          justifyContent: 'center', borderBottomRightRadius: 16, borderBottomLeftRadius: 16,
+          flexDirection: 'row'
+        }}
           onPress={navigateDirection} >
+          <Icon name='direction' style={{ margin: 10 }} size={35} color={'#fff'} />
           <Text style={{
             fontSize: 18,
             fontFamily: 'Muli',
@@ -84,14 +202,14 @@ export default StepIndicator = ({ order, index, navigation }) => {
             lineHeight: 23,
             textAlign: 'center',
           }}>
-            Back
+            Get Directions
         </Text>
         </TouchableOpacity>
       </Layout >
     </View>
 
   );
-
+  const orderState = order.status ? 'Picked Up' : 'Processed'
   return (
 
     <View key={index} style={{ height: 200, width: Dimensions.get('window').width - 40, alignSelf: 'center', justifyContent: 'center', flexDirection: 'row' }}>
@@ -105,7 +223,8 @@ export default StepIndicator = ({ order, index, navigation }) => {
         borderRadius: 100,
 
       }} onPress={toggleModal}>
-        {index % 2 == 0 ? (<RightBox title={order.title} status={order.status} />) : (<LeftBox title={order.title} status={order.status} />)}
+
+        {index % 2 == 0 ? (<RightBox title={order.title} statusText={orderState} status={order.status} />) : (<LeftBox title={order.title} statusText={orderState} status={order.status} />)}
       </TouchableOpacity>
       <View style={{
         height: 200, width: 80, alignSelf: 'center'

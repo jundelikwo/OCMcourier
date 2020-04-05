@@ -6,20 +6,20 @@ import {
 import ToggleSwitch from 'toggle-switch-react-native';
 
 
-export default ModalStatus = ({ isChecked, navigation }) => {
+export default ModalStatus = ({ isChecked }) => {
 
 
   const [transitStatus, setTransitStatus] = useState({
     transit: false,
-    status: "Not Active"
+    status: "In-Transit"
   });
   const { transit, status } = transitStatus;
   const onCheckedChangeOrder = (isChecked) => {
-    setTransitStatus({ ...transitStatus, status: status == 'In-Transit' ? "Processed" : "In-Transit", transit: isChecked })
+    setTransitStatus({ ...transitStatus, status: status == 'Picked Up' ? "In-Transit" : "Picked Up", transit: isChecked })
   };
 
   return (
-    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+    <View style={{ justifyContent: 'center', alignItems: 'center', margin: 20, }}>
       <ToggleSwitch
         isOn={transit}
         onColor='#FD901C'
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   toggleStatusText: {
     fontSize: 14,
     fontFamily: 'Muli',
-    color: '#828282',
+    color: '#747D8C',
     fontWeight: 'bold',
   },
 })
