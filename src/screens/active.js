@@ -18,23 +18,28 @@ export const ActiveScreen = ({ navigation }) => {
   const [orders, setOrders] = useState([
     {
       'title': 'Crunchies Restaurant',
-      'status': 'Picked Up',
-      'distance': '1.3km 2min'
+      'status': true,
+      'distance': '1.3km 2min',
+      'address': '15 Harcourt Street, Calabar',
+
     },
     {
       'title': 'The Spot',
-      'status': 'Processed',
-      'distance': '1.3km 2min'
+      'status': false,
+      'distance': '1.3km 2min',
+      'address': '36 Abasi Edem Street, Calabar'
     },
     {
       'title': 'Pepper Roni',
-      'status': 'Picked Up',
-      'distance': '0.3km 1min'
+      'status': false,
+      'distance': '0.3km 1min',
+      'address': '10 State Housing, Calabar'
     },
     {
       'title': 'Happy Food',
-      'status': 'Processed',
-      'distance': '9.3km 5min'
+      'status': false,
+      'distance': '9.3km 5min',
+      'address': ' 6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.'
     }
   ]);
 
