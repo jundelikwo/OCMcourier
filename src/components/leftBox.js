@@ -7,8 +7,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default LeftBox = ({ title, statusText, status }) => {
-  // console.log(statusText, 'left')
-  const statusColor = status ? '#5AC966' : '#FD901C'
+
   return (
     <View style={{ position: 'absolute', backgroundColor: 'transparent', right: 55, bottom: -10 }}>
 
@@ -40,7 +39,10 @@ export default LeftBox = ({ title, statusText, status }) => {
         height: 34.5,
       }}>{statusText}</Text>
 
-      <Icon name='ello' style={{ position: 'absolute', left: 72, bottom: 7 }} size={8} color={statusColor} />
+      {
+        status ? <Icon style={{ position: 'absolute', alignSelf: 'flex-end', left: 68, bottom: 7 }} name='ello' size={8} color={'#5AC966'} /> :
+          <Icon style={{ position: 'absolute', alignSelf: 'flex-end', left: 72, bottom: 7 }} name='ello' size={8} color={'#FD901C'} />}
+
       <View style={{
         position: 'absolute',
         left: 88,

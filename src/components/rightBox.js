@@ -37,8 +37,8 @@ export default RightBox = ({ title, statusText, status }) => {
         width: 60,
       }}>{statusText}</Text>
       {
-        status ? <Icon style={{ position: 'absolute', alignSelf: 'flex-end', left: 68, bottom: 7 }} name='ello' size={10} color={'#5AC966'} /> :
-          <Icon style={{ position: 'absolute', alignSelf: 'flex-end', left: 72, bottom: 7 }} name='ello' size={10} color={'#FD901C'} />}
+        status ? <Icon style={{ position: 'absolute', alignSelf: 'flex-end', left: 68, bottom: 7 }} name='ello' size={8} color={'#5AC966'} /> :
+          <Icon style={{ position: 'absolute', alignSelf: 'flex-end', left: 72, bottom: 7 }} name='ello' size={8} color={'#FD901C'} />}
 
       <View style={{
         position: 'absolute',
