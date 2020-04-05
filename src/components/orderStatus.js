@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   statusIcon: {
     bottom: 16.6,
     left: 125,
-    color: '#DB463B'
+    color: '#FD901C'
   },
   stopsCountNum: {
     fontSize: 12,
