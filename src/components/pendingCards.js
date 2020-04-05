@@ -49,7 +49,7 @@ export default PendingCards = () => {
         <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
           <Text style={styles.dot}>.</Text> Processing </Text>
         </Text>
-        <Icon style={[styles.statusStopIcon]} name='ello' size={10} color={'#DB463B'} />
+        <Icon style={[styles.statusStopIcon]} name='ello' size={10} color={'#FD901C'} />
         <Divider style={styles.divider} />
         <View style={styles.addrPhone}>
           <Text style={styles.address}>Address:</Text>
