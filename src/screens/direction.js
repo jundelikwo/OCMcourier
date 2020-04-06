@@ -31,10 +31,10 @@ GetLocation.getCurrentPosition({
   .then(coords => {
     LATITUDE = coords.latitude;
     LONGITUDE = coords.longitude;
-    TIME = coords.time;
-    BEARING = coords.bearing;
-    SPEED = coords.speed;
-    ACCURACY = coords.accuracy;
+    // TIME = coords.time;
+    // BEARING = coords.bearing;
+    // SPEED = coords.speed;
+    // ACCURACY = coords.accuracy;
 
   })
   .catch(error => {

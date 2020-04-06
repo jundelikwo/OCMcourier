@@ -6,17 +6,22 @@ import {
 import ToggleSwitch from 'toggle-switch-react-native';
 
 
-export default ModalStatus = ({ isChecked }) => {
+export default ModalStatus = ({ modalStatus, order }) => {
 
 
   const [transitStatus, setTransitStatus] = useState({
-    transit: false,
-    status: "In-Transit"
+    transit: order.status,
+    status: "In-Transit",
+
   });
   const { transit, status } = transitStatus;
+
   const onCheckedChangeOrder = (isChecked) => {
-    setTransitStatus({ ...transitStatus, status: status == 'Picked Up' ? "In-Transit" : "Picked Up", transit: isChecked })
+    setTransitStatus({ ...transitStatus, status: status == 'Picked Up' ? "In-Transit" : "Picked Up", transit: isChecked, })
+
   };
+  order.status = transitStatus.transit;
+  console.log(order, 'yy')
 
   return (
     <View style={{ justifyContent: 'center', alignItems: 'center', margin: 20, }}>

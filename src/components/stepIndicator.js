@@ -17,7 +17,7 @@ import RightBox from './rightBox';
 import ModalStatus from './modalStatus';
 
 
-export default StepIndicator = ({ order, index, navigation, isChecked, }) => {
+export default StepIndicator = ({ order, index, navigation, status, modalStatus }) => {
   const navigateDirection = () => {
     requestAnimationFrame(() => {
       navigation.navigate('Direction');
@@ -33,12 +33,12 @@ export default StepIndicator = ({ order, index, navigation, isChecked, }) => {
     requestAnimationFrame(() => {
       setVisible(!visible)
     })
-    // console.log(order)
+    // console.log(isChecked, "hh")
   };
 
-
-
+  const orderState = order.status ? 'Picked Up' : 'Processed'
   const renderModalElement = () => (
+
     <View style={{}}>
       <Layout style={{
         flex: 1, flexDirection: 'column', height: 400, width: Dimensions.get('window').width - 60, borderRadius: 16, shadowColor: "#000",
@@ -65,7 +65,8 @@ export default StepIndicator = ({ order, index, navigation, isChecked, }) => {
           backgroundColor: 'transparent', flex: 0.3, alignSelf: 'flex-start', width: Dimensions.get('window').width - 60,
           flexDirection: 'row', justifyContent: 'flex-end',
         }}>
-          <ModalStatus isChecked={isChecked} />
+          <ModalStatus modalStatus={order.status} order={order} />
+          {console.log(order.status)}
 
         </View>
         <View style={{
@@ -80,7 +81,7 @@ export default StepIndicator = ({ order, index, navigation, isChecked, }) => {
             // marginBottom: 6
             bottom: 12
           }}>
-            Stop 1
+            Stop {order.orderCount}
           </Text>
           <Text style={{
             fontSize: 18,
@@ -89,7 +90,7 @@ export default StepIndicator = ({ order, index, navigation, isChecked, }) => {
             fontWeight: 'bold',
             fontStyle: 'normal'
           }}>
-            Pepper Roni
+            {order.title}
           </Text>
           <Text style={{
             fontSize: 15,
@@ -97,21 +98,25 @@ export default StepIndicator = ({ order, index, navigation, isChecked, }) => {
             color: '#747D8C',
             fontWeight: 'bold',
             marginTop: -5
-          }}>10mins<Text style={{
-            fontSize: 30,
-            color: '#747D8C',
-          }}> .</Text> 1.3km <Text style={{
-            fontSize: 15,
-            fontFamily: 'Muli',
-            color: '#747D8C',
           }}>
+            {order.time}
+            <Text style={{
+              fontSize: 30,
+              color: '#747D8C',
+            }}>.</Text>
+            {order.distance}
+            <Text style={{
+              fontSize: 15,
+              fontFamily: 'Muli',
+              color: '#747D8C',
+            }}>
               <Text style={{
                 fontSize: 30,
                 color: '#747D8C',
               }}>. </Text >
-              Picked Up </Text>
+              {orderState} </Text>
           </Text>
-          <IconF style={{ bottom: 17.5, marginLeft: 210, }} name='ello' size={10} color={'#5AC966'} />
+          {order.status ? <IconF style={{ bottom: 19, left: 190, }} name='ello' size={10} color={'#5AC966'} /> : <IconF style={{ bottom: 19, left: 209, }} name='ello' size={10} color={'#FD901C'} />}
 
 
         </View>
@@ -143,11 +148,10 @@ export default StepIndicator = ({ order, index, navigation, isChecked, }) => {
             color: '#747D8C',
             fontStyle: 'normal',
             flex: 1.4,
-            textAlign: 'left',
-            lineHeight: 16
+            textAlign: 'left'
           }}>
-            6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
-            </Text>
+            {order.address}
+          </Text>
 
         </View>
         <Divider style={{
@@ -178,11 +182,10 @@ export default StepIndicator = ({ order, index, navigation, isChecked, }) => {
             color: '#747D8C',
             fontStyle: 'normal',
             flex: 1.4,
-            textAlign: 'left',
-            lineHeight: 16
+            textAlign: 'left'
           }}>
-            +234 817 496 9237
-            </Text>
+            {order.phone}
+          </Text>
 
 
         </View>
@@ -209,20 +212,28 @@ export default StepIndicator = ({ order, index, navigation, isChecked, }) => {
     </View>
 
   );
-  const orderState = order.status ? 'Picked Up' : 'Processed'
+  const nonActiveBall = {
+    position: 'absolute',
+    height: 30,
+    width: 30,
+    backgroundColor: '#C1C1C1',
+    zIndex: 10,
+    borderRadius: 100,
+  }
+  const activeBall = {
+    position: 'absolute',
+    height: 40,
+    width: 40,
+    backgroundColor: '#FD901C',
+    zIndex: 10,
+    borderRadius: 100,
+  }
+  const ballStyle = order.status ? activeBall : nonActiveBall
   return (
 
     <View key={index} style={{ height: 200, width: Dimensions.get('window').width - 40, alignSelf: 'center', justifyContent: 'center', flexDirection: 'row' }}>
 
-      <TouchableOpacity style={{
-        position: 'absolute',
-        height: 30,
-        width: 30,
-        backgroundColor: '#C1C1C1',
-        zIndex: 10,
-        borderRadius: 100,
-
-      }} onPress={toggleModal}>
+      <TouchableOpacity style={ballStyle} onPress={toggleModal}>
 
         {index % 2 == 0 ? (<RightBox title={order.title} statusText={orderState} status={order.status} />) : (<LeftBox title={order.title} statusText={orderState} status={order.status} />)}
       </TouchableOpacity>
@@ -232,13 +243,13 @@ export default StepIndicator = ({ order, index, navigation, isChecked, }) => {
 
       </View>
       <View style={{
-        height: 200, width: 80, alignSelf: 'center', borderLeftWidth: 2, borderLeftColor: '#C1C1C1',
+        height: 200, width: 80, alignSelf: 'center', borderLeftWidth: 2, borderLeftColor: order.status ? '#FD901C' : '#C1C1C1',
         borderStyle: 'dotted', borderRadius: 1,
       }}>
         <Text style={{
-          color: '#717A89', fontSize: 12, position: 'absolute', top: 100, left: index % 2 == 0 ? 10 : -45,
-          width: 40
-        }}>{order.distance}</Text>
+          color: '#717A89', fontSize: 12, position: 'absolute', top: 100, left: index % 2 == 0 ? 10 : -50,
+          width: 42
+        }}>{order.time}{order.distance}</Text>
 
       </View>
       <Modal visible={visible}
@@ -249,7 +260,7 @@ export default StepIndicator = ({ order, index, navigation, isChecked, }) => {
         {renderModalElement()}
       </Modal>
 
-    </View>
+    </View >
 
   )
 };
@@ -257,5 +268,6 @@ const styles = StyleSheet.create({
   backdrop: {
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
   },
+
 
 })
