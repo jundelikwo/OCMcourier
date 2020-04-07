@@ -7,10 +7,9 @@ import {
   Text, Avatar, Card,
 } from '@ui-kitten/components';
 import ToggleSwitch from 'toggle-switch-react-native';
-
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-export default OrderStatus = () => {
+export default OrderStatus = ({ overviewOrder }) => {
   //order status
   const [order, setOrder] = useState({
     active: false,
@@ -21,7 +20,7 @@ export default OrderStatus = () => {
     // console.warn("isChecked", isChecked)
     setOrder({ ...order, status: status == 'Active' ? "Not Active" : "Active", active: isChecked })
   };
-
+  const orderState = overviewOrder.status ? 'Processed' : 'Processing'
   return (
     <Card style={styles.orderHeadCard}>
       <View style={styles.orderHead}>
@@ -30,15 +29,24 @@ export default OrderStatus = () => {
         </View>
         <View style={styles.orderHeadContent}>
           <View style={{ flex: 2 }}>
-            <Text style={styles.clientName}>Brown Samson Dappa</Text>
-            <Text style={styles.timeToKilo}>20mins<Text style={styles.dot}> .</Text> 2.6km</Text>
-            <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Processing</Text>
+            <Text style={styles.clientName}>{overviewOrder.title}</Text>
+            <Text style={styles.timeToKilo}>{overviewOrder.totalTime}<Text style={styles.dot}> .</Text> 2.6km</Text>
+            <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>{overviewOrder.stops} <Text style={styles.dot}>.</Text></Text> {orderState}</Text>
 
-            <Icon style={[styles.statusIcon]} name='ello' size={10} />
+            {/* <Icon style={[styles.statusIcon]} name='ello' size={10} /> */}
+            {overviewOrder.status ? <Icon style={{
+              bottom: 17.5,
+              left: 120,
+              // color: '#FD901C'
+            }} name='ello' size={10} color={'#5AC966'} /> : <Icon style={{
+              bottom: 16.6,
+              left: 123,
+              // color: '#FD901C'
+            }} name='ello' size={10} color={'#FD901C'} />}
+
           </View>
           <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'space-evenly', bottom: 11 }}>
-            <Text style={styles.time}>2 mins ago</Text>
-
+            <Text style={styles.time}>{overviewOrder.time} ago</Text>
             <ToggleSwitch
               isOn={active}
               onColor='#FD901C'
@@ -79,7 +87,8 @@ const styles = StyleSheet.create({
   },
   avatar: {
     flex: 1,
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
+    // alignSelf: 'center',
   },
   orderHeadContent: {
     flex: 4,
@@ -91,6 +100,8 @@ const styles = StyleSheet.create({
     fontFamily: 'Muli',
     color: '#FD901C',
     fontWeight: 'bold',
+    width: 195,
+    height: 20
   },
   timeToKilo: {
     fontSize: 12,

@@ -22,7 +22,18 @@ export const PendingScreen = ({ navigation }) => {
       'phone': '+2348177024847'
     }
   );
-
+  const [overviewOrder, setoverviewOrder] = useState(
+    {
+      'title': 'Godswill Effiong Okokon',
+      'status': true,
+      'distance': '6.2km',
+      'totalTime': '42mins',
+      'address': '15 Harcourt Street, Calabar.',
+      'phone': '+2348177024847',
+      'stops': '4',
+      'time': '2 mins'
+    }
+  )
   const [orders, setOrders] = useState([
     {
       'orderCount': 1,
@@ -67,7 +78,7 @@ export const PendingScreen = ({ navigation }) => {
       <TopNav title='Pending Orders' />
       <Divider />
       <View style={{ flex: 1 }}>
-        <OrderStatus />
+        <OrderStatus overviewOrder={overviewOrder} />
         <ScrollView >
           {
             orders.map((order, i) => {

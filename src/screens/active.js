@@ -20,7 +20,7 @@ export const ActiveScreen = ({ navigation }) => {
       'orderCount': 1,
       'title': 'Crunchies Restaurant',
       'status': true,
-      'distance': '1km ',
+      'distance': '1km',
       'time': '05mins',
       'address': '15 Harcourt Street, Calabar.',
       'phone': '+23409256345'
