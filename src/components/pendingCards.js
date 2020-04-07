@@ -8,112 +8,34 @@ import {
 } from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-export default PendingCards = () => {
+export default PendingCards = ({ order, index, navigation }) => {
+  const orderState = order.status ? 'Picked Up' : 'Processed'
   return (
     <View>
       <Card style={styles.card} >
         <Text style={styles.stopsCountText}>
-          Stop 1
-          </Text>
-        <Text style={styles.restaurantName}>
-          Crunchies Restaurant
-          </Text>
-        <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
-          <Text style={styles.dot}>.</Text> Processed</Text>
+          Stop {order.orderCount}
         </Text>
-
-        <Icon style={[styles.statusStopIcon]} name='ello' size={10} color={'#5AC966'} />
-        <Divider style={styles.divider} />
-        <View style={styles.addrPhone}>
-          <Text style={styles.address}>Address:</Text>
-          <Text style={styles.addressContent}>
-            6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
-            </Text>
-        </View>
-        <Divider style={styles.divider} />
-        <View style={styles.addrPhone}>
-          <Text style={styles.address}>Phone:</Text>
-          <Text style={styles.addressContent}>
-            +234 817 496 9237
-            </Text>
-        </View>
-      </Card>
-
-      <Card style={styles.card} >
-        <Text style={styles.stopsCountText}>
-          Stop 2
-          </Text>
         <Text style={styles.restaurantName}>
-          The Spot
-          </Text>
-        <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
-          <Text style={styles.dot}>.</Text> Processing </Text>
+          {order.title}
         </Text>
-        <Icon style={[styles.statusStopIcon]} name='ello' size={10} color={'#FD901C'} />
-        <Divider style={styles.divider} />
-        <View style={styles.addrPhone}>
-          <Text style={styles.address}>Address:</Text>
-          <Text style={styles.addressContent}>
-            6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
-            </Text>
-        </View>
-        <Divider style={styles.divider} />
-        <View style={styles.addrPhone}>
-          <Text style={styles.address}>Phone:</Text>
-          <Text style={styles.addressContent}>
-            +234 817 496 9237
-            </Text>
-        </View>
-      </Card>
-
-
-      <Card style={styles.card} >
-        <Text style={styles.stopsCountText}>
-          Stop 3
-          </Text>
-        <Text style={styles.restaurantName}>
-          Pepper Roni
-          </Text>
-        <Text style={styles.timeToKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
-          <Text style={styles.dot}>.</Text> Processed </Text>
+        <Text style={styles.timeToKilo}>{order.time}<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
+          <Text style={styles.dot}>.</Text> {orderState}</Text>
         </Text>
-        <Icon style={[styles.statusStopIcon]} name='ello' size={10} color={'#5AC966'} />
+        {order.status ? <Icon style={{ bottom: 17.5, left: 165, }} name='ello' size={10} color={'#5AC966'} /> : <Icon style={{ bottom: 17.5, left: 168, }} name='ello' size={10} color={'#FD901C'} />}
         <Divider style={styles.divider} />
         <View style={styles.addrPhone}>
           <Text style={styles.address}>Address:</Text>
           <Text style={styles.addressContent}>
-            6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
-            </Text>
+            {order.address}
+          </Text>
         </View>
         <Divider style={styles.divider} />
         <View style={styles.addrPhone}>
           <Text style={styles.address}>Phone:</Text>
           <Text style={styles.addressContent}>
-            +234 817 496 9237
-            </Text>
-        </View>
-      </Card>
-      <Card style={styles.card} >
-        <Text style={styles.stopsCountText}>
-          Deliver to
+            {order.phone}
           </Text>
-        <Text style={styles.restaurantName}>
-          Brown Samson Dappa
-          </Text>
-        <Text style={styles.timeToKilo}>1.3km</Text>
-        <Divider style={styles.divider} />
-        <View style={styles.addrPhone}>
-          <Text style={styles.address}>Address:</Text>
-          <Text style={styles.addressContent}>
-            6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
-            </Text>
-        </View>
-        <Divider style={styles.divider} />
-        <View style={styles.addrPhone}>
-          <Text style={styles.address}>Phone:</Text>
-          <Text style={styles.addressContent}>
-            +234 817 496 9237
-            </Text>
         </View>
       </Card>
     </View>
