@@ -66,7 +66,7 @@ export const DirectionScreen = ({ navigation }) => {
       <Divider />
       <View style={{ flex: 1 }}>
         {/* {console.log("LATITUDE :", LATITUDE, "LONGITUDE :", LONGITUDE, "LATITUDE_DELTA", LATITUDE_DELTA, "LONGITUDE_DELTA", LONGITUDE_DELTA)} */}
-        {console.log(LATITUDE)}
+        {/* {console.log(LATITUDE)} */}
         {LATITUDE ?
           <MapView
             provider={PROVIDER_GOOGLE}
@@ -100,8 +100,10 @@ export const DirectionScreen = ({ navigation }) => {
             isAccessibilityElement={true}
             showsBuildings={true}
             loadingEnabled={true}
+            loadingIndicatorColor={'#FD901C'}
+
           />
-          : <View style={{ flex: 1, justifyContent: 'center' }}><Text style={{ alignSelf: 'center', fontSize: 15 }}>Check Internet Connection</Text></View>}
+          : <View style={{ flex: 1, justifyContent: 'center' }}><Text style={{ alignSelf: 'center', fontSize: 20 }}>Check Internet Connection</Text></View>}
       </View>
     </SafeAreaView >
   )
