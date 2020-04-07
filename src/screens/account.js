@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import {
   StyleSheet,
   View,
-  Dimensions,
   ScrollView,
   TouchableOpacity,
   SafeAreaView
@@ -20,7 +19,6 @@ export const AccountScreen = ({ navigation }) => {
   //nav
   const navigatePassword = () => {
     requestAnimationFrame(() => {
-      // console.log(navigation)
       navigation.navigate('Password');
     })
   };

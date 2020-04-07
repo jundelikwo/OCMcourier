@@ -9,7 +9,7 @@ import {
 import {
   Divider, Text, Avatar, Card,
 } from '@ui-kitten/components';
-import HistoryCardsScreen from '../components/historyCards';
+
 import IconI from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import TopNav from '../components/topNav';
@@ -17,8 +17,6 @@ import TopNav from '../components/topNav';
 export const HistoryScreen = ({ navigation }) => {
   const navigateSingleOrder = () => {
     requestAnimationFrame(() => {
-      // console.log(navigation);
-
       navigation.navigate('SingleOrder');
     })
   };

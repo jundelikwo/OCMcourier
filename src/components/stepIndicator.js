@@ -66,7 +66,7 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
           flexDirection: 'row', justifyContent: 'flex-end',
         }}>
           <ModalStatus modalStatus={order.status} order={order} />
-          {console.log(order.status)}
+          {/* {console.log(order.status)} */}
 
         </View>
         <View style={{
