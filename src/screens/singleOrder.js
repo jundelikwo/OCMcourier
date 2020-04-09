@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   StyleSheet,
   View,
@@ -12,23 +12,8 @@ import {
 import TopNav from '../components/topNav';
 import IconI from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import ToggleSwitch from 'toggle-switch-react-native';
-
 
 export const SingleOrderScreen = ({ navigation }) => {
-  //driver status
-  const [available, setAvailable] = useState({
-    checked: true,
-    text: "Available"
-  });
-  const { checked, text } = available;
-
-  const onCheckedChangeCourier = (isChecked) => {
-    // requestAnimationFrame(() => {
-    // console.warn("isChecked", isChecked)
-    setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
-    // })
-  };
 
   //nav
   const navigateBack = () => {
@@ -44,25 +29,8 @@ export const SingleOrderScreen = ({ navigation }) => {
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} style={[{ padding: 5 }]} />
   );
 
-
-
-  const availableToggle = () => (
-    <View style={{ marginRight: 18 }}>
-      <ToggleSwitch
-        isOn={checked}
-        onColor='#FD901C'
-        offColor="#747D8C"
-        label={available.text}
-        labelStyle={styles.toggleText}
-        size='meduim'
-        onToggle={onCheckedChangeCourier}
-      />
-    </View>
-  );
-
   return (
     <View style={{ flex: 1 }}>
-
       <TopNav title='Order History' leftControl={BackAction()} />
       <Divider />
       <Card style={styles.orderHeadCard}>
