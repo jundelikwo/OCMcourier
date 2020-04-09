@@ -23,7 +23,6 @@ export default HistoryOverview = ({ navigation, order }) => {
   return (
     <Card style={styles.orderHeadCard}>
       <TouchableOpacity style={styles.orderHead} onPress={navigateSingleOrder} >
-        {/* {console.log(order.details)} */}
         <View style={styles.avatar} >
           <Avatar source={require('../assets/person.png')} />
         </View>
