@@ -102,7 +102,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 2.49,
     elevation: 0,
-    marginVertical: 5
+    marginVertical: 5,
+    // backgroundColor: 'transparent'
   },
   cardHead: {
     flex: 1,
