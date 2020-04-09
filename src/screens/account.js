@@ -13,9 +13,7 @@ import {
 import TopNav from '../components/topNav';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-
 export const AccountScreen = ({ navigation }) => {
-
   //nav
   const navigatePassword = () => {
     requestAnimationFrame(() => {
@@ -28,23 +26,17 @@ export const AccountScreen = ({ navigation }) => {
     })
   };
 
-
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
-
-
       <TopNav title='Account Settings' />
       <Divider />
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ flex: 1 }}>
         <View style={{ marginTop: 5 }}>
           <Card style={styles.headCard}>
             <TouchableOpacity style={styles.cardHead} onPressIn={navigatePassword}>
-
               <View style={styles.orderHeadContent}>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
                   <Text style={styles.cardTitle}>Change Password </Text>
-
                 </View>
                 <View style={{ flex: 1, }}>
                   <Icon
@@ -54,18 +46,15 @@ export const AccountScreen = ({ navigation }) => {
                     fill='#747D8C'
                     style={{ alignSelf: 'flex-end' }}
                   />
-
                 </View>
               </View>
             </TouchableOpacity>
           </Card>
           <Card style={styles.headCard}>
             <TouchableOpacity style={styles.cardHead} onPressIn={navigateProfile}>
-
               <View style={styles.orderHeadContent}>
                 <View style={{ flex: 1, }}>
                   <Text style={styles.cardTitle}>Personal Settings </Text>
-
                 </View>
                 <View style={{ flex: 1, }}>
                   <Icon
@@ -75,23 +64,17 @@ export const AccountScreen = ({ navigation }) => {
                     fill='#747D8C'
                     style={{ alignSelf: 'flex-end' }}
                   />
-
                 </View>
               </View>
             </TouchableOpacity>
           </Card>
-
         </View>
       </ScrollView>
-
     </SafeAreaView >
-
   )
-
 };
 
 const styles = StyleSheet.create({
-
   headCard: {
     margin: 0, padding: 0,
     shadowColor: "#000",
@@ -103,7 +86,6 @@ const styles = StyleSheet.create({
     shadowRadius: 2.49,
     elevation: 0,
     marginVertical: 5,
-    // backgroundColor: 'transparent'
   },
   cardHead: {
     flex: 1,

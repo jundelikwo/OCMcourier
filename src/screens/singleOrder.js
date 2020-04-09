@@ -2,7 +2,6 @@ import React from 'react'
 import {
   StyleSheet,
   View,
-  Dimensions,
   ScrollView,
 } from 'react-native';
 import {
@@ -14,9 +13,8 @@ import IconI from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export const SingleOrderScreen = ({ navigation }) => {
-  const order = navigation.state.params.order.details
-
-  console.log(order)
+  const order = navigation.state.params.order.details;
+  const orderStateHeader = order.header ? 'Delivered' : 'Picked Up';
   //nav
   const navigateBack = () => {
     requestAnimationFrame(() => {
@@ -30,7 +28,7 @@ export const SingleOrderScreen = ({ navigation }) => {
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} style={[{ padding: 5 }]} />
   );
-  const orderStateHeader = order.header ? 'Delivered' : 'Picked Up';
+
 
   return (
     <View style={{ flex: 1 }}>
@@ -64,7 +62,6 @@ export const SingleOrderScreen = ({ navigation }) => {
         </View>
       </Card>
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ flex: 1 }}>
-
         {
           order.body.map((body, i) => {
             return (
@@ -98,14 +95,12 @@ export const SingleOrderScreen = ({ navigation }) => {
             )
           })
         }
-
       </ScrollView>
     </View>
   )
 };
 
 const styles = StyleSheet.create({
-
   orderHeadCard: {
     margin: 1, padding: 0,
     shadowColor: "#000",
