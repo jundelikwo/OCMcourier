@@ -7,15 +7,12 @@ import {
 } from 'react-native';
 import {
   Text, Avatar, TopNavigationAction,
-  TopNavigation, Divider, Card,
+  Divider, Card,
 } from '@ui-kitten/components';
+import TopNav from '../components/topNav';
 import IconI from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import ToggleSwitch from 'toggle-switch-react-native';
-//  icons
-const BackIcon = (tintColor) => (
-  <IconI style={[{ color: '#515C6F' }]} name='ios-arrow-back' size={25} />
-);
 
 
 export const SingleOrderScreen = ({ navigation }) => {
@@ -35,12 +32,18 @@ export const SingleOrderScreen = ({ navigation }) => {
 
   //nav
   const navigateBack = () => {
-    navigation.goBack();
+    requestAnimationFrame(() => {
+      navigation.goBack();
+    })
   };
+  const BackIcon = () => (
+    <IconI style={[{ color: '#515C6F', marginRight: -29, }]} name='ios-arrow-back' size={25} />
+  );
 
   const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
+    <TopNavigationAction icon={BackIcon} onPress={navigateBack} style={[{ padding: 5 }]} />
   );
+
 
 
   const availableToggle = () => (
@@ -60,8 +63,7 @@ export const SingleOrderScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1 }}>
 
-      <TopNavigation title='Order History' style={styles.topNavigation}
-        titleStyle={styles.title} leftControl={BackAction()} rightControls={availableToggle()} />
+      <TopNav title='Order History' leftControl={BackAction()} />
       <Divider />
       <Card style={styles.orderHeadCard}>
         <View style={styles.orderHead}>
