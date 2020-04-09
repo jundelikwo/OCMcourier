@@ -1,16 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   View,
   Text
 } from 'react-native';
-
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default LeftBox = ({ title, statusText, status }) => {
-
   return (
     <View style={{ position: 'absolute', backgroundColor: 'transparent', right: 55, bottom: -10 }}>
-
       <View style={{
         width: 100,
         height: 60,
@@ -38,11 +35,9 @@ export default LeftBox = ({ title, statusText, status }) => {
         width: 60,
         height: 34.5,
       }}>{statusText}</Text>
-
       {
         status ? <Icon style={{ position: 'absolute', alignSelf: 'flex-end', left: 68, bottom: 7 }} name='ello' size={8} color={'#5AC966'} /> :
           <Icon style={{ position: 'absolute', alignSelf: 'flex-end', left: 72, bottom: 7 }} name='ello' size={8} color={'#FD901C'} />}
-
       <View style={{
         position: 'absolute',
         left: 88,
