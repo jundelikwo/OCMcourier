@@ -8,10 +8,8 @@ import {
 } from '@ui-kitten/components';
 
 export default PendingBuyer = ({ buyer }) => {
-  // console.log(buyer)
   return (
     <View>
-
       <Card style={styles.card} >
         <Text style={styles.stopsCountText}>
           Deliver to
@@ -60,7 +58,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 1,
     shadowRadius: 0.5,
-
     elevation: 0.5,
   },
   stopsCountText: {
@@ -109,7 +106,4 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     lineHeight: 16
   },
-  statusStopIcon: {
-    bottom: 17.5, marginLeft: 173, marginBottom: -7
-  }
 });
