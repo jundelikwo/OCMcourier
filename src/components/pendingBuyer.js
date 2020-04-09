@@ -8,7 +8,7 @@ import {
 } from '@ui-kitten/components';
 
 export default PendingBuyer = ({ buyer }) => {
-  console.log(buyer)
+  // console.log(buyer)
   return (
     <View>
 
