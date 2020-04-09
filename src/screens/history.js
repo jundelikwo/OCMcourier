@@ -32,7 +32,7 @@ export const HistoryScreen = ({ navigation }) => {
             'orderCount': 1,
             'title': 'Crunchies Restaurant',
             'status': true,
-            'distance': '1km ',
+            'distance': '1.0km ',
             'time': '05mins',
             'address': '15 Harcourt Street, Calabar.',
             'phone': '+23409256345'
@@ -87,7 +87,7 @@ export const HistoryScreen = ({ navigation }) => {
             'orderCount': 1,
             'title': 'Bole Rose',
             'status': true,
-            'distance': '2km ',
+            'distance': '2.0km ',
             'time': '09mins',
             'address': '43 Etta Agbor, Calabar.',
             'phone': '+23409256123'
@@ -134,77 +134,3 @@ export const HistoryScreen = ({ navigation }) => {
     </SafeAreaView >
   )
 };
-const styles = StyleSheet.create({
-  orderHeadCard: {
-    margin: 0, padding: 0,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 6,
-    },
-    shadowOpacity: 0.37,
-    shadowRadius: 2.49,
-    elevation: 3,
-    // backgroundColor: 'yellow',
-    flex: 1,
-    marginBottom: -10
-    // alignItems: 'center'
-
-  },
-  orderHead: {
-    flex: 1,
-    flexDirection: 'row',
-    // alignItems: "center",
-    // backgroundColor: 'green'
-  },
-  avatar: {
-    flex: 1,
-    alignItems: 'flex-start'
-  },
-  orderHeadContent: {
-    flex: 4,
-    flexDirection: "row",
-    alignItems: 'center',
-    // backgroundColor: 'red',
-
-  },
-  clientName: {
-    fontSize: 16,
-    fontFamily: 'Muli',
-    color: '#747D8C',
-    fontWeight: 'bold',
-    marginTop: 2
-    // marginVertical: 2
-  },
-  dot: {
-    fontSize: 30,
-    color: '#747D8C',
-  },
-  stops: {
-    fontSize: 12,
-    fontFamily: 'Muli',
-    color: '#747D8C',
-    // marginVertical: 2
-  },
-  stopsCountNum: {
-    fontSize: 12,
-    fontFamily: 'Muli',
-    color: '#747D8C',
-    // marginTop: -2,
-    fontWeight: 'bold'
-  },
-  date: {
-    fontSize: 9,
-    fontFamily: 'Muli',
-    color: '#747D8C',
-    justifyContent: 'flex-end',
-    flex: 1,
-    alignSelf: 'flex-start',
-    // marginTop: 9,
-    // left: 16
-  },
-  statusIcon: {
-    bottom: 17,
-    left: 121
-  },
-})

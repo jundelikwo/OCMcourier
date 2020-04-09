@@ -13,11 +13,10 @@ import SingleOrderScreen from '../screens/singleOrder';
 
 export default HistoryOverview = ({ navigation, order }) => {
   const navigateSingleOrder = () => {
-    // console.log(order.details)
-    // navigation = order.details
     requestAnimationFrame(() => {
-      navigation.navigate('SingleOrder');
-      // this.props.details = order.details;
+      navigation.navigate('SingleOrder', {
+        order: order
+      });
     })
   };
   const orderState = order.status ? 'Delivered' : 'Waiting'

@@ -13,8 +13,10 @@ import TopNav from '../components/topNav';
 import IconI from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-export const SingleOrderScreen = ({ navigation, details }) => {
-  console.log(navigation)
+export const SingleOrderScreen = ({ navigation }) => {
+  const order = navigation.state.params.order.details
+
+  console.log(order)
   //nav
   const navigateBack = () => {
     requestAnimationFrame(() => {
@@ -28,6 +30,7 @@ export const SingleOrderScreen = ({ navigation, details }) => {
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} style={[{ padding: 5 }]} />
   );
+  const orderStateHeader = order.header ? 'Delivered' : 'Picked Up';
 
   return (
     <View style={{ flex: 1 }}>
@@ -40,146 +43,69 @@ export const SingleOrderScreen = ({ navigation, details }) => {
           </View>
           <View style={styles.orderHeadContent}>
             <View style={{ flex: 2 }}>
-              <Text style={styles.clientName}>Brown Samson Dappa</Text>
-              <Text style={styles.orderNumKilo}>Order No. 38392 <Text style={styles.dot}>.</Text> 2.6km</Text>
-              <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>3 <Text style={styles.dot}>.</Text></Text> Delivered</Text>
-              <Icon style={[styles.statusIcon]} name='ello' size={10} color={'#5AC966'} />
+              <Text style={styles.clientName}>{order.header.title}</Text>
+              <Text style={styles.orderNumKilo}>Order No. {order.header.orderNo}
+                <Text style={styles.dot}>.</Text>
+                {order.header.distance}
+              </Text>
+              <Text style={styles.stops}>Stops:
+                <Text style={styles.stopsCountNum}>
+                  {order.header.stops}
+                  <Text style={styles.dot}>.</Text>
+                </Text>
+                {orderStateHeader}
+              </Text>
+              {order.header ? <Icon style={{ bottom: 17.5, left: 105, }} name='ello' size={10} color={'#5AC966'} /> : <Icon style={{ bottom: 17.5, left: 105, }} name='ello' size={10} color={'#FD901C'} />}
             </View>
             <View style={{ flex: 1, }}>
-              <Text style={styles.time}>02/2019 </Text>
+              <Text style={styles.time}>{order.header.date} </Text>
             </View>
           </View>
         </View>
       </Card>
       <ScrollView contentInsetAdjustmentBehavior="automatic" style={{ flex: 1 }}>
-        <Card style={styles.card} >
-          <Text style={styles.stopsCountText}>
-            Stop 1
-          </Text>
-          <Text style={styles.restaurantName}>
-            Crunchies Restaurant
-          </Text>
-          <Text style={styles.orderNumKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
-            <Text style={styles.dot}>.</Text> Picked Up</Text>
-          </Text>
-          <Icon style={[styles.statusPickupIcon]} name='ello' size={10} color={'#5AC966'} />
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Address:</Text>
-            <Text style={styles.addressContent}>
-              6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
-            </Text>
-          </View>
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Phone:</Text>
-            <Text style={styles.addressContent}>
-              +234 817 496 9237
-            </Text>
-          </View>
-        </Card>
-        <Card style={styles.card} >
-          <Text style={styles.stopsCountText}>
-            Stop 2
-          </Text>
-          <Text style={styles.restaurantName}>
-            The Spot
-          </Text>
-          <Text style={styles.orderNumKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
-            <Text style={styles.dot}>.</Text> Picked Up </Text>
-          </Text>
-          <Icon style={[styles.statusPickupIcon]} name='ello' size={10} color={'#5AC966'} />
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Address:</Text>
-            <Text style={styles.addressContent}>
-              6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
-            </Text>
-          </View>
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Phone:</Text>
-            <Text style={styles.addressContent}>
-              +234 817 496 9237
-            </Text>
-          </View>
-        </Card>
-        <Card style={styles.card} >
-          <Text style={styles.stopsCountText}>
-            Stop 3
-          </Text>
-          <Text style={styles.restaurantName}>
-            Pepper Roni
-          </Text>
-          <Text style={styles.orderNumKilo}>10mins<Text style={styles.dot}> .</Text> 1.3km <Text style={styles.orderItemStatus}>
-            <Text style={styles.dot}>.</Text> Picked Up </Text>
-          </Text>
-          <Icon style={[styles.statusPickupIcon]} name='ello' size={10} color={'#5AC966'} />
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Address:</Text>
-            <Text style={styles.addressContent}>
-              6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
-            </Text>
-          </View>
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Phone:</Text>
-            <Text style={styles.addressContent}>
-              +234 817 496 9237
-            </Text>
-          </View>
-        </Card>
-        <Card style={styles.card} >
-          <Text style={styles.stopsCountText}>
-            Delivered to
-          </Text>
-          <Text style={styles.restaurantName}>
-            Brown Samson Dappa
-          </Text>
-          <Text style={styles.orderNumKilo}>1.3km</Text>
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Address:</Text>
-            <Text style={styles.addressContent}>
-              6A, Housing Estate Road (Beside Hennyplan winery), opposite First Bank, Off Marian Road, Calabar.
-            </Text>
-          </View>
-          <Divider style={styles.divider} />
-          <View style={styles.addrPhone}>
-            <Text style={styles.address}>Phone:</Text>
-            <Text style={styles.addressContent}>
-              +234 817 496 9237
-            </Text>
-          </View>
-        </Card>
+
+        {
+          order.body.map((body, i) => {
+            return (
+              <Card style={styles.card} index={i} key={i}>
+                <Text style={styles.stopsCountText}>
+                  Stop {body.orderCount}
+                </Text>
+                <Text style={styles.restaurantName}>
+                  {body.title}
+                </Text>
+                <Text style={styles.orderNumKilo}>{body.time}<Text style={styles.dot}> .</Text>  {body.distance} <Text style={styles.orderItemStatus}>
+                  <Text style={styles.dot}>.</Text>
+                  {body.status ? <Text style={styles.orderItemStatus}> Delivered</Text> : <Text style={styles.orderItemStatus}> Picked Up</Text>}</Text>
+                </Text>
+                {body.status ? <Icon style={{ bottom: 17.5, left: 167, marginBottom: -7 }} name='ello' size={10} color={'#5AC966'} /> : <Icon style={{ bottom: 17.5, left: 172, marginBottom: -7 }} name='ello' size={10} color={'#FD901C'} />}
+                <Divider style={styles.divider} />
+                <View style={styles.addrPhone}>
+                  <Text style={styles.address}>Address:</Text>
+                  <Text style={styles.addressContent}>
+                    {body.address}
+                  </Text>
+                </View>
+                <Divider style={styles.divider} />
+                <View style={styles.addrPhone}>
+                  <Text style={styles.address}>Phone:</Text>
+                  <Text style={styles.addressContent}>
+                    {body.phone}
+                  </Text>
+                </View>
+              </Card>
+            )
+          })
+        }
+
       </ScrollView>
     </View>
   )
 };
 
 const styles = StyleSheet.create({
-  topNavigation: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.58,
-    shadowRadius: 1,
-    elevation: 3,
-    paddingVertical: 5,
-    width: Dimensions.get('window').width + 8.8,
-    flexDirection: 'row',
-  },
-  title: {
-    fontSize: 18,
-    fontFamily: 'Muli',
-    alignSelf: 'center',
-    color: '#FD901C',
-    fontWeight: 'bold',
 
-  },
   orderHeadCard: {
     margin: 1, padding: 0,
     shadowColor: "#000",
