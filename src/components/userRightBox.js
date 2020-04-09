@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   View,
   Text
 } from 'react-native';
-
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default UserRightBox = ({ title, status }) => {
@@ -53,10 +52,7 @@ export default UserRightBox = ({ title, status }) => {
         borderRightColor: '#dcd6f7',
         borderBottomWidth: 13,
         borderBottomColor: 'transparent',
-
       }} />
-
     </View>
-
   )
 };
