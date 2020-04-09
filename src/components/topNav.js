@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     shadowRadius: 1,
     elevation: 3,
     paddingVertical: 5,
-    width: Dimensions.get('window').width,
+    width: Dimensions.get('window').width + 5,
     flexDirection: 'row',
   },
   title: {
