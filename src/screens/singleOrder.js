@@ -29,7 +29,6 @@ export const SingleOrderScreen = ({ navigation }) => {
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} style={[{ padding: 5 }]} />
   );
 
-
   return (
     <View style={{ flex: 1 }}>
       <TopNav title='Order History' leftControl={BackAction()} />
@@ -111,7 +110,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.37,
     shadowRadius: 2.49,
     elevation: 1,
-
   },
   orderHead: {
     flex: 1,
@@ -169,14 +167,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     marginLeft: 33,
 
-  },
-  toggleText: {
-    fontSize: 14,
-    fontFamily: 'Muli',
-    color: '#828282',
-    fontWeight: 'bold',
-    right: 50,
-    position: 'absolute',
   },
   card: {
     marginVertical: 4,
@@ -239,9 +229,4 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     lineHeight: 16
   },
-  statusPickupIcon: {
-    bottom: 17.5,
-    marginLeft: 167,
-    marginBottom: -7
-  }
 });
