@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import {
   ScrollView,
   SafeAreaView,
-  StyleSheet,
   View
 } from 'react-native';
 import {
