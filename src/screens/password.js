@@ -13,7 +13,6 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import TopNav from '../components/topNav';
 
-
 export const PasswordScreen = ({ navigation }) => {
 
   //nav
@@ -44,6 +43,7 @@ export const PasswordScreen = ({ navigation }) => {
       setVisible(!visible)
     })
   };
+
   const renderModalElement = () => (
     <View style={{}}>
       <Layout style={{
@@ -55,7 +55,6 @@ export const PasswordScreen = ({ navigation }) => {
         shadowOpacity: 0.3,
         shadowRadius: 16,
         elevation: 3,
-
       }}>
         <TouchableOpacity style={{ backgroundColor: 'white', flex: 0.6, borderRadius: 16, alignSelf: 'flex-start', width: Dimensions.get('window').width - 60, flexDirection: 'row', justifyContent: 'flex-end' }} onPress={toggleModal}>
           <Image style={{
@@ -99,10 +98,7 @@ export const PasswordScreen = ({ navigation }) => {
         </TouchableOpacity>
       </Layout >
     </View>
-
   );
-
-
 
   return (
     <View style={{ flex: 1 }}>
@@ -156,14 +152,17 @@ export const PasswordScreen = ({ navigation }) => {
             {renderModalElement()}
           </Modal>
         </Layout>
-        <TouchableOpacity onPress={toggleModal} style={styles.button} ><Text style={styles.buttonText}>Change Password</Text></TouchableOpacity>
+        <TouchableOpacity onPress={toggleModal} style={styles.button}>
+          <Text style={styles.buttonText}>
+            Change Password
+          </Text>
+        </TouchableOpacity>
       </View>
     </View >
   )
 };
 
 const styles = StyleSheet.create({
-
   modalContainer: {
     justifyContent: 'center',
     alignItems: 'center',
