@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   View,
   Dimensions,
@@ -29,7 +29,6 @@ export default UserLeft = ({ title, status }) => {
           top: 4,
           alignSelf: 'flex-start'
         }}>
-
         </View>
         <View style={{
           position: 'absolute',
