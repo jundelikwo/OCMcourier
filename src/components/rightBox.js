@@ -3,7 +3,6 @@ import {
   View,
   Text
 } from 'react-native';
-
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default RightBox = ({ title, statusText, status }) => {
@@ -39,7 +38,6 @@ export default RightBox = ({ title, statusText, status }) => {
       {
         status ? <Icon style={{ position: 'absolute', alignSelf: 'flex-end', left: 68, bottom: 7 }} name='ello' size={8} color={'#5AC966'} /> :
           <Icon style={{ position: 'absolute', alignSelf: 'flex-end', left: 72, bottom: 7 }} name='ello' size={8} color={'#FD901C'} />}
-
       <View style={{
         position: 'absolute',
         left: -15,
