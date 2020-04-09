@@ -5,10 +5,7 @@ import {
 } from 'react-native';
 import ToggleSwitch from 'toggle-switch-react-native';
 
-
 export default ModalStatus = ({ modalStatus, order }) => {
-
-
   const [transitStatus, setTransitStatus] = useState({
     transit: order.status,
     status: "In-Transit",
@@ -21,7 +18,6 @@ export default ModalStatus = ({ modalStatus, order }) => {
 
   };
   order.status = transitStatus.transit;
-  console.log(order, 'yy')
 
   return (
     <View style={{ justifyContent: 'center', alignItems: 'center', margin: 20, }}>
@@ -34,10 +30,8 @@ export default ModalStatus = ({ modalStatus, order }) => {
         size='small'
         onToggle={onCheckedChangeOrder}
       />
-
     </View>
   )
-
 };
 
 const styles = StyleSheet.create({
