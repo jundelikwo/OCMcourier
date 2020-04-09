@@ -17,10 +17,10 @@ export default OrderStatus = ({ overviewOrder }) => {
   });
   const { active, status } = order;
   const onCheckedChangeOrder = (isChecked) => {
-    // console.warn("isChecked", isChecked)
     setOrder({ ...order, status: status == 'Active' ? "Not Active" : "Active", active: isChecked })
   };
-  const orderState = overviewOrder.status ? 'Processed' : 'Processing'
+  const orderState = overviewOrder.status ? 'Processed' : 'Processing';
+
   return (
     <Card style={styles.orderHeadCard}>
       <View style={styles.orderHead}>
@@ -32,18 +32,13 @@ export default OrderStatus = ({ overviewOrder }) => {
             <Text style={styles.clientName}>{overviewOrder.title}</Text>
             <Text style={styles.timeToKilo}>{overviewOrder.totalTime}<Text style={styles.dot}> .</Text> 2.6km</Text>
             <Text style={styles.stops}>Stops: <Text style={styles.stopsCountNum}>{overviewOrder.stops} <Text style={styles.dot}>.</Text></Text> {orderState}</Text>
-
-            {/* <Icon style={[styles.statusIcon]} name='ello' size={10} /> */}
             {overviewOrder.status ? <Icon style={{
               bottom: 17.5,
               left: 120,
-              // color: '#FD901C'
             }} name='ello' size={10} color={'#5AC966'} /> : <Icon style={{
               bottom: 16.6,
               left: 123,
-              // color: '#FD901C'
             }} name='ello' size={10} color={'#FD901C'} />}
-
           </View>
           <View style={{ flex: 1, alignItems: 'flex-end', justifyContent: 'space-evenly', bottom: 11 }}>
             <Text style={styles.time}>{overviewOrder.time} ago</Text>
@@ -56,13 +51,11 @@ export default OrderStatus = ({ overviewOrder }) => {
               size='small'
               onToggle={onCheckedChangeOrder}
             />
-
           </View>
         </View>
       </View>
     </Card>
   )
-
 };
 
 const styles = StyleSheet.create({
@@ -77,7 +70,6 @@ const styles = StyleSheet.create({
     shadowRadius: 2.49,
     elevation: 1,
     overflow: 'visible'
-
   },
   orderHead: {
     flex: 1,
@@ -88,7 +80,6 @@ const styles = StyleSheet.create({
   avatar: {
     flex: 1,
     alignItems: 'flex-start',
-    // alignSelf: 'center',
   },
   orderHeadContent: {
     flex: 4,
