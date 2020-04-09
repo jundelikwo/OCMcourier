@@ -73,6 +73,7 @@ export const PendingScreen = ({ navigation }) => {
       'phone': '+238177024847'
     }
   ]);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <TopNav title='Pending Orders' />
@@ -93,4 +94,3 @@ export const PendingScreen = ({ navigation }) => {
     </SafeAreaView>
   )
 };
-
