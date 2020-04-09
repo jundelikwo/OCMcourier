@@ -36,8 +36,8 @@ export const ProfileScreen = ({ navigation }) => {
   const [Namevalue, setValueName] = useState('');
   const [Emailvalue, setValueEmail] = useState('');
   const [Mobilevalue, setValueMobile] = useState('');
-  const selectPhotoTapped = () => {
 
+  const selectPhotoTapped = () => {
     const options = {
       title: 'Select Photo',
       storageOptions: {
@@ -46,14 +46,11 @@ export const ProfileScreen = ({ navigation }) => {
       },
     };
     ImagePicker.showImagePicker(options, (response) => {
-      // console.log('Response = ', response);
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
       } else {
-        // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64, ' + response.data };
         const source = {
           uri: response.uri,
           type: response.type,
@@ -63,6 +60,7 @@ export const ProfileScreen = ({ navigation }) => {
       }
     });
   }
+
   const handleUpload = (photo) => {
     const data = new FormData()
     data.append('file', photo)
@@ -80,16 +78,19 @@ export const ProfileScreen = ({ navigation }) => {
   }
 
   const [visible, setVisible] = useState(false);
+
   const toggleModalBack = () => {
     requestAnimationFrame(() => {
       setVisible(!visible);
     })
   };
+
   const toggleModal = () => {
     requestAnimationFrame(() => {
       setVisible(!visible)
     })
   };
+
   const renderModalElement = () => (
     <View style={{}}>
       <Layout style={{
@@ -182,7 +183,7 @@ export const ProfileScreen = ({ navigation }) => {
         <View style={{ flex: 1.5, paddingTop: 80 }}>
           <Input
             value={Namevalue}
-            placeholder='Brown Samson Dappa'
+            placeholder='Godswill Effiong Okokon'
             style={styles.inputEmail}
             textStyle={styles.inputText}
             labelStyle={styles.inputLabel}
@@ -193,7 +194,7 @@ export const ProfileScreen = ({ navigation }) => {
           />
           <Input
             value={Emailvalue}
-            placeholder='samsondappa@gmail.com'
+            placeholder='Godswillokokon3@gmail.com'
             style={styles.inputPass}
             textStyle={styles.inputText}
             labelStyle={styles.inputLabel}
@@ -204,7 +205,7 @@ export const ProfileScreen = ({ navigation }) => {
           />
           <Input
             value={Mobilevalue}
-            placeholder='+234 817 496 9237'
+            placeholder='+234 817 702 4847'
             style={styles.inputPass}
             textStyle={styles.inputText}
             labelStyle={styles.inputLabel}
@@ -222,7 +223,11 @@ export const ProfileScreen = ({ navigation }) => {
               {renderModalElement()}
             </Modal>
           </Layout>
-          <TouchableOpacity onPress={toggleModal} style={styles.button} ><Text style={styles.buttonText}>Update</Text></TouchableOpacity>
+          <TouchableOpacity onPress={toggleModal} style={styles.button} >
+            <Text style={styles.buttonText}>
+              Update
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View >
