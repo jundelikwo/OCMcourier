@@ -41,7 +41,7 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
 
     <View style={{}}>
       <Layout style={{
-        flex: 1, flexDirection: 'column', height: 400, width: Dimensions.get('window').width - 60, borderRadius: 16, shadowColor: "#000",
+        flex: 1, flexDirection: 'column', height: 400, width: Dimensions.get('window').width - 50, borderRadius: 16, shadowColor: "#000",
         shadowOffset: {
           width: 0,
           height: 12,
@@ -52,7 +52,7 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
 
       }}>
         <TouchableOpacity style={{
-          backgroundColor: 'transparent', flex: 0.5, borderRadius: 16, alignSelf: 'flex-end',
+          backgroundColor: 'transparent', flex: 0.4, borderRadius: 16, alignSelf: 'flex-end',
           flexDirection: 'row',
         }} onPress={toggleModal}>
           <Image style={{
@@ -62,7 +62,7 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
           }} source={require('../assets/x.png')} />
         </TouchableOpacity>
         <View style={{
-          backgroundColor: 'transparent', flex: 0.3, alignSelf: 'flex-start', width: Dimensions.get('window').width - 60,
+          backgroundColor: 'transparent', flex: 0.3, alignSelf: 'flex-start', width: Dimensions.get('window').width - 50,
           flexDirection: 'row', justifyContent: 'flex-end',
         }}>
           <ModalStatus modalStatus={order.status} order={order} />
@@ -116,7 +116,7 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
               }}>. </Text >
               {orderState} </Text>
           </Text>
-          {order.status ? <IconF style={{ bottom: 19, left: 190, }} name='ello' size={10} color={'#5AC966'} /> : <IconF style={{ bottom: 19, left: 209, }} name='ello' size={10} color={'#FD901C'} />}
+          {order.status ? <IconF style={{ bottom: 19, left: 180, }} name='ello' size={10} color={'#5AC966'} /> : <IconF style={{ bottom: 19, left: 199, }} name='ello' size={10} color={'#FD901C'} />}
 
 
         </View>
@@ -190,7 +190,7 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
 
         </View>
         <TouchableOpacity style={{
-          backgroundColor: '#FD901C', flex: 0.5, alignSelf: 'flex-end', width: Dimensions.get('window').width - 60,
+          backgroundColor: '#FD901C', flex: 0.5, alignSelf: 'flex-end', width: Dimensions.get('window').width - 50,
           justifyContent: 'center', borderBottomRightRadius: 16, borderBottomLeftRadius: 16,
           flexDirection: 'row'
         }}
