@@ -10,11 +10,8 @@ import {
 } from '@ui-kitten/components';
 import ToggleSwitch from 'toggle-switch-react-native';
 
-
 export default TopNav = ({ title, leftControl }) => {
-
   const availableToggle = () => (
-
     <View style={{ marginRight: 18 }}>
       <ToggleSwitch
         isOn={checked}
@@ -35,17 +32,15 @@ export default TopNav = ({ title, leftControl }) => {
   const { checked, text } = available;
 
   const onCheckedChangeCourier = (isChecked) => {
-    // requestAnimationFrame(() => {
-    // console.warn("isChecked", isChecked)
-    setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
-    // })
+    requestAnimationFrame(() => {
+      setAvailable({ ...available, text: text == 'Available' ? "Not Available" : "Available", checked: isChecked })
+    })
   };
 
   return (
     <TopNavigation title={title} style={styles.topNavigation}
       titleStyle={styles.title} leftControl={leftControl} rightControls={availableToggle()} />
   )
-
 };
 
 const styles = StyleSheet.create({
@@ -69,7 +64,6 @@ const styles = StyleSheet.create({
     color: '#FD901C',
     fontWeight: 'bold',
     marginLeft: 18
-
   },
   toggleText: {
     fontSize: 14,
