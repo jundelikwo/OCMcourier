@@ -20,7 +20,6 @@ const Tab = createMaterialBottomTabNavigator(
           <View>
             <IconF style={[{ color: tintColor }]} size={20} name={'stream'} />
           </View>),
-
       },
     },
     History: {
@@ -61,7 +60,6 @@ const Tab = createMaterialBottomTabNavigator(
           <View>
             <IconF style={[{ color: tintColor }]} size={20} name={'user-alt'} />
           </View>),
-
       },
     },
   },
