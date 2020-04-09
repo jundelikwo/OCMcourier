@@ -16,7 +16,6 @@ import LeftBox from './leftBox';
 import RightBox from './rightBox';
 import ModalStatus from './modalStatus';
 
-
 export default StepIndicator = ({ order, index, navigation, status, modalStatus }) => {
   const navigateDirection = () => {
     requestAnimationFrame(() => {
@@ -33,12 +32,11 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
     requestAnimationFrame(() => {
       setVisible(!visible)
     })
-    // console.log(isChecked, "hh")
   };
 
-  const orderState = order.status ? 'Picked Up' : 'Processed'
-  const renderModalElement = () => (
+  const orderState = order.status ? 'Picked Up' : 'Processed';
 
+  const renderModalElement = () => (
     <View style={{}}>
       <Layout style={{
         flex: 1, flexDirection: 'column', height: 400, width: Dimensions.get('window').width - 50, borderRadius: 16, shadowColor: "#000",
@@ -49,7 +47,6 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
         shadowOpacity: 0.3,
         shadowRadius: 16,
         elevation: 5,
-
       }}>
         <TouchableOpacity style={{
           backgroundColor: 'transparent', flex: 0.4, borderRadius: 16, alignSelf: 'flex-end',
@@ -66,8 +63,6 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
           flexDirection: 'row', justifyContent: 'flex-end',
         }}>
           <ModalStatus modalStatus={order.status} order={order} />
-          {/* {console.log(order.status)} */}
-
         </View>
         <View style={{
           backgroundColor: 'transparent', flex: 0.5, alignSelf: 'center', width: Dimensions.get('window').width - 90,
@@ -78,7 +73,6 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
             fontFamily: 'Muli',
             color: '#828282',
             fontWeight: 'normal',
-            // marginBottom: 6
             bottom: 12
           }}>
             Stop {order.orderCount}
@@ -117,8 +111,6 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
               {orderState} </Text>
           </Text>
           {order.status ? <IconF style={{ bottom: 19, left: 180, }} name='ello' size={10} color={'#5AC966'} /> : <IconF style={{ bottom: 19, left: 199, }} name='ello' size={10} color={'#FD901C'} />}
-
-
         </View>
         <Divider style={{
           padding: 0.5,
@@ -131,9 +123,7 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
           backgroundColor: 'transparent', flex: 0.6, alignSelf: 'center', width: Dimensions.get('window').width - 90,
           flexDirection: 'row',
           justifyContent: 'space-between',
-
         }}>
-
           <Text style={{
             fontSize: 15,
             fontFamily: 'Muli',
@@ -152,7 +142,6 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
           }}>
             {order.address}
           </Text>
-
         </View>
         <Divider style={{
           padding: 0.5,
@@ -163,10 +152,8 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
         }} />
         <View style={{
           backgroundColor: 'transparent', flex: 0.4, alignSelf: 'center', width: Dimensions.get('window').width - 90,
-          // justifyContent: 'center',
           flexDirection: 'row',
           justifyContent: 'space-between',
-          // marginVertical: 6
         }}>
           <Text style={{
             fontSize: 15,
@@ -186,8 +173,6 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
           }}>
             {order.phone}
           </Text>
-
-
         </View>
         <TouchableOpacity style={{
           backgroundColor: '#FD901C', flex: 0.5, alignSelf: 'flex-end', width: Dimensions.get('window').width - 50,
@@ -232,15 +217,12 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
   return (
 
     <View key={index} style={{ height: 200, width: Dimensions.get('window').width - 40, alignSelf: 'center', justifyContent: 'center', flexDirection: 'row' }}>
-
       <TouchableOpacity style={ballStyle} onPress={toggleModal}>
-
         {index % 2 == 0 ? (<RightBox title={order.title} statusText={orderState} status={order.status} />) : (<LeftBox title={order.title} statusText={orderState} status={order.status} />)}
       </TouchableOpacity>
       <View style={{
         height: 200, width: 80, alignSelf: 'center'
       }}>
-
       </View>
       <View style={{
         height: 200, width: 80, alignSelf: 'center', borderLeftWidth: 2, borderLeftColor: order.status ? '#FD901C' : '#C1C1C1',
@@ -250,7 +232,6 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
           color: '#717A89', fontSize: 12, position: 'absolute', top: 100, left: index % 2 == 0 ? 10 : -50,
           width: 42
         }}>{order.time}{order.distance}</Text>
-
       </View>
       <Modal visible={visible}
         animationType="slide"
@@ -259,15 +240,12 @@ export default StepIndicator = ({ order, index, navigation, status, modalStatus 
         transparent={false}>
         {renderModalElement()}
       </Modal>
-
     </View >
-
   )
 };
+
 const styles = StyleSheet.create({
   backdrop: {
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
-  },
-
-
+  }
 })
