@@ -54,7 +54,6 @@ export const ActiveScreen = ({ navigation }) => {
       'phone': '+238177024847'
     }
   ]);
-
   const lastIndexOfOrder = orders.length - 1;
 
   return (
@@ -78,4 +77,3 @@ export const ActiveScreen = ({ navigation }) => {
     </SafeAreaView >
   )
 };
-
