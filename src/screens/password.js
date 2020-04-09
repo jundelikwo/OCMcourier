@@ -27,7 +27,7 @@ export const PasswordScreen = ({ navigation }) => {
   );
 
   const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack} style={[{ padding: 3 }]} />
+    <TopNavigationAction icon={BackIcon} onPress={navigateBack} style={[{ padding: 5 }]} />
   );
 
   const [Oldvalue, setValueOld] = useState('');
@@ -109,7 +109,7 @@ export const PasswordScreen = ({ navigation }) => {
       <TopNav title='Change Password' leftControl={BackAction()} />
       <Divider />
       <View style={{ flex: 1 }}>
-        <View style={{ marginTop: 30 }}>
+        <View style={{ marginTop: 30, }}>
           <Input
             value={Oldvalue}
             placeholder='Old Password'
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     margin: 10,
     borderColor: '#BDBDBD',
     backgroundColor: '#fff',
-    width: Dimensions.get('window').width - 20,
+    width: Dimensions.get('window').width - 40,
     alignSelf: "center",
   },
   inputPass: {
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     margin: 10,
     borderColor: '#BDBDBD',
     backgroundColor: '#fff',
-    width: Dimensions.get('window').width - 20,
+    width: Dimensions.get('window').width - 40,
     alignSelf: "center"
   },
   placeholder: {

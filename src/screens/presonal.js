@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     margin: 10,
     borderColor: '#BDBDBD',
     backgroundColor: '#fff',
-    width: Dimensions.get('window').width - 30,
+    width: Dimensions.get('window').width - 40,
     alignSelf: "center",
   },
   inputPass: {
@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
     margin: 10,
     borderColor: '#BDBDBD',
     backgroundColor: '#fff',
-    width: Dimensions.get('window').width - 30,
+    width: Dimensions.get('window').width - 40,
     alignSelf: "center"
   },
   placeholder: {
@@ -257,7 +257,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#FD901C',
-    width: Dimensions.get('window').width - 30,
+    width: Dimensions.get('window').width - 40,
     alignSelf: 'center',
     borderRadius: 7,
     padding: 12,
